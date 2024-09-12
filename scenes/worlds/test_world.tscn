@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmv3rh2mhik8s"]
+[gd_scene load_steps=10 format=3 uid="uid://cmv3rh2mhik8s"]
 
 [ext_resource type="Texture2D" uid="uid://bthrcayj2iadw" path="res://assets/materials/tmp_floor/tiles_0059_color_1k.jpg" id="1_d7a1g"]
 [ext_resource type="Texture2D" uid="uid://ci580kodts228" path="res://assets/materials/tmp_floor/tiles_0059_ao_1k.jpg" id="2_c3sye"]
@@ -21,6 +21,9 @@ heightmap_texture = ExtResource("3_taget")
 material = SubResource("StandardMaterial3D_s2mpw")
 size = Vector2(64, 64)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gybx1"]
+size = Vector3(64, 0.1, 64)
+
 [node name="TestWorld" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
@@ -31,6 +34,8 @@ mesh = SubResource("PlaneMesh_k4i3a")
 skeleton = NodePath("../..")
 
 [node name="Collision" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_gybx1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 45)
