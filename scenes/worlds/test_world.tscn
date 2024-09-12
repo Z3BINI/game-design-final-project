@@ -24,6 +24,7 @@ size = Vector2(64, 64)
 [node name="TestWorld" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
+collision_mask = 7
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("PlaneMesh_k4i3a")
