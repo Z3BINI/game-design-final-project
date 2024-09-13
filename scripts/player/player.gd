@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var MAX_SPEED : float = 10
 @export var ACCEL : float = 0.6
 @export var DECEL : float = 0.25
+@export var JUMP_FORCE : float = 5
 
 var PLAYER_GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -27,13 +28,16 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	
+func _input(event):
+	if event.is_action_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_FORCE
+	
 func movement():
 	# Pick between accel or decel value depending on user input
 	var current_step : float = DECEL if input_direction == Vector2.ZERO else ACCEL
 
 	velocity.x = move_toward(velocity.x, input_direction.x * MAX_SPEED, current_step)
 	velocity.z = move_toward(velocity.z, input_direction.y * MAX_SPEED, current_step)
-	
 
 func fall(delta: float):
 	velocity.y -= PLAYER_GRAVITY * delta
