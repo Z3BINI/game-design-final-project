@@ -26,6 +26,9 @@ size = Vector3(64, 0.1, 64)
 
 [node name="TestWorld" type="Node3D"]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.722581, 0.691286, 0, -0.691286, 0.722581, 0, 23.1889, 35.5685)
+
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_mask = 7
 
