@@ -5,13 +5,17 @@ extends CharacterBody3D
 @export var DECEL : float = 0.25
 @export var JUMP_FORCE : float = 5
 
+@export var mouse_sens : float = 0.5
+
 var PLAYER_GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var input_direction : Vector2 
 
+@onready var camera_pivot = $CameraStand
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -31,6 +35,9 @@ func _process(delta: float) -> void:
 func _input(event):
 	if event.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_FORCE
+		
+	if event is InputEventMouseMotion:
+		rotate_pov(event.relative)
 	
 func movement():
 	# Pick between accel or decel value depending on user input
@@ -41,3 +48,9 @@ func movement():
 
 func fall(delta: float):
 	velocity.y -= PLAYER_GRAVITY * delta
+
+func rotate_pov(prev_mouse_pos : Vector2):
+	rotate_y(deg_to_rad(-prev_mouse_pos.x * mouse_sens))
+	camera_pivot.rotate_x(deg_to_rad(-prev_mouse_pos.y * mouse_sens))
+	camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-90), deg_to_rad(45))
+	
