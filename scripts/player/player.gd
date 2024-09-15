@@ -42,9 +42,10 @@ func _input(event):
 func movement():
 	# Pick between accel or decel value depending on user input
 	var current_step : float = DECEL if input_direction == Vector2.ZERO else ACCEL
-
-	velocity.x = move_toward(velocity.x, input_direction.x * MAX_SPEED, current_step)
-	velocity.z = move_toward(velocity.z, input_direction.y * MAX_SPEED, current_step)
+	var local_direction : Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	
+	velocity.x = move_toward(velocity.x, local_direction.x * MAX_SPEED, current_step)
+	velocity.z = move_toward(velocity.z, local_direction.z * MAX_SPEED, current_step)
 
 func fall(delta: float):
 	velocity.y -= PLAYER_GRAVITY * delta
