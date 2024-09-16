@@ -51,3 +51,5 @@ theme_override_constants/margin_bottom = 25
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
 text = "Return"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/ReturnButton" to="." method="pause_toggle"]
