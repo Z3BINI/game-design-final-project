@@ -5,5 +5,5 @@ class_name PauseMenu
 
 
 func _input(event):
-	if event.is_action("pause"):
+	if event.is_action_pressed("pause"):
 		visible = !visible
