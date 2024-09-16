@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmojf4bca5yf6"]
+
+[ext_resource type="PackedScene" uid="uid://6iwbqx2a606d" path="res://assets/models/cabinets/cabinet_quack_man.glb" id="1_va423"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_72ujb"]
+size = Vector3(1, 1.99246, 0.97821)
+
+[node name="QuackMan" type="StaticBody3D"]
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999983, 0.150726)
+shape = SubResource("BoxShape3D_72ujb")
+
+[node name="cabinet_quack_man" parent="." instance=ExtResource("1_va423")]

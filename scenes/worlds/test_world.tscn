@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmv3rh2mhik8s"]
+[gd_scene load_steps=12 format=3 uid="uid://cmv3rh2mhik8s"]
 
 [ext_resource type="Texture2D" uid="uid://bthrcayj2iadw" path="res://assets/materials/tmp_floor/tiles_0059_color_1k.jpg" id="1_d7a1g"]
 [ext_resource type="PackedScene" uid="uid://xvb7ik5v73qf" path="res://scenes/ui/pause/pause_menu.tscn" id="1_jq2bt"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dvouicv10ufgc" path="res://assets/materials/tmp_floor/tiles_0059_normal_direct_1k.png" id="4_yscqe"]
 [ext_resource type="Texture2D" uid="uid://bv4jw53b47fu8" path="res://assets/materials/tmp_floor/tiles_0059_roughness_1k.jpg" id="5_auaxl"]
 [ext_resource type="PackedScene" uid="uid://bl5w0m6c5dn60" path="res://scenes/player/player.tscn" id="6_eisrt"]
+[ext_resource type="PackedScene" uid="uid://bmojf4bca5yf6" path="res://scenes/world_objects/cabinets/playable/quack_man.tscn" id="8_boxj0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2mpw"]
 albedo_texture = ExtResource("1_d7a1g")
@@ -31,6 +32,9 @@ size = Vector3(64, 0.1, 64)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.722581, 0.691286, 0, -0.691286, 0.722581, 0, 23.1889, 35.5685)
+
+[node name="QuackMan" parent="." instance=ExtResource("8_boxj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0403715, 0)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_mask = 7
