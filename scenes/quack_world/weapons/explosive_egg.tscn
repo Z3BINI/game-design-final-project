@@ -1,15 +1,46 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmf3aookkqmck"]
+[gd_scene load_steps=15 format=3 uid="uid://bmf3aookkqmck"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/weapons/explosive_egg.gd" id="1_adbvh"]
 [ext_resource type="Texture2D" uid="uid://tr6ego75fr4t" path="res://assets/quack_man/weapons/explosive_egg.png" id="1_ldwwl"]
+[ext_resource type="PackedScene" uid="uid://dvql8uq18iq3q" path="res://scenes/quack_world/components/damage_component.tscn" id="2_n8bnc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a8urf"]
 friction = 0.8
-bounce = 1.0
+bounce = 0.05
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vj28n"]
+radius = 120.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f7dor"]
 radius = 13.0
 height = 32.0
+
+[sub_resource type="Animation" id="Animation_ydsi7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_qh8im"]
 resource_name = "detonated"
@@ -27,20 +58,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_ydsi7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 1)]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h5153"]
@@ -90,6 +118,13 @@ physics_material_override = SubResource("PhysicsMaterial_a8urf")
 gravity_scale = 0.0
 angular_velocity = 26.1799
 script = ExtResource("1_adbvh")
+
+[node name="DamageComponent" parent="." instance=ExtResource("2_n8bnc")]
+DMG_AMOUNT = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent"]
+shape = SubResource("CircleShape2D_vj28n")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)

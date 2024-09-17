@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://khoqxj40ybw7"]
+[gd_scene load_steps=7 format=3 uid="uid://khoqxj40ybw7"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/weapons/bullet.gd" id="1_6ekag"]
 [ext_resource type="Texture2D" uid="uid://bujckplm3qw3b" path="res://assets/quack_man/weapons/bullet.png" id="1_x52a0"]
+[ext_resource type="PackedScene" uid="uid://dvql8uq18iq3q" path="res://scenes/quack_world/components/damage_component.tscn" id="2_3u4oe"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7s0lp"]
 absorbent = true
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lk3bm"]
+size = Vector2(24, 8)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0fxnr"]
-radius = 2.0
-height = 10.0
+radius = 6.0
+height = 32.0
 
 [node name="Bullet" type="RigidBody2D"]
 collision_layer = 16
@@ -21,8 +25,14 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_6ekag")
 
+[node name="DamageComponent" parent="." instance=ExtResource("2_3u4oe")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent"]
+shape = SubResource("RectangleShape2D_lk3bm")
+
 [node name="BulletSprite" type="Sprite2D" parent="."]
 rotation = 1.5708
+scale = Vector2(3, 3)
 texture = ExtResource("1_x52a0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

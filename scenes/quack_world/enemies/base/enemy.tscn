@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cijhy7nf7ge6x"]
+[gd_scene load_steps=3 format=3 uid="uid://cijhy7nf7ge6x"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/enemies/base/enemy.gd" id="1_lm44b"]
+[ext_resource type="PackedScene" uid="uid://cg17ct0rih7uj" path="res://scenes/quack_world/components/health_component.tscn" id="2_jk53q"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 31
 motion_mode = 1
 script = ExtResource("1_lm44b")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_jk53q")]
 
 [node name="EnemyCollider" type="CollisionShape2D" parent="."]
 

@@ -43,3 +43,7 @@ func dump_first_physics_frame() -> void:
 	#re-enable _physics_process()
 	await get_tree().physics_frame
 	set_physics_process(true)
+
+
+func _on_health_component_died() -> void:
+	queue_free()

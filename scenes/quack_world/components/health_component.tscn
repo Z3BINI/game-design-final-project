@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg17ct0rih7uj"]
+
+[ext_resource type="Script" path="res://scripts/quack_world/components/health_component.gd" id="1_kqhas"]
+
+[node name="HealthComponent" type="Area2D"]
+collision_layer = 32
+collision_mask = 64
+script = ExtResource("1_kqhas")

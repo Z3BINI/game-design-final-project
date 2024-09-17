@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvql8uq18iq3q"]
+
+[ext_resource type="Script" path="res://scenes/quack_world/components/damage_component.gd" id="1_yf6si"]
+
+[node name="DamageComponent" type="Area2D"]
+collision_layer = 64
+collision_mask = 32
+script = ExtResource("1_yf6si")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

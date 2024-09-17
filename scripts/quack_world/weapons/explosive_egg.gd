@@ -6,7 +6,7 @@ extends RigidBody2D
 @onready var sprite_2d = $Sprite2D
 
 func _ready():
-	apply_central_impulse(transform.basis_xform(Vector2.LEFT) * 250)
+	apply_central_impulse(transform.basis_xform(Vector2.LEFT) * 125)
 	await get_tree().create_timer(EXPLOSION_TIMER).timeout
 	explosion.emitting = true
 	sprite_2d.visible = false

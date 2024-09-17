@@ -1,10 +1,41 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0xu61syhowr2"]
+[gd_scene load_steps=8 format=3 uid="uid://b0xu61syhowr2"]
 
 [ext_resource type="PackedScene" uid="uid://cijhy7nf7ge6x" path="res://scenes/quack_world/enemies/base/enemy.tscn" id="1_btfs5"]
 [ext_resource type="Texture2D" uid="uid://bjmog68mf4xse" path="res://assets/quack_man/enemies/enemy_1.png" id="2_fmvc8"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kn4sy"]
+radius = 44.0
+height = 108.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_7kj3x"]
-radius = 48.0937
+radius = 43.0116
+
+[sub_resource type="Animation" id="Animation_xvp0a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../EnemySprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0349066]
+}
 
 [sub_resource type="Animation" id="Animation_eanl3"]
 resource_name = "chase"
@@ -36,33 +67,6 @@ tracks/1/keys = {
 "values": [0.0349066, 0.0174533, -0.0174533, -0.0349066, -0.0174533, 0.0174533]
 }
 
-[sub_resource type="Animation" id="Animation_xvp0a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../EnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../EnemySprite:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0349066]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a7r2r"]
 _data = {
 "RESET": SubResource("Animation_xvp0a"),
@@ -71,18 +75,26 @@ _data = {
 
 [node name="BasicEnemy" instance=ExtResource("1_btfs5")]
 
-[node name="EnemyCollider" parent="." index="0"]
+[node name="HealthComponent" parent="." index="0"]
+MAX_HP = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" index="0"]
+shape = SubResource("CapsuleShape2D_kn4sy")
+
+[node name="EnemyCollider" parent="." index="1"]
 shape = SubResource("CircleShape2D_7kj3x")
 
-[node name="EnemySprite" parent="." index="1"]
+[node name="EnemySprite" parent="." index="2"]
 rotation = 1.5708
 scale = Vector2(6, 6)
 skew = 0.0349066
 texture = ExtResource("2_fmvc8")
 hframes = 6
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_a7r2r")
 }
 autoplay = "chase"
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
