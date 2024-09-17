@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://ck0146jgm5i4"]
+[gd_scene load_steps=3 format=3 uid="uid://ck0146jgm5i4"]
+
+[ext_resource type="PackedScene" uid="uid://bllaylpcu6vj1" path="res://scenes/quack_world/player/player.tscn" id="1_7gm2t"]
+[ext_resource type="PackedScene" uid="uid://b0xu61syhowr2" path="res://scenes/quack_world/enemies/basic_enemy.tscn" id="2_uh5wc"]
 
 [node name="QuackManWorld" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7gm2t")]
+
+[node name="BasicEnemy" parent="." instance=ExtResource("2_uh5wc")]
+position = Vector2(476, -175)
