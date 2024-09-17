@@ -14,6 +14,10 @@ config/name="game-design-final-project"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 player=""
@@ -60,3 +64,7 @@ pause={
 2d_physics/layer_3="player"
 3d_physics/layer_3="player"
 2d_physics/layer_4="enemy"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
