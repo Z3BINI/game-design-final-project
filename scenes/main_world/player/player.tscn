@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bl5w0m6c5dn60"]
 
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_eloes"]
+[ext_resource type="Script" path="res://scripts/main_world/player/player.gd" id="1_ofqso"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i3sr"]
 albedo_color = Color(1, 0.384314, 0.196078, 1)
@@ -24,7 +24,7 @@ height = 2.06386
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_eloes")
+script = ExtResource("1_ofqso")
 
 [node name="CameraStand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62527, 0)
