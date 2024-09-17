@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cg17ct0rih7uj" path="res://scenes/quack_world/components/health_component.tscn" id="4_ixe35"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_om7wm"]
-radius = 57.0
-height = 184.0
+radius = 36.0
+height = 176.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wq2a"]
 radius = 31.0
@@ -80,6 +80,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7wq2a")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.75, 0.75)
 
 [node name="Hand" type="Node2D" parent="."]
 

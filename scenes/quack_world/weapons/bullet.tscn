@@ -28,13 +28,16 @@ script = ExtResource("1_6ekag")
 [node name="DamageComponent" parent="." instance=ExtResource("2_3u4oe")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent"]
+position = Vector2(12.0001, 8.7738e-05)
 shape = SubResource("RectangleShape2D_lk3bm")
 
 [node name="BulletSprite" type="Sprite2D" parent="."]
+position = Vector2(12.0001, 8.7738e-05)
 rotation = 1.5708
 scale = Vector2(3, 3)
 texture = ExtResource("1_x52a0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12.0001, 8.7738e-05)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_0fxnr")
