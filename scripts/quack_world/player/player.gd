@@ -11,6 +11,7 @@ func _process(delta):
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	
 func _physics_process(delta):
+	look_at(get_global_mouse_position())
 	
 	var current_step : float = ACCEL if (input_direction != Vector2.ZERO) else DECEL
 	velocity = velocity.move_toward(input_direction * MAX_SPEED, current_step * delta)
