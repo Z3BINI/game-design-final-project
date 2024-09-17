@@ -14,12 +14,6 @@ config/name="game-design-final-project"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
-
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/mode=3
-
 [input]
 
 move_forward={
@@ -55,6 +49,10 @@ pause={
 
 [layer_names]
 
+2d_physics/layer_1="world"
 3d_physics/layer_1="world"
+2d_physics/layer_2="moveable"
 3d_physics/layer_2="moveable"
+2d_physics/layer_3="player"
 3d_physics/layer_3="player"
+2d_physics/layer_4="enemy"
