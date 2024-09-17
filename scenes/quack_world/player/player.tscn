@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bllaylpcu6vj1"]
+[gd_scene load_steps=4 format=3 uid="uid://bllaylpcu6vj1"]
 
 [ext_resource type="Texture2D" uid="uid://dqwkmti066fl7" path="res://icon.svg" id="1_o0qbe"]
+[ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqvsn"]
+radius = 63.1981
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
+script = ExtResource("1_qu3ph")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_o0qbe")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hqvsn")
