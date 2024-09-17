@@ -1,15 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmojf4bca5yf6"]
+[gd_scene load_steps=5 format=3 uid="uid://bmojf4bca5yf6"]
 
 [ext_resource type="PackedScene" uid="uid://6iwbqx2a606d" path="res://assets/models/cabinets/cabinet_quack_man.glb" id="1_va423"]
+[ext_resource type="Script" path="res://scripts/world_objects/cabinets/playable/cabinet_play_new_scene.gd" id="1_wh3f1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_72ujb"]
 size = Vector3(1, 1.99246, 0.97821)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_uryoa"]
+size = Vector3(1, 1.97205, 0.721802)
+
 [node name="QuackMan" type="StaticBody3D"]
 collision_mask = 7
+script = ExtResource("1_wh3f1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999983, 0.150726)
 shape = SubResource("BoxShape3D_72ujb")
 
 [node name="cabinet_quack_man" parent="." instance=ExtResource("1_va423")]
+
+[node name="PlayGameTrigger" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayGameTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.990178, 1.03277)
+shape = SubResource("BoxShape3D_uryoa")
+
+[connection signal="body_entered" from="PlayGameTrigger" to="." method="_on_play_game_trigger_body_entered"]
+[connection signal="body_exited" from="PlayGameTrigger" to="." method="_on_play_game_trigger_body_exited"]
