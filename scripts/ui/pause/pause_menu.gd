@@ -1,8 +1,6 @@
 extends Control
 class_name PauseMenu
 
-@onready var return_button = $PanelContainer/MarginContainer/ReturnButton
-
 func _input(event):
 	if event.is_action_pressed("pause"):
 		pause_toggle()
@@ -16,3 +14,6 @@ func pause_toggle():
 		get_tree().paused = true
 	
 	visible = !visible
+
+func _on_quit_button_pressed():
+	get_tree().quit()
