@@ -9,7 +9,8 @@ collision_mask = 31
 motion_mode = 1
 script = ExtResource("1_lm44b")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_jk53q")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_jk53q")]
+health_bar = NodePath("../HpBar")
 
 [node name="EnemyCollider" type="CollisionShape2D" parent="."]
 
@@ -21,5 +22,9 @@ target_desired_distance = 155.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../NavigationAgent2D")
+
+[node name="HpBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]

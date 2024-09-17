@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bllaylpcu6vj1"]
+[gd_scene load_steps=15 format=3 uid="uid://bllaylpcu6vj1"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
 [ext_resource type="PackedScene" uid="uid://khoqxj40ybw7" path="res://scenes/quack_world/weapons/bullet.tscn" id="2_68t5w"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://d2rtp877b2jtk" path="res://assets/quack_man/weapons/pistol.png" id="3_no28g"]
 [ext_resource type="PackedScene" uid="uid://bmf3aookkqmck" path="res://scenes/quack_world/weapons/explosive_egg.tscn" id="3_svl3i"]
 [ext_resource type="PackedScene" uid="uid://cg17ct0rih7uj" path="res://scenes/quack_world/components/health_component.tscn" id="4_ixe35"]
+[ext_resource type="Texture2D" uid="uid://b1qyp4vu313ym" path="res://assets/quack_man/ui/player_hp_bar/background.png" id="4_jx7pq"]
+[ext_resource type="Texture2D" uid="uid://ckbohqdrprfm7" path="res://assets/quack_man/ui/player_hp_bar/border.png" id="5_rht1n"]
+[ext_resource type="Texture2D" uid="uid://cvmjwye4tfvqu" path="res://assets/quack_man/ui/player_hp_bar/fill.png" id="6_14m7y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_om7wm"]
 radius = 36.0
@@ -63,7 +66,26 @@ WEAPON_MAX_DIST = 75.0
 bullet_scene = ExtResource("2_68t5w")
 explosive_egg_scene = ExtResource("3_svl3i")
 
-[node name="HealthComponent" parent="." instance=ExtResource("4_ixe35")]
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Hud"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -137.5
+offset_top = -69.0
+offset_right = 137.5
+grow_horizontal = 2
+grow_vertical = 0
+nine_patch_stretch = true
+texture_under = ExtResource("4_jx7pq")
+texture_over = ExtResource("5_rht1n")
+texture_progress = ExtResource("6_14m7y")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_ixe35")]
+health_bar = NodePath("../Hud/TextureProgressBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent"]
 rotation = 1.5708
