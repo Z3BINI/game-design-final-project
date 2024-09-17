@@ -8,6 +8,9 @@ class_name PlayerQuack
 @export var WEAPON_MAX_DIST : float = 85
 @export var WEAPON_SIZE : float = 63
 
+@export var bullet_scene : PackedScene
+@export var explosive_egg_scene : PackedScene
+
 var input_direction : Vector2
 
 @onready var hand = $Hand
@@ -29,6 +32,26 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+func _input(event):
+	if event.is_action_pressed("shoot"):
+		shoot()
+	
+	if event.is_action_pressed("jump"):
+		drop_egg()
+
+func drop_egg():
+	var egg = explosive_egg_scene.instantiate()
+	egg.global_position = global_position
+	egg.rotation = rotation
+	get_tree().get_first_node_in_group("projectiles").add_child(egg)
+	
+func shoot():
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = weapon_sprite.global_position
+	bullet.look_at(get_global_mouse_position())
+	
+	get_tree().get_first_node_in_group("projectiles").add_child(bullet)
+	
 
 func get_weapon_position():
 	var mouse_distance : float = global_position.distance_to(get_global_mouse_position()) 

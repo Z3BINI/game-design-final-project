@@ -81,9 +81,6 @@ skew = 0.0349066
 texture = ExtResource("2_fmvc8")
 hframes = 6
 
-[node name="NavigationAgent2D" parent="." index="2"]
-debug_enabled = true
-
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_a7r2r")

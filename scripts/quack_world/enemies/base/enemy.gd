@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var MAX_SPEED : float = 50
-@export var ACCEL : float = 500
+@export var ACCEL : float = 300
 @export var DECEL : float = 100
 @export var ATTACK_DISTANCE : float = 155
 

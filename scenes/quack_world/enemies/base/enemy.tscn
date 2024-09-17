@@ -4,7 +4,8 @@
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 15
+collision_mask = 31
+motion_mode = 1
 script = ExtResource("1_lm44b")
 
 [node name="EnemyCollider" type="CollisionShape2D" parent="."]
