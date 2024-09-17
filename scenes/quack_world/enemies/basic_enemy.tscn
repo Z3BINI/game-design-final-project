@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bjmog68mf4xse" path="res://assets/quack_man/enemies/enemy_1.png" id="2_fmvc8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7kj3x"]
-radius = 63.1981
+radius = 48.0937
 
 [sub_resource type="Animation" id="Animation_eanl3"]
 resource_name = "chase"
