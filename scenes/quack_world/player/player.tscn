@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bllaylpcu6vj1"]
 
-[ext_resource type="Texture2D" uid="uid://dqwkmti066fl7" path="res://icon.svg" id="1_o0qbe"]
 [ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
+[ext_resource type="Texture2D" uid="uid://d2vtygn44he1k" path="res://assets/quack_man/player/player.png" id="2_kf1pm"]
 [ext_resource type="Texture2D" uid="uid://d2rtp877b2jtk" path="res://assets/quack_man/weapons/pistol.png" id="3_no28g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hqvsn"]
@@ -15,7 +15,8 @@ script = ExtResource("1_qu3ph")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = ExtResource("1_o0qbe")
+scale = Vector2(7, 7)
+texture = ExtResource("2_kf1pm")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hqvsn")
