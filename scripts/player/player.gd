@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name  Player3d
 
 @export var MAX_SPEED : float = 10
 @export var ACCEL : float = 0.6
@@ -12,6 +13,8 @@ var PLAYER_GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gra
 var input_direction : Vector2 
 
 @onready var camera_pivot = $CameraStand
+@onready var hud_label = $Hud/Label
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,4 +57,8 @@ func rotate_pov(prev_mouse_pos : Vector2):
 	rotate_y(deg_to_rad(-prev_mouse_pos.x * mouse_sens))
 	camera_pivot.rotate_x(deg_to_rad(-prev_mouse_pos.y * mouse_sens))
 	camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-90), deg_to_rad(45))
+	
+func toggle_hud_label(value : bool, interact_text : String = ""):
+	hud_label.text = interact_text
+	hud_label.visible = value
 	
