@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0xu61syhowr2"]
+[gd_scene load_steps=4 format=3 uid="uid://b0xu61syhowr2"]
 
 [ext_resource type="PackedScene" uid="uid://cijhy7nf7ge6x" path="res://scenes/quack_world/enemies/base/enemy.tscn" id="1_btfs5"]
 [ext_resource type="Texture2D" uid="uid://dqwkmti066fl7" path="res://icon.svg" id="2_m5a6e"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7kj3x"]
+radius = 63.1981
+
 [node name="BasicEnemy" instance=ExtResource("1_btfs5")]
+
+[node name="EnemyCollider" parent="." index="0"]
+shape = SubResource("CircleShape2D_7kj3x")
 
 [node name="EnemySprite" parent="." index="1"]
 modulate = Color(0.894118, 0, 0, 1)
