@@ -32,7 +32,7 @@ func _physics_process(delta):
 			var player_dist : float = (player.global_position - global_position).length()
 			if player_dist > ATTACK_DISTANCE:
 				current_state = state.CHASE
-	
+	look_at(player.global_position)
 	move_and_slide()
 
 func _on_navigation_agent_2d_target_reached():
