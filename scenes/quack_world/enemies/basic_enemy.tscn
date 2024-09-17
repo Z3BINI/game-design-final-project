@@ -14,3 +14,6 @@ shape = SubResource("CircleShape2D_7kj3x")
 [node name="EnemySprite" parent="." index="1"]
 modulate = Color(0.894118, 0, 0, 1)
 texture = ExtResource("2_m5a6e")
+
+[node name="NavigationAgent2D" parent="." index="2"]
+debug_enabled = true
