@@ -15,6 +15,8 @@ var input_direction : Vector2
 
 @onready var hand = $Hand
 @onready var weapon_sprite = $Hand/Weapon
+@onready var animation_player = $AnimationPlayer
+
 
 func _process(delta):
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -74,3 +76,7 @@ func short_angle_dist(from, to):
 	var max_angle = PI * 2
 	var difference = fmod(to - from, max_angle)
 	return fmod(2 * difference, max_angle) - difference
+
+
+func _on_health_component_took_dmg():
+	animation_player.play("take_dmg")

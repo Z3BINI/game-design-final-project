@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bllaylpcu6vj1"]
+[gd_scene load_steps=16 format=3 uid="uid://bllaylpcu6vj1"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
 [ext_resource type="PackedScene" uid="uid://khoqxj40ybw7" path="res://scenes/quack_world/weapons/bullet.tscn" id="2_68t5w"]
@@ -31,6 +31,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(4, 4)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hud/TextureProgressBar:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_3rn3r"]
 resource_name = "idle"
@@ -49,10 +73,40 @@ tracks/0/keys = {
 "values": [Vector2(4, 4), Vector2(4.5, 4.5)]
 }
 
+[sub_resource type="Animation" id="Animation_nqfop"]
+resource_name = "take_dmg"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hud/TextureProgressBar:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hnwwo"]
 _data = {
 "RESET": SubResource("Animation_bcm48"),
-"idle": SubResource("Animation_3rn3r")
+"idle": SubResource("Animation_3rn3r"),
+"take_dmg": SubResource("Animation_nqfop")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -78,6 +132,7 @@ offset_top = -69.0
 offset_right = 137.5
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset = Vector2(138.5, 35)
 nine_patch_stretch = true
 texture_under = ExtResource("4_jx7pq")
 texture_over = ExtResource("5_rht1n")
@@ -119,3 +174,5 @@ libraries = {
 autoplay = "idle"
 
 [node name="Node" type="Node" parent="."]
+
+[connection signal="took_dmg" from="HealthComponent" to="." method="_on_health_component_took_dmg"]
