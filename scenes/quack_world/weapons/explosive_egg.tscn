@@ -85,8 +85,8 @@ point_count = 2
 curve = SubResource("Curve_t0wpq")
 
 [sub_resource type="Gradient" id="Gradient_qw2gr"]
-offsets = PackedFloat32Array(0, 0.713092, 0.941504)
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.117647, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.310705, 0.456919, 0.866841)
+colors = PackedColorArray(1, 0.300051, 0.236805, 1, 0.206299, 0.166503, 1.44392e-07, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_lmbha"]
 gradient = SubResource("Gradient_qw2gr")
@@ -98,17 +98,24 @@ emission_sphere_radius = 20.0
 angle_min = -720.0
 angle_max = 720.0
 spread = 180.0
-initial_velocity_min = 200.0
-initial_velocity_max = 450.0
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = 100.0
 linear_accel_max = 100.0
-radial_accel_min = 60.28
-radial_accel_max = 64.54
+radial_accel_min = 50.0
+radial_accel_max = 100.0
+tangential_accel_min = 100.0
+tangential_accel_max = 100.0
 scale_min = 5.0
 scale_max = 15.0
 color_ramp = SubResource("GradientTexture1D_lmbha")
 alpha_curve = SubResource("CurveTexture_ipsvc")
+turbulence_enabled = true
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.2
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
 
 [node name="ExplosiveEgg" type="RigidBody2D"]
 collision_layer = 2
@@ -144,7 +151,10 @@ autoplay = "detonated"
 
 [node name="Explosion" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 64
+amount = 32
 process_material = SubResource("ParticleProcessMaterial_6tigb")
+lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.08
