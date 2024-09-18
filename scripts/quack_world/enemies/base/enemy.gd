@@ -11,6 +11,7 @@ class_name Enemy
 
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var animation_player = $AnimationPlayer
+@onready var health_component = $HealthComponent
 
 enum state {CHASE, ATTACK, DIE}
 
@@ -77,3 +78,9 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	my_pointer.visible = true
+
+func change_hp(value : int):
+	health_component = $HealthComponent
+	health_component.MAX_HP = value
+	health_component.current_hp = value
+	health_component.set_bar()

@@ -13,12 +13,14 @@ func _ready():
 	
 	spawn_enemy()
 	
+	await get_tree().create_timer(1).timeout
 	
+	increase_difficulty()
 
 func spawn_enemy():
 	var enemy_spawn : SpawnComponent = get_valid_spawn_points().pick_random()
 	enemy_spawn.scene_to_spawn = enemy_scene
-	enemy_spawn.spawn("game_clutter")
+	enemy_spawn.spawn("game_clutter", ENEMY_SPAWN_CD)
 	
 	await get_tree().create_timer(ENEMY_SPAWN_CD).timeout
 	
@@ -36,3 +38,11 @@ func get_valid_spawn_points() -> Array[SpawnComponent]:
 
 func _on_player_player_died():
 	get_tree().reload_current_scene()
+
+func increase_difficulty():
+	if ENEMY_SPAWN_CD > 2:
+		ENEMY_SPAWN_CD -= 2
+		
+		await get_tree().create_timer(5).timeout
+		
+		increase_difficulty()

@@ -12,8 +12,7 @@ var current_hp : float
 
 func _ready() -> void:
 	current_hp = MAX_HP
-	health_bar.max_value = MAX_HP
-	health_bar.value = current_hp
+	set_bar()
 
 func take_dmg(amount : float) -> void:
 	print(self.name," took ", amount," damage!")
@@ -32,3 +31,7 @@ func heal(amount : float) -> void:
 	
 	if current_hp > MAX_HP:
 		current_hp = MAX_HP
+
+func set_bar():
+	health_bar.max_value = MAX_HP
+	health_bar.value = current_hp
