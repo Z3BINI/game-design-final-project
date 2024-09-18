@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/quack_world/enemies/base/enemy.gd" id="1_lm44b"]
 [ext_resource type="PackedScene" uid="uid://cg17ct0rih7uj" path="res://scenes/quack_world/components/health_component.tscn" id="2_jk53q"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
 collision_mask = 31
 motion_mode = 1

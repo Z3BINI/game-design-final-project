@@ -5,6 +5,7 @@ class_name DamageComponent
 @export var can_dmg_player : bool = false
 
 func _on_area_entered(area : HealthComponent) -> void:
-	if area.get_parent() is PlayerQuack and !can_dmg_player:
+	if ((area.get_parent().is_in_group("player") and get_parent().is_in_group("player")) or 
+	(area.get_parent().is_in_group("enemy") and get_parent().is_in_group("enemy"))):
 		return	
 	area.take_dmg(DMG_AMOUNT)
