@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm25vut4vmfxc"]
+
+[ext_resource type="Texture2D" uid="uid://cbj3ekc23rd0s" path="res://assets/quack_man/ui/kill_indicator.png" id="1_ke8ka"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/kill_pointer.gd" id="1_ksi82"]
+
+[sub_resource type="Animation" id="Animation_um8w4"]
+resource_name = "default"
+length = 0.5
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_tpmbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_unpk3"]
+_data = {
+"RESET": SubResource("Animation_tpmbs"),
+"default": SubResource("Animation_um8w4")
+}
+
+[node name="Pointer" type="Node2D"]
+script = ExtResource("1_ksi82")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(350, 0)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("1_ke8ka")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_unpk3")
+}
+autoplay = "default"

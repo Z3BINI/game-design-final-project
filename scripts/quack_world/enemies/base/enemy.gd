@@ -7,6 +7,8 @@ class_name Enemy
 @export var ATTACK_DISTANCE : float = 155
 @export var ATTACK_CD : float = 2.5
 
+@export var kill_pointer : PackedScene
+
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var animation_player = $AnimationPlayer
 
@@ -15,12 +17,15 @@ enum state {CHASE, ATTACK, DIE}
 var current_state : state = state.CHASE
 var player : PlayerQuack
 var cd_counter : float = ATTACK_CD
+var my_pointer : Node2D
 
 func _ready():	
 	player = get_tree().get_first_node_in_group("player")
 	navigation_agent_2d.target_desired_distance = ATTACK_DISTANCE
 	set_physics_process(false)
 	call_deferred("dump_first_physics_frame")
+	
+	spawn_pointer()
 
 func _physics_process(delta):
 	
@@ -58,4 +63,17 @@ func dump_first_physics_frame() -> void:
 	set_physics_process(true)
 
 func _on_health_component_died() -> void:
+	my_pointer.queue_free()
 	queue_free()
+
+func spawn_pointer():
+	my_pointer = kill_pointer.instantiate()
+	my_pointer.target = self
+	
+	player.add_child(my_pointer)
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	my_pointer.visible = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	my_pointer.visible = true

@@ -117,3 +117,5 @@ libraries = {
 "": SubResource("AnimationLibrary_hnwwo")
 }
 autoplay = "idle"
+
+[node name="Node" type="Node" parent="."]

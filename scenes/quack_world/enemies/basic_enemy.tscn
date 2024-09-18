@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://b0xu61syhowr2"]
+[gd_scene load_steps=18 format=3 uid="uid://b0xu61syhowr2"]
 
 [ext_resource type="PackedScene" uid="uid://cijhy7nf7ge6x" path="res://scenes/quack_world/enemies/base/enemy.tscn" id="1_btfs5"]
 [ext_resource type="Texture2D" uid="uid://bjmog68mf4xse" path="res://assets/quack_man/enemies/enemy_1.png" id="2_fmvc8"]
+[ext_resource type="PackedScene" uid="uid://cm25vut4vmfxc" path="res://scenes/quack_world/ui/kill_pointer.tscn" id="2_g3q8s"]
 [ext_resource type="Texture2D" uid="uid://cve57mhh1vgfn" path="res://assets/quack_man/ui/hp_bar/background.png" id="3_qfv3g"]
 [ext_resource type="Texture2D" uid="uid://2dvtlpnv2l0g" path="res://assets/quack_man/ui/hp_bar/border.png" id="4_umijs"]
 [ext_resource type="Texture2D" uid="uid://d22wdvvvdg2d1" path="res://assets/quack_man/ui/hp_bar/fill.png" id="5_xs7po"]
@@ -77,36 +78,6 @@ tracks/4/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_eanl3"]
-resource_name = "chase"
-length = 0.500008
-loop_mode = 1
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../EnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../EnemySprite:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0349066, 0.0174533, -0.0174533, -0.0349066, -0.0174533, 0.0174533]
-}
-
 [sub_resource type="Animation" id="Animation_23l5a"]
 resource_name = "attack"
 length = 0.5
@@ -148,6 +119,36 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
+[sub_resource type="Animation" id="Animation_eanl3"]
+resource_name = "chase"
+length = 0.500008
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../EnemySprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0349066, 0.0174533, -0.0174533, -0.0349066, -0.0174533, 0.0174533]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a7r2r"]
 _data = {
 "RESET": SubResource("Animation_xvp0a"),
@@ -179,6 +180,7 @@ height = 96.0
 
 [node name="BasicEnemy" instance=ExtResource("1_btfs5")]
 ATTACK_DISTANCE = 125.0
+kill_pointer = ExtResource("2_g3q8s")
 
 [node name="HealthComponent" parent="." index="0"]
 MAX_HP = 4.0
@@ -233,3 +235,5 @@ shape = SubResource("CapsuleShape2D_3435a")
 disabled = true
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

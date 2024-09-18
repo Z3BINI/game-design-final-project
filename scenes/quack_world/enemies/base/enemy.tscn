@@ -27,4 +27,6 @@ root_node = NodePath("../NavigationAgent2D")
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
