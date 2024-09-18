@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bllaylpcu6vj1"]
+[gd_scene load_steps=17 format=3 uid="uid://bllaylpcu6vj1"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
 [ext_resource type="PackedScene" uid="uid://khoqxj40ybw7" path="res://scenes/quack_world/weapons/bullet.tscn" id="2_68t5w"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bmf3aookkqmck" path="res://scenes/quack_world/weapons/explosive_egg.tscn" id="3_svl3i"]
 [ext_resource type="PackedScene" uid="uid://cg17ct0rih7uj" path="res://scenes/quack_world/components/health_component.tscn" id="4_ixe35"]
 [ext_resource type="Texture2D" uid="uid://b1qyp4vu313ym" path="res://assets/quack_man/ui/player_hp_bar/background.png" id="4_jx7pq"]
+[ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="4_yjob0"]
 [ext_resource type="Texture2D" uid="uid://ckbohqdrprfm7" path="res://assets/quack_man/ui/player_hp_bar/border.png" id="5_rht1n"]
 [ext_resource type="Texture2D" uid="uid://cvmjwye4tfvqu" path="res://assets/quack_man/ui/player_hp_bar/fill.png" id="6_14m7y"]
 
@@ -122,21 +123,29 @@ explosive_egg_scene = ExtResource("3_svl3i")
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Hud"]
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -137.5
-offset_top = -69.0
-offset_right = 137.5
-grow_horizontal = 2
+offset_left = 113.0
+offset_top = -122.0
+offset_right = 313.0
+offset_bottom = -87.0
 grow_vertical = 0
-pivot_offset = Vector2(138.5, 35)
+pivot_offset = Vector2(100, 17)
+size_flags_horizontal = 4
 nine_patch_stretch = true
 texture_under = ExtResource("4_jx7pq")
 texture_over = ExtResource("5_rht1n")
 texture_progress = ExtResource("6_14m7y")
+
+[node name="TextureRect" type="TextureRect" parent="Hud"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_yjob0")
+expand_mode = 2
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_ixe35")]
 health_bar = NodePath("../Hud/TextureProgressBar")
