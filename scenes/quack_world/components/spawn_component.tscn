@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ojkh110upjxp"]
+
+[ext_resource type="Script" path="res://scripts/quack_world/components/spawn_component.gd" id="1_htuoi"]
+
+[node name="SpawnComponent" type="Marker2D"]
+script = ExtResource("1_htuoi")
+
+[node name="OnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_entered" from="OnScreenNotifier" to="." method="_on_on_screen_notifier_screen_entered"]
+[connection signal="screen_exited" from="OnScreenNotifier" to="." method="_on_on_screen_notifier_screen_exited"]

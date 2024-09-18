@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://ck0146jgm5i4"]
+[gd_scene load_steps=10 format=4 uid="uid://ck0146jgm5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bllaylpcu6vj1" path="res://scenes/quack_world/player/player.tscn" id="1_7gm2t"]
+[ext_resource type="Script" path="res://scripts/quack_world/quack_man_world.gd" id="1_gin2k"]
 [ext_resource type="Texture2D" uid="uid://wufpwelwanrd" path="res://assets/quack_man/world/Terrain/Water/Water.png" id="1_qx0ax"]
+[ext_resource type="PackedScene" uid="uid://ojkh110upjxp" path="res://scenes/quack_world/components/spawn_component.tscn" id="2_4clok"]
 [ext_resource type="Texture2D" uid="uid://bgjypa40jox5d" path="res://assets/quack_man/world/grass.png" id="2_4ihah"]
 [ext_resource type="PackedScene" uid="uid://b0xu61syhowr2" path="res://scenes/quack_world/enemies/basic_enemy.tscn" id="2_uh5wc"]
 
@@ -47,11 +49,62 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_3wh7w")
 
 [node name="QuackManWorld" type="Node2D"]
+script = ExtResource("1_gin2k")
+enemy_scene = ExtResource("2_uh5wc")
 
 [node name="Sea" type="Sprite2D" parent="."]
 position = Vector2(-977, 425)
 scale = Vector2(103.469, 89.1563)
 texture = ExtResource("1_qx0ax")
+
+[node name="GameClutter" type="Node" parent="." groups=["game_clutter"]]
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="SpawnComponent" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(-2139, -791)
+spawnable = true
+
+[node name="SpawnComponent2" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(-1005, -691)
+spawnable = true
+
+[node name="SpawnComponent3" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(72, -862)
+spawnable = true
+
+[node name="SpawnComponent4" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(-306, -150)
+spawnable = true
+
+[node name="SpawnComponent5" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(-1111, 79)
+
+[node name="SpawnComponent6" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(-2173, -121)
+
+[node name="SpawnComponent7" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(-2230, 684)
+
+[node name="SpawnComponent8" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(-1047, 912)
+spawnable = true
+
+[node name="SpawnComponent9" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(100, 777)
+spawnable = true
+
+[node name="SpawnComponent10" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(-2024, 1611)
+spawnable = true
+
+[node name="SpawnComponent11" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(-962, 1647)
+spawnable = true
+
+[node name="SpawnComponent12" parent="SpawnPoints" instance=ExtResource("2_4clok")]
+position = Vector2(36, 1626)
+spawnable = true
 
 [node name="Projectiles" type="Node" parent="." groups=["projectiles"]]
 
@@ -62,6 +115,3 @@ tile_set = SubResource("TileSet_6e6yl")
 
 [node name="Player" parent="." instance=ExtResource("1_7gm2t")]
 position = Vector2(-1738, 271)
-
-[node name="BasicEnemy" parent="." instance=ExtResource("2_uh5wc")]
-position = Vector2(-1182, 209)
