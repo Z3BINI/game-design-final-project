@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bllaylpcu6vj1"]
+[gd_scene load_steps=22 format=3 uid="uid://bllaylpcu6vj1"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
 [ext_resource type="PackedScene" uid="uid://khoqxj40ybw7" path="res://scenes/quack_world/weapons/bullet.tscn" id="2_68t5w"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ckbohqdrprfm7" path="res://assets/quack_man/ui/player_hp_bar/border.png" id="5_rht1n"]
 [ext_resource type="Texture2D" uid="uid://cvmjwye4tfvqu" path="res://assets/quack_man/ui/player_hp_bar/fill.png" id="6_14m7y"]
 [ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="10_rqfdr"]
+[ext_resource type="Texture2D" uid="uid://blclrrc111xg8" path="res://assets/quack_man/player/dead.png" id="11_bwmd6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tt0sn"]
 shader = ExtResource("10_rqfdr")
@@ -66,6 +67,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeadSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_3rn3r"]
 resource_name = "idle"
@@ -113,12 +150,67 @@ tracks/1/keys = {
 "values": [0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_5j2mh"]
+resource_name = "die"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeadSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hnwwo"]
 _data = {
 "RESET": SubResource("Animation_bcm48"),
+"die": SubResource("Animation_5j2mh"),
 "idle": SubResource("Animation_3rn3r"),
 "take_dmg": SubResource("Animation_nqfop")
 }
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2e728"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 30.0
+color = Color(0.764706, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 2
@@ -177,6 +269,11 @@ rotation = 1.5708
 scale = Vector2(4, 4)
 texture = ExtResource("2_kf1pm")
 
+[node name="DeadSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("11_bwmd6")
+
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-14, 0)
 rotation = 1.5708
@@ -204,4 +301,13 @@ autoplay = "idle"
 
 [node name="Node" type="Node" parent="."]
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_2e728")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="took_dmg" from="HealthComponent" to="." method="_on_health_component_took_dmg"]

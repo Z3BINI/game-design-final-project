@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name PlayerQuack
 
+signal player_died
+
 @export var MAX_SPEED : float = 250
 @export var ACCEL : float = 750
 @export var DECEL : float = 500
@@ -80,3 +82,9 @@ func short_angle_dist(from, to):
 
 func _on_health_component_took_dmg():
 	animation_player.play("take_dmg")
+
+
+func _on_health_component_died():
+	animation_player.play("die")
+	await animation_player.animation_finished
+	player_died.emit()

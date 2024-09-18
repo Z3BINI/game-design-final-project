@@ -32,3 +32,7 @@ func get_valid_spawn_points() -> Array[SpawnComponent]:
 			spawnable_arr.append(spawn_point)
 	
 	return spawnable_arr
+
+
+func _on_player_player_died():
+	get_tree().reload_current_scene()
