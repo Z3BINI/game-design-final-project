@@ -50,7 +50,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -178,6 +178,7 @@ radius = 22.0
 height = 96.0
 
 [node name="BasicEnemy" instance=ExtResource("1_btfs5")]
+ATTACK_DISTANCE = 125.0
 
 [node name="HealthComponent" parent="." index="0"]
 MAX_HP = 4.0
@@ -215,6 +216,7 @@ texture_progress = ExtResource("5_xs7po")
 
 [node name="AttackEffect" type="GPUParticles2D" parent="." index="6"]
 position = Vector2(40, 0)
+emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_kis5y")
 lifetime = 0.5
