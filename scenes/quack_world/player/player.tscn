@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bllaylpcu6vj1"]
+[gd_scene load_steps=19 format=3 uid="uid://bllaylpcu6vj1"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
 [ext_resource type="PackedScene" uid="uid://khoqxj40ybw7" path="res://scenes/quack_world/weapons/bullet.tscn" id="2_68t5w"]
@@ -10,6 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="4_yjob0"]
 [ext_resource type="Texture2D" uid="uid://ckbohqdrprfm7" path="res://assets/quack_man/ui/player_hp_bar/border.png" id="5_rht1n"]
 [ext_resource type="Texture2D" uid="uid://cvmjwye4tfvqu" path="res://assets/quack_man/ui/player_hp_bar/fill.png" id="6_14m7y"]
+[ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="10_rqfdr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tt0sn"]
+shader = ExtResource("10_rqfdr")
+shader_parameter/aspect = 0.4
+shader_parameter/distortion = 0.8
+shader_parameter/radius = 1.0
+shader_parameter/alpha = 1.0
+shader_parameter/crop = 1.0
+shader_parameter/crop_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_om7wm"]
 radius = 27.0
@@ -122,14 +132,22 @@ explosive_egg_scene = ExtResource("3_svl3i")
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="Hud"]
+material = SubResource("ShaderMaterial_tt0sn")
+offset_left = 85.0
+offset_top = 66.0
+offset_right = 1067.0
+offset_bottom = 583.0
+color = Color(1, 1, 1, 0)
+
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Hud"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 113.0
-offset_top = -122.0
-offset_right = 313.0
-offset_bottom = -87.0
+offset_left = 104.0
+offset_top = -120.0
+offset_right = 304.0
+offset_bottom = -85.0
 grow_vertical = 0
 pivot_offset = Vector2(100, 17)
 size_flags_horizontal = 4
@@ -165,7 +183,9 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_y3xqc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.75, 0.75)
+zoom = Vector2(0.65, 0.65)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
 
 [node name="Hand" type="Node2D" parent="."]
 
