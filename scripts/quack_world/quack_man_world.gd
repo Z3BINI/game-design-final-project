@@ -1,5 +1,7 @@
 extends Node2D
 
+signal game_over
+
 @onready var spawn_points_node = $SpawnPoints
 
 @export var ENEMY_SPAWN_CD : float = 10
@@ -37,7 +39,7 @@ func get_valid_spawn_points() -> Array[SpawnComponent]:
 
 
 func _on_player_player_died():
-	get_tree().reload_current_scene()
+	game_over.emit()
 
 func increase_difficulty():
 	if ENEMY_SPAWN_CD > 2:

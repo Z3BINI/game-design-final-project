@@ -14,6 +14,7 @@ signal player_died
 @export var explosive_egg_scene : PackedScene
 
 var input_direction : Vector2
+var disable_player : bool = false
 
 @onready var hand = $Hand
 @onready var weapon_sprite = $Hand/Weapon
@@ -25,24 +26,26 @@ func _process(delta):
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	
 func _physics_process(delta):
-	hand.global_position = get_weapon_position()
-	weapon_sprite.look_at(get_global_mouse_position())
-	
-	if input_direction != Vector2.ZERO:
-		rotation = lerp_angle(rotation, input_direction.angle(), ROTATION_STEP)
-	
-	if input_direction != Vector2.ZERO or velocity != Vector2.ZERO:
-		var current_step : float = ACCEL if (input_direction != Vector2.ZERO) else DECEL
-		velocity = velocity.move_toward(input_direction * MAX_SPEED, current_step * delta)
+	if !disable_player:
+		hand.global_position = get_weapon_position()
+		weapon_sprite.look_at(get_global_mouse_position())
 		
+		if input_direction != Vector2.ZERO:
+			rotation = lerp_angle(rotation, input_direction.angle(), ROTATION_STEP)
+		
+		if input_direction != Vector2.ZERO or velocity != Vector2.ZERO:
+			var current_step : float = ACCEL if (input_direction != Vector2.ZERO) else DECEL
+			velocity = velocity.move_toward(input_direction * MAX_SPEED, current_step * delta)
+			
 	move_and_slide()
 
 func _input(event):
-	if event.is_action_pressed("shoot"):
-		shoot()
-	
-	if event.is_action_pressed("jump"):
-		drop_egg()
+	if !disable_player:
+		if event.is_action_pressed("shoot"):
+			shoot()
+		
+		if event.is_action_pressed("jump"):
+			drop_egg()
 
 func drop_egg():
 	var egg = explosive_egg_scene.instantiate()
@@ -89,3 +92,8 @@ func _on_health_component_died():
 	animation_player.play("die")
 	await animation_player.animation_finished
 	player_died.emit()
+
+
+func _on_quack_man_world_game_over():
+	hand.visible = false
+	disable_player = true

@@ -36,18 +36,19 @@ func _physics_process(delta):
 			var direction : Vector2 = (navigation_agent_2d.get_next_path_position() - global_position).normalized()
 			velocity = velocity.move_toward(direction * MAX_SPEED, ACCEL * delta)
 		state.ATTACK:
-			if velocity != Vector2.ZERO:
-				velocity = velocity.move_toward(Vector2.ZERO, DECEL * delta)
-			var player_dist : float = (player.global_position - global_position).length()
-			cd_counter -= delta
-			
-			if cd_counter <= 0:
-				cd_counter = ATTACK_CD
-				animation_player.play("attack")
-			
-			if player_dist > ATTACK_DISTANCE:
-				current_state = state.CHASE
-				animation_player.play("chase")
+			if !player.disable_player:
+				if velocity != Vector2.ZERO:
+					velocity = velocity.move_toward(Vector2.ZERO, DECEL * delta)
+				var player_dist : float = (player.global_position - global_position).length()
+				cd_counter -= delta
+				
+				if cd_counter <= 0:
+					cd_counter = ATTACK_CD
+					animation_player.play("attack")
+				
+				if player_dist > ATTACK_DISTANCE:
+					current_state = state.CHASE
+					animation_player.play("chase")
 				
 	look_at(player.global_position)
 	move_and_slide()

@@ -119,4 +119,6 @@ tile_set = SubResource("TileSet_6e6yl")
 [node name="Player" parent="." instance=ExtResource("1_7gm2t")]
 position = Vector2(-1738, 271)
 
+[connection signal="game_over" from="." to="UI" method="_on_quack_man_world_game_over"]
+[connection signal="game_over" from="." to="Player" method="_on_quack_man_world_game_over"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
