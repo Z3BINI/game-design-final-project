@@ -2,8 +2,8 @@ extends Node2D
 class_name KillerDucky
 
 @export var bullet_scene : PackedScene
-@export var SHOOT_CD : float = 1.5
-@export var DAMAGE: float = 0.1
+@export var SHOOT_CD : float = 1.25
+@export var DAMAGE: float = 0.25
 
 var possible_targets : Array[Enemy]
 var shoot_cd : bool = false

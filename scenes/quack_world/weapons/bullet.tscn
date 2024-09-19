@@ -27,6 +27,7 @@ max_contacts_reported = 1
 script = ExtResource("1_6ekag")
 
 [node name="DamageComponent" parent="." instance=ExtResource("2_3u4oe")]
+DMG_AMOUNT = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent"]
 position = Vector2(14, 0)

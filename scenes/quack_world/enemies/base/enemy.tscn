@@ -18,7 +18,7 @@ health_bar = NodePath("../HpBar")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
-target_desired_distance = 155.0
+target_desired_distance = 200.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../NavigationAgent2D")

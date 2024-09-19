@@ -94,6 +94,7 @@ func _on_health_component_took_dmg():
 
 
 func _on_health_component_died():
+	disable_duckies()
 	animation_player.play("die")
 	await animation_player.animation_finished
 	player_died.emit()
@@ -105,3 +106,8 @@ func _on_quack_man_world_game_over():
 func enable_ducky(number: int):
 	killer_duckies[number].visible = true
 	killer_duckies[number].process_mode = Node.PROCESS_MODE_INHERIT
+
+func disable_duckies():
+	for duck in killer_duckies:
+		duck.visible = false
+		duck.process_mode = Node.PROCESS_MODE_DISABLED

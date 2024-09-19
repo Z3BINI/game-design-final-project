@@ -9,7 +9,7 @@ friction = 0.8
 bounce = 0.05
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vj28n"]
-radius = 120.0
+radius = 283.064
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f7dor"]
 radius = 13.0
@@ -127,7 +127,7 @@ angular_velocity = 26.1799
 script = ExtResource("1_adbvh")
 
 [node name="DamageComponent" parent="." instance=ExtResource("2_n8bnc")]
-DMG_AMOUNT = 4.0
+DMG_AMOUNT = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent"]
 shape = SubResource("CircleShape2D_vj28n")

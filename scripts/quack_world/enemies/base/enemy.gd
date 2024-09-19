@@ -86,10 +86,10 @@ func change_hp(value : int):
 	health_component.current_hp = value
 	health_component.set_bar()
 	
-func knock_back(dir : Vector2):
+func knock_back(dir : Vector2, str : float):
 	current_state = state.KNOCK_BACK
 	velocity = Vector2.ZERO
-	velocity = dir * 200
+	velocity = dir * (str * 200 / 3)
 	await get_tree().create_timer(.1).timeout
 	current_state = state.CHASE
 	
