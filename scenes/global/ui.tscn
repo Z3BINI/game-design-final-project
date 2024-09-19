@@ -1,0 +1,176 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfe5rhh563gce"]
+
+[ext_resource type="Script" path="res://scripts/global/ui.gd" id="1_1uvjt"]
+[ext_resource type="Texture2D" uid="uid://dlqpbxa0f26du" path="res://assets/quack_man/ui/game_over_bg.png" id="1_kqrcc"]
+[ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="2_ihl2g"]
+[ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="3_058pg"]
+[ext_resource type="Texture2D" uid="uid://b1qyp4vu313ym" path="res://assets/quack_man/ui/player_hp_bar/background.png" id="5_tbbmf"]
+[ext_resource type="Texture2D" uid="uid://ckbohqdrprfm7" path="res://assets/quack_man/ui/player_hp_bar/border.png" id="6_ikpkv"]
+[ext_resource type="Texture2D" uid="uid://cvmjwye4tfvqu" path="res://assets/quack_man/ui/player_hp_bar/fill.png" id="7_colg5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7oquq"]
+shader = ExtResource("3_058pg")
+shader_parameter/aspect = 0.4
+shader_parameter/distortion = 0.7
+shader_parameter/radius = 1.0
+shader_parameter/alpha = 1.0
+shader_parameter/crop = 1.0
+shader_parameter/crop_color = Color(0, 0, 0, 1)
+
+[node name="UI" type="CanvasLayer" groups=["ui"]]
+script = ExtResource("1_1uvjt")
+
+[node name="PlayerHp" type="TextureProgressBar" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 203.0
+offset_top = -159.0
+offset_right = 329.0
+offset_bottom = -136.0
+grow_vertical = 0
+pivot_offset = Vector2(62, 12)
+size_flags_horizontal = 4
+nine_patch_stretch = true
+texture_under = ExtResource("5_tbbmf")
+texture_over = ExtResource("6_ikpkv")
+texture_progress = ExtResource("7_colg5")
+
+[node name="FishEyeShaderEffect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7oquq")
+offset_left = 85.0
+offset_top = 66.0
+offset_right = 1067.0
+offset_bottom = 583.0
+color = Color(1, 1, 1, 0)
+
+[node name="FullScreen" type="Control" parent="FishEyeShaderEffect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="TextureRect" parent="FishEyeShaderEffect/FullScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kqrcc")
+
+[node name="Label" type="Label" parent="FishEyeShaderEffect/FullScreen/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 95.0
+offset_right = 92.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+
+[node name="RetryButton" type="Button" parent="FishEyeShaderEffect/FullScreen/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -42.0
+offset_right = 25.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
+[node name="QuitButton" type="Button" parent="FishEyeShaderEffect/FullScreen/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = 58.0
+offset_right = 21.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+
+[node name="PauseMenu" type="TextureRect" parent="FishEyeShaderEffect/FullScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -312.0
+offset_top = -246.0
+offset_right = 312.0
+offset_bottom = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kqrcc")
+
+[node name="Label" type="Label" parent="FishEyeShaderEffect/FullScreen/PauseMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 95.0
+offset_right = 92.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+
+[node name="RetryButton" type="Button" parent="FishEyeShaderEffect/FullScreen/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -42.0
+offset_right = 25.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
+[node name="QuitButton" type="Button" parent="FishEyeShaderEffect/FullScreen/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = 58.0
+offset_right = 21.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+
+[node name="ArcadeBorder" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ihl2g")
+expand_mode = 2

@@ -11,6 +11,9 @@ signal died
 var current_hp : float
 
 func _ready() -> void:
+	if get_parent() is PlayerQuack:
+		health_bar = get_tree().get_first_node_in_group("ui").player_hp
+	
 	current_hp = MAX_HP
 	set_bar()
 

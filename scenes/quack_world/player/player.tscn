@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bllaylpcu6vj1"]
+[gd_scene load_steps=16 format=3 uid="uid://bllaylpcu6vj1"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
 [ext_resource type="PackedScene" uid="uid://khoqxj40ybw7" path="res://scenes/quack_world/weapons/bullet.tscn" id="2_68t5w"]
@@ -6,21 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d2rtp877b2jtk" path="res://assets/quack_man/weapons/pistol.png" id="3_no28g"]
 [ext_resource type="PackedScene" uid="uid://bmf3aookkqmck" path="res://scenes/quack_world/weapons/explosive_egg.tscn" id="3_svl3i"]
 [ext_resource type="PackedScene" uid="uid://cg17ct0rih7uj" path="res://scenes/quack_world/components/health_component.tscn" id="4_ixe35"]
-[ext_resource type="Texture2D" uid="uid://b1qyp4vu313ym" path="res://assets/quack_man/ui/player_hp_bar/background.png" id="4_jx7pq"]
-[ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="4_yjob0"]
-[ext_resource type="Texture2D" uid="uid://ckbohqdrprfm7" path="res://assets/quack_man/ui/player_hp_bar/border.png" id="5_rht1n"]
-[ext_resource type="Texture2D" uid="uid://cvmjwye4tfvqu" path="res://assets/quack_man/ui/player_hp_bar/fill.png" id="6_14m7y"]
-[ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="10_rqfdr"]
 [ext_resource type="Texture2D" uid="uid://blclrrc111xg8" path="res://assets/quack_man/player/dead.png" id="11_bwmd6"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tt0sn"]
-shader = ExtResource("10_rqfdr")
-shader_parameter/aspect = 0.4
-shader_parameter/distortion = 0.7
-shader_parameter/radius = 1.0
-shader_parameter/alpha = 1.0
-shader_parameter/crop = 1.0
-shader_parameter/crop_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_om7wm"]
 radius = 27.0
@@ -58,46 +44,34 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Hud/TextureProgressBar:rotation")
+tracks/2/path = NodePath("GPUParticles2D:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/path = NodePath("PlayerSprite:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprite:visible")
+tracks/4/path = NodePath("DeadSprite:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("DeadSprite:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -178,18 +152,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hud/TextureProgressBar:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hnwwo"]
 _data = {
@@ -222,43 +184,8 @@ WEAPON_MAX_DIST = 75.0
 bullet_scene = ExtResource("2_68t5w")
 explosive_egg_scene = ExtResource("3_svl3i")
 
-[node name="Hud" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="Hud"]
-material = SubResource("ShaderMaterial_tt0sn")
-offset_left = 85.0
-offset_top = 66.0
-offset_right = 1067.0
-offset_bottom = 583.0
-color = Color(1, 1, 1, 0)
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Hud"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 104.0
-offset_top = -120.0
-offset_right = 304.0
-offset_bottom = -85.0
-grow_vertical = 0
-pivot_offset = Vector2(100, 17)
-size_flags_horizontal = 4
-nine_patch_stretch = true
-texture_under = ExtResource("4_jx7pq")
-texture_over = ExtResource("5_rht1n")
-texture_progress = ExtResource("6_14m7y")
-
-[node name="TextureRect" type="TextureRect" parent="Hud"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_yjob0")
-expand_mode = 2
-
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_ixe35")]
-health_bar = NodePath("../Hud/TextureProgressBar")
+health_bar = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent"]
 rotation = 1.5708

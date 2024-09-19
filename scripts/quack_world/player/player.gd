@@ -18,6 +18,7 @@ var input_direction : Vector2
 @onready var hand = $Hand
 @onready var weapon_sprite = $Hand/Weapon
 @onready var animation_player = $AnimationPlayer
+@onready var health_component = $HealthComponent
 
 
 func _process(delta):
