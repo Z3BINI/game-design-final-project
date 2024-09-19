@@ -26,6 +26,7 @@ root_node = NodePath("../NavigationAgent2D")
 [node name="HpBar" type="TextureProgressBar" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+step = 0.1
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

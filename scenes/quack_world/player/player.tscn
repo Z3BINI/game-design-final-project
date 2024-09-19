@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bllaylpcu6vj1"]
+[gd_scene load_steps=17 format=3 uid="uid://bllaylpcu6vj1"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
 [ext_resource type="PackedScene" uid="uid://khoqxj40ybw7" path="res://scenes/quack_world/weapons/bullet.tscn" id="2_68t5w"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d2rtp877b2jtk" path="res://assets/quack_man/weapons/pistol.png" id="3_no28g"]
 [ext_resource type="PackedScene" uid="uid://bmf3aookkqmck" path="res://scenes/quack_world/weapons/explosive_egg.tscn" id="3_svl3i"]
 [ext_resource type="PackedScene" uid="uid://cg17ct0rih7uj" path="res://scenes/quack_world/components/health_component.tscn" id="4_ixe35"]
+[ext_resource type="PackedScene" uid="uid://yvi0f0dfscop" path="res://scenes/quack_world/player/killer_ducky.tscn" id="7_i1j3l"]
 [ext_resource type="Texture2D" uid="uid://blclrrc111xg8" path="res://assets/quack_man/player/dead.png" id="11_bwmd6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_om7wm"]
@@ -200,6 +201,22 @@ visible = false
 scale = Vector2(2, 2)
 texture = ExtResource("11_bwmd6")
 
+[node name="DuckyPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="DuckyPositions"]
+position = Vector2(0, -65)
+
+[node name="KillerDucky" parent="DuckyPositions/Marker2D" instance=ExtResource("7_i1j3l")]
+
+[node name="Marker2D2" type="Marker2D" parent="DuckyPositions"]
+position = Vector2(0, 65)
+
+[node name="Marker2D3" type="Marker2D" parent="DuckyPositions"]
+position = Vector2(-100, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="DuckyPositions"]
+position = Vector2(100, 0)
+
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-14, 0)
 rotation = 1.5708
@@ -224,8 +241,6 @@ libraries = {
 "": SubResource("AnimationLibrary_hnwwo")
 }
 autoplay = "idle"
-
-[node name="Node" type="Node" parent="."]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false

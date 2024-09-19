@@ -10,3 +10,6 @@ func _ready():
 func _physics_process(delta):
 	if get_contact_count() > 0:
 		queue_free()
+
+func change_dmg(amount: float):
+	$DamageComponent.DMG_AMOUNT = amount

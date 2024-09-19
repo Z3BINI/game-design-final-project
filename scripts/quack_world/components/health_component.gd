@@ -15,12 +15,14 @@ func _ready() -> void:
 		health_bar = get_tree().get_first_node_in_group("ui").player_hp
 	
 	current_hp = MAX_HP
-	set_bar()
+	if health_bar:
+		set_bar()
 
 func take_dmg(amount : float) -> void:
 	print(self.name," took ", amount," damage!")
 	current_hp -= amount
-	health_bar.value = current_hp
+	if health_bar:
+		health_bar.value = current_hp
 	print(self.name," has ", current_hp," hp!")
 	took_dmg.emit()
 	
@@ -30,7 +32,8 @@ func take_dmg(amount : float) -> void:
 func heal(amount : float) -> void:
 	current_hp += amount
 	healed.emit()
-	health_bar.value = current_hp
+	if health_bar:
+		health_bar.value = current_hp
 	
 	if current_hp > MAX_HP:
 		current_hp = MAX_HP
