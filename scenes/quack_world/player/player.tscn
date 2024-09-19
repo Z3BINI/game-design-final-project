@@ -184,8 +184,7 @@ WEAPON_MAX_DIST = 75.0
 bullet_scene = ExtResource("2_68t5w")
 explosive_egg_scene = ExtResource("3_svl3i")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_ixe35")]
-health_bar = NodePath("")
+[node name="HealthComponent" parent="." instance=ExtResource("4_ixe35")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent"]
 rotation = 1.5708

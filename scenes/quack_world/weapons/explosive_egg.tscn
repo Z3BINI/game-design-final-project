@@ -117,7 +117,7 @@ turbulence_influence_max = 0.2
 turbulence_initial_displacement_min = 1.49012e-06
 turbulence_initial_displacement_max = 1.49012e-06
 
-[node name="ExplosiveEgg" type="RigidBody2D"]
+[node name="ExplosiveEgg" type="RigidBody2D" groups=["player_wep"]]
 collision_layer = 2
 collision_mask = 10
 mass = 5.0

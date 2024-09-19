@@ -25,6 +25,7 @@ projectiles=""
 enemy=""
 game_clutter=""
 ui=""
+player_wep=""
 
 [input]
 

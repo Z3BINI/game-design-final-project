@@ -15,7 +15,7 @@ height = 28.0001
 radius = 6.0
 height = 32.0
 
-[node name="Bullet" type="RigidBody2D"]
+[node name="Bullet" type="RigidBody2D" groups=["player_wep"]]
 collision_layer = 16
 collision_mask = 8
 mass = 5.0
