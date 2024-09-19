@@ -15,6 +15,7 @@ signal player_died
 
 var input_direction : Vector2
 var disable_player : bool = false
+var ducks : int = 0
 
 @onready var hand = $Hand
 @onready var weapon_sprite = $Hand/Weapon

@@ -53,6 +53,7 @@ sources/0 = SubResource("TileSetAtlasSource_3wh7w")
 [node name="QuackManWorld" type="Node2D"]
 script = ExtResource("1_gin2k")
 enemy_scene = ExtResource("2_uh5wc")
+duck_cage = ExtResource("8_wrrdo")
 
 [node name="Sea" type="Sprite2D" parent="."]
 position = Vector2(-977, 425)
@@ -119,9 +120,6 @@ tile_set = SubResource("TileSet_6e6yl")
 
 [node name="Player" parent="." instance=ExtResource("1_7gm2t")]
 position = Vector2(-1738, 271)
-
-[node name="DuckyCage" parent="." instance=ExtResource("8_wrrdo")]
-position = Vector2(-1030, 399)
 
 [connection signal="game_over" from="." to="UI" method="_on_quack_man_world_game_over"]
 [connection signal="game_over" from="." to="Player" method="_on_quack_man_world_game_over"]
