@@ -13,7 +13,7 @@ class_name Enemy
 @onready var animation_player = $AnimationPlayer
 @onready var health_component = $HealthComponent
 
-enum state {CHASE, ATTACK, DIE}
+enum state {CHASE, ATTACK, DIE, KNOCK_BACK}
 
 var current_state : state = state.CHASE
 var player : PlayerQuack
@@ -85,3 +85,11 @@ func change_hp(value : int):
 	health_component.MAX_HP = value
 	health_component.current_hp = value
 	health_component.set_bar()
+	
+func knock_back(dir : Vector2):
+	current_state = state.KNOCK_BACK
+	velocity = Vector2.ZERO
+	velocity = dir * 200
+	await get_tree().create_timer(.1).timeout
+	current_state = state.CHASE
+	
