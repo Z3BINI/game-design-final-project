@@ -3,6 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://cbj3ekc23rd0s" path="res://assets/quack_man/ui/kill_indicator.png" id="1_ke8ka"]
 [ext_resource type="Script" path="res://scripts/quack_world/ui/kill_pointer.gd" id="1_ksi82"]
 
+[sub_resource type="Animation" id="Animation_tpmbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.9, 0.9)]
+}
+
 [sub_resource type="Animation" id="Animation_um8w4"]
 resource_name = "default"
 length = 0.5
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0.9, 0.9), Vector2(1.2, 1.2)]
-}
-
-[sub_resource type="Animation" id="Animation_tpmbs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.9, 0.9)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_unpk3"]

@@ -13,7 +13,7 @@ func _ready():
 	
 	spawn_enemy()
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(15).timeout
 	
 	increase_difficulty()
 
@@ -43,6 +43,6 @@ func increase_difficulty():
 	if ENEMY_SPAWN_CD > 2:
 		ENEMY_SPAWN_CD -= 2
 		
-		await get_tree().create_timer(5).timeout
+		await get_tree().create_timer(10).timeout
 		
 		increase_difficulty()
