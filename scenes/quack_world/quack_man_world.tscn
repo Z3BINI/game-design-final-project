@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ck0146jgm5i4"]
+[gd_scene load_steps=12 format=4 uid="uid://ck0146jgm5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bllaylpcu6vj1" path="res://scenes/quack_world/player/player.tscn" id="1_7gm2t"]
 [ext_resource type="Script" path="res://scripts/quack_world/quack_man_world.gd" id="1_gin2k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bgjypa40jox5d" path="res://assets/quack_man/world/grass.png" id="2_4ihah"]
 [ext_resource type="PackedScene" uid="uid://b0xu61syhowr2" path="res://scenes/quack_world/enemies/basic_enemy.tscn" id="2_uh5wc"]
 [ext_resource type="PackedScene" uid="uid://dfe5rhh563gce" path="res://scenes/global/ui.tscn" id="7_dvbcu"]
+[ext_resource type="PackedScene" uid="uid://dmwh870tgkdrn" path="res://scenes/quack_world/components/ducky_cage.tscn" id="8_wrrdo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c8kjb"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -118,6 +119,9 @@ tile_set = SubResource("TileSet_6e6yl")
 
 [node name="Player" parent="." instance=ExtResource("1_7gm2t")]
 position = Vector2(-1738, 271)
+
+[node name="DuckyCage" parent="." instance=ExtResource("8_wrrdo")]
+position = Vector2(-1030, 399)
 
 [connection signal="game_over" from="." to="UI" method="_on_quack_man_world_game_over"]
 [connection signal="game_over" from="." to="Player" method="_on_quack_man_world_game_over"]

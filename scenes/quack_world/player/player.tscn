@@ -207,15 +207,29 @@ texture = ExtResource("11_bwmd6")
 position = Vector2(0, -65)
 
 [node name="KillerDucky" parent="DuckyPositions/Marker2D" instance=ExtResource("7_i1j3l")]
+process_mode = 4
+visible = false
 
 [node name="Marker2D2" type="Marker2D" parent="DuckyPositions"]
 position = Vector2(0, 65)
 
+[node name="KillerDucky" parent="DuckyPositions/Marker2D2" instance=ExtResource("7_i1j3l")]
+process_mode = 4
+visible = false
+
 [node name="Marker2D3" type="Marker2D" parent="DuckyPositions"]
 position = Vector2(-100, 0)
 
+[node name="KillerDucky" parent="DuckyPositions/Marker2D3" instance=ExtResource("7_i1j3l")]
+process_mode = 4
+visible = false
+
 [node name="Marker2D4" type="Marker2D" parent="DuckyPositions"]
 position = Vector2(100, 0)
+
+[node name="KillerDucky" parent="DuckyPositions/Marker2D4" instance=ExtResource("7_i1j3l")]
+process_mode = 4
+visible = false
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-14, 0)

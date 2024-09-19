@@ -1,4 +1,5 @@
 extends Node2D
+class_name KillerDucky
 
 @export var bullet_scene : PackedScene
 @export var SHOOT_CD : float = 1.5
@@ -8,6 +9,8 @@ var possible_targets : Array[Enemy]
 var shoot_cd : bool = false
 
 @onready var shot_spawn : Marker2D = $ShotSpawn
+
+
 
 func _physics_process(delta: float) -> void:
 	if !possible_targets.is_empty():

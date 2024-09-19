@@ -21,10 +21,14 @@ var disable_player : bool = false
 @onready var animation_player = $AnimationPlayer
 @onready var health_component = $HealthComponent
 
+var killer_duckies : Array[KillerDucky]
 
 func _process(delta):
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	
+	for ducky in $DuckyPositions.get_children():
+		killer_duckies.append(ducky.get_child(0))
+
 func _physics_process(delta):
 	if !disable_player:
 		hand.global_position = get_weapon_position()
@@ -93,7 +97,10 @@ func _on_health_component_died():
 	await animation_player.animation_finished
 	player_died.emit()
 
-
 func _on_quack_man_world_game_over():
 	hand.visible = false
 	disable_player = true
+
+func enable_ducky(number: int):
+	killer_duckies[number].visible = true
+	killer_duckies[number].process_mode = Node.PROCESS_MODE_INHERIT
