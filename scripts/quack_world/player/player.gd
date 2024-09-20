@@ -140,7 +140,7 @@ func short_angle_dist(from, to):
 	return fmod(2 * difference, max_angle) - difference
 
 
-func _on_health_component_took_dmg():
+func _on_health_component_took_dmg(amount : float):
 	player_damaged.emit()
 	animation_player.play("take_dmg")
 

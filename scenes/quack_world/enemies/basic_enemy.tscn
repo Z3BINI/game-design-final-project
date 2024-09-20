@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b0xu61syhowr2"]
+[gd_scene load_steps=26 format=3 uid="uid://b0xu61syhowr2"]
 
 [ext_resource type="PackedScene" uid="uid://cijhy7nf7ge6x" path="res://scenes/quack_world/enemies/base/enemy.tscn" id="1_btfs5"]
 [ext_resource type="Texture2D" uid="uid://bjmog68mf4xse" path="res://assets/quack_man/enemies/enemy_1.png" id="2_fmvc8"]
@@ -334,6 +334,98 @@ scale_min = 5.0
 scale_max = 15.0
 color = Color(0.764706, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_ww3e8"]
+resource_name = "pull_up_dmg"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DamageLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(7, -25), Vector2(-25, -25)]
+}
+
+[sub_resource type="Animation" id="Animation_uwbes"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DamageLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, -25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mmo8e"]
+_data = {
+"RESET": SubResource("Animation_uwbes"),
+"pull_up_dmg": SubResource("Animation_ww3e8")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_a1gy1"]
+font_size = 22
+font_color = Color(1, 0, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [node name="BasicEnemy" instance=ExtResource("1_btfs5")]
 ATTACK_DISTANCE = 125.0
 kill_pointer = ExtResource("2_g3q8s")
@@ -403,6 +495,24 @@ process_material = SubResource("ParticleProcessMaterial_0223j")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+
+[node name="DmgIndicator" type="AnimationPlayer" parent="." index="11"]
+libraries = {
+"": SubResource("AnimationLibrary_mmo8e")
+}
+
+[node name="DamageLabel" type="Label" parent="." index="12"]
+visible = false
+offset_left = 7.0
+offset_top = -25.0
+offset_right = 47.0
+offset_bottom = 20.0
+rotation = -1.5708
+pivot_offset = Vector2(20, 25)
+text = "4"
+label_settings = SubResource("LabelSettings_a1gy1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="took_dmg" from="HealthComponent" to="." method="_on_health_component_took_dmg"]

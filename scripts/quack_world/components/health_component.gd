@@ -2,7 +2,7 @@ extends Area2D
 class_name HealthComponent
 
 signal healed
-signal took_dmg
+signal took_dmg(amount : float)
 signal died
 
 @export var MAX_HP : float = 10
@@ -24,7 +24,7 @@ func take_dmg(amount : float) -> void:
 	if health_bar:
 		health_bar.value = current_hp
 	print(self.name," has ", current_hp," hp!")
-	took_dmg.emit()
+	took_dmg.emit(amount)
 	
 	if current_hp <= 0:
 		died.emit()
