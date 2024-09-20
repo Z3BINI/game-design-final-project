@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmwh870tgkdrn"]
+[gd_scene load_steps=22 format=3 uid="uid://dmwh870tgkdrn"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/components/ducky_cage.gd" id="1_f1jpl"]
 [ext_resource type="PackedScene" uid="uid://i64fnv6a3so5" path="res://scenes/quack_world/ui/ducky_pointer.tscn" id="2_504jp"]
 [ext_resource type="Texture2D" uid="uid://kdok14gl23c0" path="res://assets/quack_man/components/cage_bottom.png" id="3_xheqm"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/help_bubble.gd" id="4_kvr4x"]
 [ext_resource type="Texture2D" uid="uid://dpx3d0cvebwwn" path="res://assets/quack_man/components/save_ducky.png" id="4_qiq3d"]
 [ext_resource type="Texture2D" uid="uid://chan43huv286a" path="res://assets/quack_man/components/cage_upper.png" id="5_30udq"]
+[ext_resource type="Texture2D" uid="uid://be272wxmy32s5" path="res://assets/quack_man/ui/help_notice.png" id="5_w7p1w"]
 [ext_resource type="Texture2D" uid="uid://cvg76vkvy7qvx" path="res://assets/quack_man/components/camp_fire.png" id="6_c038b"]
 [ext_resource type="PackedScene" uid="uid://dvql8uq18iq3q" path="res://scenes/quack_world/components/damage_component.tscn" id="7_s12nh"]
 
@@ -20,7 +22,7 @@ bg_color = Color(0, 1, 0, 1)
 corner_detail = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11k87"]
-radius = 101.966
+radius = 114.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gj6ea"]
 radius = 6.4
@@ -48,9 +50,71 @@ scale_max = 10.0
 color = Color(0.683077, 0.683077, 0.683077, 1)
 color_ramp = SubResource("GradientTexture1D_qgocb")
 
+[sub_resource type="Animation" id="Animation_i17si"]
+resource_name = "show_bubble"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HelpBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_tkrne"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HelpBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rcsod"]
+resource_name = "hide_bubble"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HelpBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxcor"]
+_data = {
+"RESET": SubResource("Animation_tkrne"),
+"hide_bubble": SubResource("Animation_rcsod"),
+"show_bubble": SubResource("Animation_i17si")
+}
+
 [node name="DuckyCage" type="Node2D"]
 script = ExtResource("1_f1jpl")
 pointer = ExtResource("2_504jp")
+
+[node name="HelpBubble" type="Sprite2D" parent="."]
+z_index = 50
+position = Vector2(68, -19)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("5_w7p1w")
+offset = Vector2(26.5, -28.5)
+script = ExtResource("4_kvr4x")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 31
@@ -83,6 +147,9 @@ rotation = 1.5708
 scale = Vector2(2, 2)
 texture = ExtResource("4_qiq3d")
 
+[node name="SpeechBubblePos" type="Marker2D" parent="DuckyPivot/Ducky"]
+position = Vector2(0, 8)
+
 [node name="CageUp" type="Sprite2D" parent="."]
 scale = Vector2(7, 7)
 texture = ExtResource("5_30udq")
@@ -95,8 +162,8 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_11k87")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-134, -136)
-rect = Rect2(-10, -10, 300, 300)
+position = Vector2(127, -78)
+rect = Rect2(-10, -10, 5, 5)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 radius = 78.0
@@ -118,6 +185,11 @@ position = Vector2(147, 199)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_lkmyu")
 lifetime = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sxcor")
+}
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

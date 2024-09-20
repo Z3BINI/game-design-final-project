@@ -11,6 +11,7 @@ var release_progress : float = 0
 
 @onready var ducky_pivot = $DuckyPivot
 @onready var release_progress_bar = $DuckyPivot/ReleaseProgress
+@onready var animation_player = $AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -45,9 +46,11 @@ func _physics_process(delta):
 
 func _on_player_detector_body_entered(body: PlayerQuack) -> void:
 	player_can_release = true
+	animation_player.play("show_bubble")
 
 func _on_player_detector_body_exited(body):
 	player_can_release = false
+	animation_player.play("hide_bubble")
 	
 func spawn_pointer():
 	my_pointer = pointer.instantiate()
