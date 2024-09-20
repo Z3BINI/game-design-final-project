@@ -1,18 +1,91 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmwh870tgkdrn"]
+[gd_scene load_steps=16 format=3 uid="uid://dmwh870tgkdrn"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/components/ducky_cage.gd" id="1_f1jpl"]
-[ext_resource type="Texture2D" uid="uid://dqwkmti066fl7" path="res://icon.svg" id="1_f8m0n"]
 [ext_resource type="PackedScene" uid="uid://i64fnv6a3so5" path="res://scenes/quack_world/ui/ducky_pointer.tscn" id="2_504jp"]
+[ext_resource type="Texture2D" uid="uid://kdok14gl23c0" path="res://assets/quack_man/components/cage_bottom.png" id="3_xheqm"]
+[ext_resource type="Texture2D" uid="uid://dpx3d0cvebwwn" path="res://assets/quack_man/components/save_ducky.png" id="4_qiq3d"]
+[ext_resource type="Texture2D" uid="uid://chan43huv286a" path="res://assets/quack_man/components/cage_upper.png" id="5_30udq"]
+[ext_resource type="Texture2D" uid="uid://cvg76vkvy7qvx" path="res://assets/quack_man/components/camp_fire.png" id="6_c038b"]
+[ext_resource type="PackedScene" uid="uid://dvql8uq18iq3q" path="res://scenes/quack_world/components/damage_component.tscn" id="7_s12nh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k6qp5"]
+radius = 70.1142
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vmsd"]
+bg_color = Color(0.207843, 0.207843, 0.207843, 0.345098)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3oo8a"]
+bg_color = Color(0, 1, 0, 1)
+corner_detail = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11k87"]
-radius = 127.475
+radius = 101.966
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gj6ea"]
+radius = 6.4
+
+[sub_resource type="Gradient" id="Gradient_rla3h"]
+offsets = PackedFloat32Array(0, 0.604027, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.632225, 1.9493e-06, 3.36915e-07, 1, 0.678944, 0.678944, 0.678944, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qgocb"]
+gradient = SubResource("Gradient_rla3h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lkmyu"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 45.0
+angle_min = -100.0
+angle_max = 100.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 5.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_max = 10.0
+color = Color(0.683077, 0.683077, 0.683077, 1)
+color_ramp = SubResource("GradientTexture1D_qgocb")
 
 [node name="DuckyCage" type="Node2D"]
 script = ExtResource("1_f1jpl")
 pointer = ExtResource("2_504jp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_f8m0n")
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_k6qp5")
+
+[node name="CageDown" type="Sprite2D" parent="."]
+scale = Vector2(7, 7)
+texture = ExtResource("3_xheqm")
+
+[node name="DuckyPivot" type="Node2D" parent="."]
+
+[node name="ReleaseProgress" type="ProgressBar" parent="DuckyPivot"]
+z_index = 50
+offset_left = 80.0
+offset_top = 38.0
+offset_right = 155.0
+offset_bottom = 48.0
+rotation = -1.5708
+theme_override_styles/background = SubResource("StyleBoxFlat_7vmsd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3oo8a")
+value = 50.0
+fill_mode = 1
+show_percentage = false
+
+[node name="Ducky" type="Sprite2D" parent="DuckyPivot"]
+position = Vector2(35, 0)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("4_qiq3d")
+
+[node name="CageUp" type="Sprite2D" parent="."]
+scale = Vector2(7, 7)
+texture = ExtResource("5_30udq")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -25,6 +98,28 @@ shape = SubResource("CircleShape2D_11k87")
 position = Vector2(-134, -136)
 rect = Rect2(-10, -10, 300, 300)
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 78.0
+
+[node name="FirePit" type="Sprite2D" parent="."]
+position = Vector2(142, 208)
+scale = Vector2(5, 5)
+texture = ExtResource("6_c038b")
+
+[node name="DamageComponent" parent="FirePit" instance=ExtResource("7_s12nh")]
+DMG_AMOUNT = 1.0
+can_dmg_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FirePit/DamageComponent"]
+shape = SubResource("CircleShape2D_gj6ea")
+
+[node name="FireSmoke" type="GPUParticles2D" parent="."]
+position = Vector2(147, 199)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_lkmyu")
+lifetime = 2.0
+
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

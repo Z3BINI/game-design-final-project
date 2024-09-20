@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://i64fnv6a3so5"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/ui/kill_pointer.gd" id="1_tfywe"]
-[ext_resource type="Texture2D" uid="uid://cbj3ekc23rd0s" path="res://assets/quack_man/ui/kill_indicator.png" id="2_jevpy"]
+[ext_resource type="Texture2D" uid="uid://bd1hb82hketyt" path="res://assets/quack_man/ui/ducky_indicator.png" id="2_yfati"]
 
 [sub_resource type="Animation" id="Animation_tpmbs"]
 length = 0.001
@@ -48,7 +48,7 @@ script = ExtResource("1_tfywe")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(300, 0)
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("2_jevpy")
+texture = ExtResource("2_yfati")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
