@@ -1,6 +1,8 @@
 extends RigidBody2D
 class_name ExplosiveEgg
 
+signal egg_exploded
+
 var explosion_timer : float = 3
 var explode_on_hit : bool = false
 var explosion_timer_scale : float = 1
@@ -12,6 +14,10 @@ var explosion_timer_scale : float = 1
 
 
 func _ready():
+	var ui_node = get_tree().get_first_node_in_group("ui")
+	
+	connect("egg_exploded", ui_node.on_egg_explosion) 
+	
 	apply_central_impulse(transform.basis_xform(Vector2.LEFT) * 125)
 	animation_player.speed_scale = explosion_timer_scale
 	animation_player.play("detonated")
@@ -24,6 +30,7 @@ func _physics_process(delta):
 
 func explode():
 	animation_player.play("explode")
+	egg_exploded.emit()
 	await animation_player.animation_finished
 	queue_free()
 

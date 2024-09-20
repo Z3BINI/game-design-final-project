@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0xu61syhowr2"]
+[gd_scene load_steps=22 format=3 uid="uid://b0xu61syhowr2"]
 
 [ext_resource type="PackedScene" uid="uid://cijhy7nf7ge6x" path="res://scenes/quack_world/enemies/base/enemy.tscn" id="1_btfs5"]
 [ext_resource type="Texture2D" uid="uid://bjmog68mf4xse" path="res://assets/quack_man/enemies/enemy_1.png" id="2_fmvc8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2dvtlpnv2l0g" path="res://assets/quack_man/ui/hp_bar/border.png" id="4_umijs"]
 [ext_resource type="Texture2D" uid="uid://d22wdvvvdg2d1" path="res://assets/quack_man/ui/hp_bar/fill.png" id="5_xs7po"]
 [ext_resource type="PackedScene" uid="uid://dvql8uq18iq3q" path="res://scenes/quack_world/components/damage_component.tscn" id="6_a7cgj"]
+[ext_resource type="Texture2D" uid="uid://dixap5i1240x0" path="res://assets/quack_man/enemies/dead.png" id="8_pmkbg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kn4sy"]
 radius = 44.0
@@ -72,6 +73,66 @@ tracks/4/path = NodePath("../DamageComponent/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../EnemySprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../GPUParticles2D:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Dead:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../EnemySprite:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../HpBar:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -149,11 +210,93 @@ tracks/1/keys = {
 "values": [0.0349066, 0.0174533, -0.0174533, -0.0349066, -0.0174533, 0.0174533]
 }
 
+[sub_resource type="Animation" id="Animation_uk00v"]
+resource_name = "take_dmg"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EnemySprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nxvdt"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Dead:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../EnemySprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HpBar:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a7r2r"]
 _data = {
 "RESET": SubResource("Animation_xvp0a"),
 "attack": SubResource("Animation_23l5a"),
-"chase": SubResource("Animation_eanl3")
+"chase": SubResource("Animation_eanl3"),
+"dead": SubResource("Animation_nxvdt"),
+"take_dmg": SubResource("Animation_uk00v")
 }
 
 [sub_resource type="Gradient" id="Gradient_8bexj"]
@@ -178,9 +321,20 @@ color_ramp = SubResource("GradientTexture1D_7qltf")
 radius = 22.0
 height = 96.0
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0223j"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 15.0
+color = Color(0.764706, 0, 0, 1)
+
 [node name="BasicEnemy" instance=ExtResource("1_btfs5")]
-ACCEL = 300.0
-DECEL = 100.0
 ATTACK_DISTANCE = 125.0
 kill_pointer = ExtResource("2_g3q8s")
 
@@ -238,6 +392,19 @@ disabled = true
 [node name="VisibleOnScreenNotifier2D" parent="." index="8"]
 position = Vector2(-144, 0)
 
+[node name="Dead" type="Sprite2D" parent="." index="9"]
+visible = false
+texture = ExtResource("8_pmkbg")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="10"]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_0223j")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="took_dmg" from="HealthComponent" to="." method="_on_health_component_took_dmg"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

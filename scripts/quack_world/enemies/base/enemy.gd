@@ -73,6 +73,9 @@ func dump_first_physics_frame() -> void:
 	set_physics_process(true)
 
 func _on_health_component_died() -> void:
+	current_state = state.DIE
+	animation_player.play("dead")
+	await animation_player.animation_finished
 	my_pointer.queue_free()
 	queue_free()
 
@@ -102,4 +105,8 @@ func knock_back(dir : Vector2, str : float):
 	velocity = dir * (str * 200 / 3)
 	await get_tree().create_timer(.1).timeout
 	current_state = state.CHASE
-	
+
+func _on_health_component_took_dmg():
+	animation_player.play("take_dmg")
+	await animation_player.animation_finished
+	animation_player.play("chase")

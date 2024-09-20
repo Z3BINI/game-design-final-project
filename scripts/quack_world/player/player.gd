@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name PlayerQuack
 
 signal player_died
+signal player_damaged
 
 @export var BASE_MAX_SPEED : float = 150
 @export var BASE_BASIC_DAMAGE : float = 1
@@ -24,7 +25,7 @@ var disable_player : bool = false
 var ducks : int = 0
 var shoot_cd : bool = false
 var egg_cd : bool = false
-var unlocked_egg : bool = false
+@export var unlocked_egg : bool = false
 
 var killer_duckies : Array[KillerDucky]
 
@@ -140,6 +141,7 @@ func short_angle_dist(from, to):
 
 
 func _on_health_component_took_dmg():
+	player_damaged.emit()
 	animation_player.play("take_dmg")
 
 

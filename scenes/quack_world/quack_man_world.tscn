@@ -132,4 +132,5 @@ position = Vector2(-1738, 271)
 [connection signal="timeout" from="Difficulty" to="." method="_on_difficulty_timeout"]
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_enemy_spawn_timeout"]
 [connection signal="timeout" from="Duck" to="." method="_on_duck_timeout"]
+[connection signal="player_damaged" from="Player" to="UI" method="_on_player_player_damaged"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
