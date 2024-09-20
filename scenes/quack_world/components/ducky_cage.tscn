@@ -50,22 +50,6 @@ scale_max = 10.0
 color = Color(0.683077, 0.683077, 0.683077, 1)
 color_ramp = SubResource("GradientTexture1D_qgocb")
 
-[sub_resource type="Animation" id="Animation_i17si"]
-resource_name = "show_bubble"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HelpBubble:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(2, 2)]
-}
-
 [sub_resource type="Animation" id="Animation_tkrne"]
 length = 0.001
 tracks/0/type = "value"
@@ -95,6 +79,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(2, 2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i17si"]
+resource_name = "show_bubble"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HelpBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sxcor"]
@@ -130,9 +130,9 @@ texture = ExtResource("3_xheqm")
 
 [node name="ReleaseProgress" type="ProgressBar" parent="DuckyPivot"]
 z_index = 50
-offset_left = 25.0
+offset_left = 46.0
 offset_top = 38.0
-offset_right = 100.0
+offset_right = 121.0
 offset_bottom = 48.0
 rotation = -1.5708
 theme_override_styles/background = SubResource("StyleBoxFlat_7vmsd")
@@ -151,6 +151,7 @@ texture = ExtResource("4_qiq3d")
 position = Vector2(0, 8)
 
 [node name="CageUp" type="Sprite2D" parent="."]
+z_index = 1
 scale = Vector2(7, 7)
 texture = ExtResource("5_30udq")
 
@@ -174,8 +175,6 @@ scale = Vector2(5, 5)
 texture = ExtResource("6_c038b")
 
 [node name="DamageComponent" parent="FirePit" instance=ExtResource("7_s12nh")]
-DMG_AMOUNT = 1.0
-can_dmg_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FirePit/DamageComponent"]
 shape = SubResource("CircleShape2D_gj6ea")

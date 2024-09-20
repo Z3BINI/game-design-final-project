@@ -2,65 +2,60 @@ extends Node2D
 
 signal game_over
 
-@onready var spawn_points_node = $SpawnPoints
+@export var BASE_ENEMY_SPAWN_CD : float = 10
+@export var DUCK_CAGE_SPAWN_CD : float = 60
 
-@export var ENEMY_SPAWN_CD : float = 10
-
-@export var enemy_scene : PackedScene
-@export var duck_cage : PackedScene
-
-var spawn_points : Array
+var spawn_points : Array[Node]
 var player : PlayerQuack
+var current_difficulty : float = 1
+
+@onready var spawn_points_node = $SpawnPoints
+@onready var enemy_spawn : Timer = $EnemySpawn
+@onready var duck : Timer = $Duck
+@onready var difficulty : Timer = $Difficulty
 
 func _ready():
 	spawn_points = spawn_points_node.get_children()
 	player = get_tree().get_first_node_in_group("player")
+	
 	spawn_enemy()
-	
-	await get_tree().create_timer(30).timeout
-	
-	increase_difficulty()
-	
-	await get_tree().create_timer(30).timeout
-	
-	spawn_ducky_cage()
+	enemy_spawn.wait_time = BASE_ENEMY_SPAWN_CD
+	enemy_spawn.start()
 
 func spawn_enemy():
-	var enemy_spawn : SpawnComponent = get_valid_spawn_points().pick_random()
-	enemy_spawn.scene_to_spawn = enemy_scene
-	enemy_spawn.spawn("game_clutter", ENEMY_SPAWN_CD)
-	
-	await get_tree().create_timer(ENEMY_SPAWN_CD).timeout
-	
-	spawn_enemy()
-
-func get_valid_spawn_points() -> Array[SpawnComponent]:
-	var spawnable_arr : Array[SpawnComponent]
-	
-	for spawn_point : SpawnComponent in spawn_points:
-		if spawn_point.spawnable:
-			spawnable_arr.append(spawn_point)
-	
-	return spawnable_arr
-
+	var off_screen_spawn_point : SpawnComponent = get_valid_spawn_points().pick_random()
+	if off_screen_spawn_point:
+		off_screen_spawn_point.spawn(current_difficulty)
+		
+	enemy_spawn.wait_time = BASE_ENEMY_SPAWN_CD / current_difficulty
 
 func _on_player_player_died():
 	game_over.emit()
 
-func increase_difficulty():
-	if ENEMY_SPAWN_CD > 2:
-		ENEMY_SPAWN_CD -= 2
-		
-		await get_tree().create_timer(30).timeout
-		
-		increase_difficulty()
-
 func spawn_ducky_cage():
-	var spawn : SpawnComponent = get_valid_spawn_points().pick_random()
-	spawn.scene_to_spawn = duck_cage
-	spawn.spawn("game_clutter")
+	var off_screen_spawn_point : SpawnComponent = get_valid_spawn_points().pick_random()
+	if off_screen_spawn_point:
+		off_screen_spawn_point.spawn()
 	
-	if player.ducks < 4:
-		await get_tree().create_timer(30).timeout
-		
-		spawn_ducky_cage()
+	if player.ducks + 1 == 4:
+		duck.stop()
+
+func _on_enemy_spawn_timeout():
+	spawn_enemy()
+
+func _on_difficulty_timeout():
+	current_difficulty += 0.2
+	
+	#pass in card choice
+	
+func _on_duck_timeout():
+	spawn_ducky_cage()
+	
+func get_valid_spawn_points() -> Array[SpawnComponent]:
+	var spawnable_arr : Array[SpawnComponent]
+	
+	for spawn_point : SpawnComponent in spawn_points:
+		if spawn_point.is_off_screen:
+			spawnable_arr.append(spawn_point)
+	
+	return spawnable_arr

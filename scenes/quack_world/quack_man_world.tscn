@@ -1,13 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://ck0146jgm5i4"]
+[gd_scene load_steps=10 format=4 uid="uid://ck0146jgm5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bllaylpcu6vj1" path="res://scenes/quack_world/player/player.tscn" id="1_7gm2t"]
 [ext_resource type="Script" path="res://scripts/quack_world/quack_man_world.gd" id="1_gin2k"]
 [ext_resource type="Texture2D" uid="uid://wufpwelwanrd" path="res://assets/quack_man/world/Terrain/Water/Water.png" id="1_qx0ax"]
 [ext_resource type="PackedScene" uid="uid://ojkh110upjxp" path="res://scenes/quack_world/components/spawn_component.tscn" id="2_4clok"]
 [ext_resource type="Texture2D" uid="uid://bgjypa40jox5d" path="res://assets/quack_man/world/grass.png" id="2_4ihah"]
-[ext_resource type="PackedScene" uid="uid://b0xu61syhowr2" path="res://scenes/quack_world/enemies/basic_enemy.tscn" id="2_uh5wc"]
 [ext_resource type="PackedScene" uid="uid://dfe5rhh563gce" path="res://scenes/global/ui.tscn" id="7_dvbcu"]
-[ext_resource type="PackedScene" uid="uid://dmwh870tgkdrn" path="res://scenes/quack_world/components/ducky_cage.tscn" id="8_wrrdo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c8kjb"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -52,8 +50,16 @@ sources/0 = SubResource("TileSetAtlasSource_3wh7w")
 
 [node name="QuackManWorld" type="Node2D"]
 script = ExtResource("1_gin2k")
-enemy_scene = ExtResource("2_uh5wc")
-duck_cage = ExtResource("8_wrrdo")
+
+[node name="Difficulty" type="Timer" parent="."]
+wait_time = 120.0
+autostart = true
+
+[node name="EnemySpawn" type="Timer" parent="."]
+
+[node name="Duck" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
 
 [node name="Sea" type="Sprite2D" parent="."]
 position = Vector2(-977, 425)
@@ -66,19 +72,19 @@ texture = ExtResource("1_qx0ax")
 
 [node name="SpawnComponent" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(-2139, -791)
-spawnable = true
+is_off_screen = true
 
 [node name="SpawnComponent2" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(-1005, -691)
-spawnable = true
+is_off_screen = true
 
 [node name="SpawnComponent3" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(72, -862)
-spawnable = true
+is_off_screen = true
 
 [node name="SpawnComponent4" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(-306, -150)
-spawnable = true
+is_off_screen = true
 
 [node name="SpawnComponent5" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(-1111, 79)
@@ -91,23 +97,23 @@ position = Vector2(-2230, 684)
 
 [node name="SpawnComponent8" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(-1047, 912)
-spawnable = true
+is_off_screen = true
 
 [node name="SpawnComponent9" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(100, 777)
-spawnable = true
+is_off_screen = true
 
 [node name="SpawnComponent10" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(-2024, 1611)
-spawnable = true
+is_off_screen = true
 
 [node name="SpawnComponent11" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(-962, 1647)
-spawnable = true
+is_off_screen = true
 
 [node name="SpawnComponent12" parent="SpawnPoints" instance=ExtResource("2_4clok")]
 position = Vector2(36, 1626)
-spawnable = true
+is_off_screen = true
 
 [node name="Projectiles" type="Node" parent="." groups=["projectiles"]]
 
@@ -123,4 +129,7 @@ position = Vector2(-1738, 271)
 
 [connection signal="game_over" from="." to="UI" method="_on_quack_man_world_game_over"]
 [connection signal="game_over" from="." to="Player" method="_on_quack_man_world_game_over"]
+[connection signal="timeout" from="Difficulty" to="." method="_on_difficulty_timeout"]
+[connection signal="timeout" from="EnemySpawn" to="." method="_on_enemy_spawn_timeout"]
+[connection signal="timeout" from="Duck" to="." method="_on_duck_timeout"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]

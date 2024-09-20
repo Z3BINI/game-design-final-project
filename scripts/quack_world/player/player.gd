@@ -3,7 +3,13 @@ class_name PlayerQuack
 
 signal player_died
 
-@export var MAX_SPEED : float = 250
+@export var BASE_MAX_SPEED : float = 150
+@export var BASE_BASIC_DAMAGE : float = 1
+@export var BASE_EGG_DAMAGE : float = 2
+@export var BASE_BASIC_CD : float = 1.5
+@export var BASE_EGG_CD : float = 4
+
+
 @export var ACCEL : float = 750
 @export var DECEL : float = 500
 @export var ROTATION_STEP : float = 0.2
@@ -16,13 +22,35 @@ signal player_died
 var input_direction : Vector2
 var disable_player : bool = false
 var ducks : int = 0
+var shoot_cd : bool = false
+var egg_cd : bool = false
+var unlocked_egg : bool = false
+
+var killer_duckies : Array[KillerDucky]
+
+var current_max_speed : float
+var current_basic_dmg : float
+var current_egg_dmg : float
+var current_basic_cd : float
+var current_egg_cd : float
+
+var projectile_holder : Node
 
 @onready var hand = $Hand
 @onready var weapon_sprite = $Hand/Weapon
 @onready var animation_player = $AnimationPlayer
 @onready var health_component = $HealthComponent
+@onready var gun_anim = $GunAnim
 
-var killer_duckies : Array[KillerDucky]
+
+func _ready():
+	projectile_holder = get_tree().get_first_node_in_group("projectiles")
+	
+	current_max_speed = BASE_MAX_SPEED
+	current_basic_dmg = BASE_BASIC_DAMAGE
+	current_egg_dmg = BASE_EGG_DAMAGE
+	current_basic_cd = BASE_BASIC_CD
+	current_egg_cd = BASE_EGG_CD
 
 func _process(delta):
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -40,7 +68,7 @@ func _physics_process(delta):
 		
 		if input_direction != Vector2.ZERO or velocity != Vector2.ZERO:
 			var current_step : float = ACCEL if (input_direction != Vector2.ZERO) else DECEL
-			velocity = velocity.move_toward(input_direction * MAX_SPEED, current_step * delta)
+			velocity = velocity.move_toward(input_direction * current_max_speed, current_step * delta)
 	else:
 		velocity = Vector2.ZERO
 				
@@ -48,25 +76,45 @@ func _physics_process(delta):
 
 func _input(event):
 	if !disable_player:
-		if event.is_action_pressed("shoot"):
+		if event.is_action_pressed("shoot") and !shoot_cd:
 			shoot()
 		
-		if event.is_action_pressed("jump"):
+		if event.is_action_pressed("jump") and !egg_cd and unlocked_egg:
 			drop_egg()
 
 func drop_egg():
-	var egg = explosive_egg_scene.instantiate()
+	egg_cd = true
+	
+	var egg : ExplosiveEgg = explosive_egg_scene.instantiate()
+	
 	egg.global_position = global_position
 	egg.rotation = rotation
-	get_tree().get_first_node_in_group("projectiles").add_child(egg)
+	
+	projectile_holder.add_child(egg)
+	
+	egg.set_damage(current_egg_dmg)
+	
+	await get_tree().create_timer(current_egg_cd).timeout
+	
+	egg_cd = false
 	
 func shoot():
-	var bullet = bullet_scene.instantiate()
+	shoot_cd = true
+	
+	var bullet : Bullet = bullet_scene.instantiate()
+	
 	bullet.global_position = weapon_sprite.global_position
 	bullet.look_at(get_global_mouse_position())
 	
-	get_tree().get_first_node_in_group("projectiles").add_child(bullet)
+	projectile_holder.add_child(bullet)
 	
+	gun_anim.play("shoot")
+	
+	bullet.set_damage(current_basic_dmg)
+	
+	await get_tree().create_timer(current_basic_cd).timeout
+	
+	shoot_cd = false
 
 func get_weapon_position():
 	var mouse_distance : float = global_position.distance_to(get_global_mouse_position()) 

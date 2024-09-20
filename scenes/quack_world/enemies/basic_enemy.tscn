@@ -179,6 +179,8 @@ radius = 22.0
 height = 96.0
 
 [node name="BasicEnemy" instance=ExtResource("1_btfs5")]
+ACCEL = 300.0
+DECEL = 100.0
 ATTACK_DISTANCE = 125.0
 kill_pointer = ExtResource("2_g3q8s")
 
@@ -227,8 +229,6 @@ one_shot = true
 explosiveness = 1.0
 
 [node name="DamageComponent" parent="." index="7" instance=ExtResource("6_a7cgj")]
-DMG_AMOUNT = 1.0
-can_dmg_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent" index="0"]
 position = Vector2(68, 0)

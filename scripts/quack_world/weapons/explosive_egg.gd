@@ -1,21 +1,31 @@
 extends RigidBody2D
+class_name ExplosiveEgg
 
-@export var EXPLOSION_TIMER : float = 3
+var explosion_timer : float = 3
+var explode_on_hit : bool = false
+var explosion_timer_scale : float = 1
 
-@onready var explosion = $Explosion
-@onready var sprite_2d = $Sprite2D
+@onready var explosion : GPUParticles2D = $Explosion
+@onready var sprite_2d : Sprite2D = $Sprite2D
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
+@onready var damage_component = $DamageComponent
+
 
 func _ready():
 	apply_central_impulse(transform.basis_xform(Vector2.LEFT) * 125)
-	await get_tree().create_timer(EXPLOSION_TIMER).timeout
-	explosion.emitting = true
-	sprite_2d.visible = false
-	await explosion.finished
-	queue_free()
+	animation_player.speed_scale = explosion_timer_scale
+	animation_player.play("detonated")
+	await animation_player.animation_finished
+	explode()
 	
 func _physics_process(delta):
-	if get_contact_count() > 0:
-		explosion.emitting = true
-		sprite_2d.visible = false
-		await explosion.finished
-		queue_free()
+	if explode_on_hit and get_contact_count() > 0:
+		explode()
+
+func explode():
+	animation_player.play("explode")
+	await animation_player.animation_finished
+	queue_free()
+
+func set_damage(amount: float):
+	damage_component.damage_amount = amount

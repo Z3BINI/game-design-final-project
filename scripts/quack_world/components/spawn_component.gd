@@ -1,41 +1,37 @@
 extends Marker2D
 class_name SpawnComponent
 
-var scene_to_spawn : PackedScene
+@export var is_off_screen : bool = false
 
-@onready var on_screen_notifier = $OnScreenNotifier
+var basic_enemy_scene : PackedScene = load("res://scenes/quack_world/enemies/basic_enemy.tscn")
+var bird_cage_scene : PackedScene = load("res://scenes/quack_world/components/ducky_cage.tscn")
+var spawn_parent : Node 
 
-@export var spawnable : bool = false
+@onready var on_screen_notifier : VisibleOnScreenNotifier2D = $OnScreenNotifier
 
-func _physics_process(delta):
-	pass
+func _ready():
+	spawn_parent = get_tree().get_first_node_in_group("game_clutter")
 
 func _on_on_screen_notifier_screen_entered():
-	spawnable = false
+	is_off_screen = false
 
 func _on_on_screen_notifier_screen_exited():
-	spawnable = true
+	is_off_screen = true
 
-func spawn(parent_group : String, difficulty : int = 0):
-	var scene = scene_to_spawn.instantiate()
-	var parent = get_tree().get_first_node_in_group(parent_group)
-	
-	if scene is Enemy:
-		if difficulty <= 2:
-			scene.MAX_SPEED = 150
-			scene.ATTACK_CD = 1.5
-			scene.change_hp(10)
-		elif difficulty <= 4:
-			scene.MAX_SPEED = 100
-			scene.ATTACK_CD = 2
-			scene.change_hp(8)
-		elif difficulty <= 6:
-			scene.MAX_SPEED = 75
-			scene.change_hp(6)
-	
-	if parent_group:
-		scene.global_position = global_position
-		parent.add_child(scene)
+func spawn(difficulty_multiplyer : float = -1):
+	if difficulty_multiplyer > 0:
+		var enemy : Enemy = basic_enemy_scene.instantiate()
+		
+		enemy.current_multiplyer = difficulty_multiplyer
+		
+		enemy.global_position = global_position
+		
+		spawn_parent.add_child(enemy)
+		
 	else:
-		print("Something went wrong")
-	
+		
+		var duck_cage = bird_cage_scene.instantiate()
+		
+		duck_cage.global_position = global_position
+		
+		spawn_parent.add_child(duck_cage)
