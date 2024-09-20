@@ -25,12 +25,21 @@ func _physics_process(delta):
 	
 	release_progress_bar.value = release_progress
 	release_progress_bar.visible = (release_progress > 0)
+	
 	if Input.is_action_pressed("interact") and player_can_release:
 		release_progress += delta
 		
+		if !player.disable_player:
+			player.disable_player = true
+		
 		if release_progress >= release_time:
 			release_ducky()
+			player.disable_player = false
+			
 	else:
+		if player.disable_player:
+			player.disable_player = false
+			
 		if release_progress > 0:
 			release_progress -= delta
 

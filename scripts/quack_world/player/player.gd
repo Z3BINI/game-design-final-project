@@ -41,7 +41,9 @@ func _physics_process(delta):
 		if input_direction != Vector2.ZERO or velocity != Vector2.ZERO:
 			var current_step : float = ACCEL if (input_direction != Vector2.ZERO) else DECEL
 			velocity = velocity.move_toward(input_direction * MAX_SPEED, current_step * delta)
-			
+	else:
+		velocity = Vector2.ZERO
+				
 	move_and_slide()
 
 func _input(event):

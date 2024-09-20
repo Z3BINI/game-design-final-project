@@ -66,9 +66,9 @@ texture = ExtResource("3_xheqm")
 
 [node name="ReleaseProgress" type="ProgressBar" parent="DuckyPivot"]
 z_index = 50
-offset_left = 80.0
+offset_left = 25.0
 offset_top = 38.0
-offset_right = 155.0
+offset_right = 100.0
 offset_bottom = 48.0
 rotation = -1.5708
 theme_override_styles/background = SubResource("StyleBoxFlat_7vmsd")
