@@ -26,6 +26,7 @@ enemy=""
 game_clutter=""
 ui=""
 player_wep=""
+game=""
 
 [input]
 

@@ -13,6 +13,7 @@ var current_difficulty : float = 1
 @onready var enemy_spawn : Timer = $EnemySpawn
 @onready var duck : Timer = $Duck
 @onready var difficulty : Timer = $Difficulty
+@onready var ui = $UI
 
 func _ready():
 	spawn_points = spawn_points_node.get_children()
@@ -21,6 +22,7 @@ func _ready():
 	spawn_enemy()
 	enemy_spawn.wait_time = BASE_ENEMY_SPAWN_CD
 	enemy_spawn.start()
+	toggle_pause(false)
 
 func spawn_enemy():
 	var off_screen_spawn_point : SpawnComponent = get_valid_spawn_points().pick_random()
@@ -45,8 +47,7 @@ func _on_enemy_spawn_timeout():
 
 func _on_difficulty_timeout():
 	current_difficulty += 0.2
-	
-	#pass in card choice
+	ui.card_choice_screen.show_cards()
 	
 func _on_duck_timeout():
 	spawn_ducky_cage()
@@ -59,3 +60,6 @@ func get_valid_spawn_points() -> Array[SpawnComponent]:
 			spawnable_arr.append(spawn_point)
 	
 	return spawnable_arr
+
+func toggle_pause(flag : bool):
+	get_tree().paused = flag

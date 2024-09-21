@@ -115,7 +115,7 @@ func knock_back(dir : Vector2, str : float):
 
 func _on_health_component_took_dmg(amount : float):
 	animation_player.play("take_dmg")
-	damage_label.text = "-" + str(amount)
+	damage_label.text = "-" + str(round(amount * 100) / 100.0)
 	dmg_indicator.play("pull_up_dmg")
 	await animation_player.animation_finished
 	if !dead:

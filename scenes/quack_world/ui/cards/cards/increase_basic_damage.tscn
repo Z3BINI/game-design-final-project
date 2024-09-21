@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1fptmiuq617e"]
+
+[ext_resource type="PackedScene" uid="uid://b8phlhu85dsl8" path="res://scenes/quack_world/ui/cards/card_upgrade.tscn" id="1_x1tvk"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/cards/increase_basic_damage.gd" id="2_b7si2"]
+
+[node name="IncreaseBasicDamage" instance=ExtResource("1_x1tvk")]
+script = ExtResource("2_b7si2")
+id = 4
+
+[node name="Name" parent="." index="0"]
+text = "MOAR DMG!"
+
+[node name="Desc" parent="." index="1"]
+text = "Increase Basic Attack damage by 5%"

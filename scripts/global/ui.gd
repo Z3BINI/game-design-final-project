@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var game_over = $FishEyeShaderEffect/FullScreen/GameOver
 @onready var pause_menu = $FishEyeShaderEffect/FullScreen/PauseMenu
 @onready var animation_player = $AnimationPlayer
+@onready var card_choice_screen = $FishEyeShaderEffect/FullScreen/CardChoiceScreen
 
 func _on_quack_man_world_game_over():
 	await get_tree().create_timer(5).timeout

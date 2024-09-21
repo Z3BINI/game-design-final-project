@@ -48,17 +48,17 @@ physics_layer_0/collision_mask = 14
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_3wh7w")
 
-[node name="QuackManWorld" type="Node2D"]
+[node name="QuackManWorld" type="Node2D" groups=["game"]]
 script = ExtResource("1_gin2k")
 
 [node name="Difficulty" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 15.0
 autostart = true
 
 [node name="EnemySpawn" type="Timer" parent="."]
 
 [node name="Duck" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 120.0
 autostart = true
 
 [node name="Sea" type="Sprite2D" parent="."]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://djsis0idrrxi7"]
+
+[ext_resource type="PackedScene" uid="uid://b8phlhu85dsl8" path="res://scenes/quack_world/ui/cards/card_upgrade.tscn" id="1_l5vjf"]
+[ext_resource type="Script" path="res://scripts/ui/cards/unlock_egg.gd" id="2_hma8s"]
+
+[node name="UnlockEgg" instance=ExtResource("1_l5vjf")]
+script = ExtResource("2_hma8s")
+one_time_use = true
+id = 1
+
+[node name="Name" parent="." index="0"]
+text = "Eggsplosion"
+
+[node name="Desc" parent="." index="1"]
+text = "Unlock explosive eggs. 
+[spacebar]"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpu6esssvwtcq"]
+
+[ext_resource type="PackedScene" uid="uid://b8phlhu85dsl8" path="res://scenes/quack_world/ui/cards/card_upgrade.tscn" id="1_deb5i"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/cards/reduce_basic_cd.gd" id="2_um8mh"]
+
+[node name="ReduceBasicCD" instance=ExtResource("1_deb5i")]
+script = ExtResource("2_um8mh")
+id = 3
+
+[node name="Name" parent="." index="0"]
+text = "Fast Attack!"
+
+[node name="Desc" parent="." index="1"]
+text = "Reduce shot CD by 15%"

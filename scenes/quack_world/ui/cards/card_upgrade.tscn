@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8phlhu85dsl8"]
+
+[ext_resource type="Texture2D" uid="uid://diq05m8p5suco" path="res://assets/quack_man/ui/upgrade_card.png" id="1_yck4k"]
+[ext_resource type="Script" path="res://scripts/ui/card_upgrade.gd" id="2_t5c0o"]
+[ext_resource type="Texture2D" uid="uid://cclyeoniqbx43" path="res://assets/quack_man/ui/border_card.png" id="3_odtww"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sf418"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="CardUpgrade" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 128)
+texture = ExtResource("1_yck4k")
+script = ExtResource("2_t5c0o")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -18.0
+offset_top = 30.0
+offset_right = 18.0
+offset_bottom = 53.0
+grow_horizontal = 2
+text = "TEST"
+label_settings = SubResource("LabelSettings_sf418")
+
+[node name="Desc" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -25.0
+offset_right = 46.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Use this card to get a potion in your ass."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Border" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(64, 128)
+scale = Vector2(4.375, 4.1875)
+texture = ExtResource("3_odtww")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

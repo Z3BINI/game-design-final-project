@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmal7ab1x7qmv"]
+
+[ext_resource type="PackedScene" uid="uid://b8phlhu85dsl8" path="res://scenes/quack_world/ui/cards/card_upgrade.tscn" id="1_2ko1a"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/cards/move_speed.gd" id="2_jfvgj"]
+
+[node name="MoveSpeed" instance=ExtResource("1_2ko1a")]
+script = ExtResource("2_jfvgj")
+id = 2
+
+[node name="Name" parent="." index="0"]
+text = "Move Speed"
+
+[node name="Desc" parent="." index="1"]
+text = "Gain +2% movement speed!"
