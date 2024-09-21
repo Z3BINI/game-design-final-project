@@ -46,8 +46,9 @@ func _on_enemy_spawn_timeout():
 	spawn_enemy()
 
 func _on_difficulty_timeout():
-	current_difficulty += 0.2
-	ui.card_choice_screen.show_cards()
+	if !player.disable_player:
+		current_difficulty += 0.2
+		ui.card_choice_screen.show_cards()
 	
 func _on_duck_timeout():
 	spawn_ducky_cage()

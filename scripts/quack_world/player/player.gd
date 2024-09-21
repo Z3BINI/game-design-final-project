@@ -163,3 +163,12 @@ func disable_duckies():
 	for duck in killer_duckies:
 		duck.visible = false
 		duck.process_mode = Node.PROCESS_MODE_DISABLED
+		
+func upgrade_hp():
+	$HealthComponent.MAX_HP += 1
+	$HealthComponent.set_bar()
+
+func replenish_hp():
+	$HealthComponent.current_hp = $HealthComponent.MAX_HP
+	$HealthComponent.set_bar()
+	

@@ -41,3 +41,4 @@ func heal(amount : float) -> void:
 func set_bar():
 	health_bar.max_value = MAX_HP
 	health_bar.value = current_hp
+	

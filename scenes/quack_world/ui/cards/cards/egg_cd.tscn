@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cilwkpfgsiboi"]
+
+[ext_resource type="PackedScene" uid="uid://b8phlhu85dsl8" path="res://scenes/quack_world/ui/cards/card_upgrade.tscn" id="1_ybioe"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/cards/egg_cd.gd" id="2_mybxb"]
+
+[node name="EggCD" instance=ExtResource("1_ybioe")]
+script = ExtResource("2_mybxb")
+id = 8
+
+[node name="Name" parent="." index="0"]
+text = "Faster Eggs"
+
+[node name="Desc" parent="." index="1"]
+text = "Decrease Egg CD by 10%"

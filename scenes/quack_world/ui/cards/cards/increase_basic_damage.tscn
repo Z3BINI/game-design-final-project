@@ -11,4 +11,4 @@ id = 4
 text = "MOAR DMG!"
 
 [node name="Desc" parent="." index="1"]
-text = "Increase Basic Attack damage by 5%"
+text = "Increase Basic Attack damage by 15%"

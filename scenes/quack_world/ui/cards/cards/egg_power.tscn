@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpmbq3re4s2ou"]
+
+[ext_resource type="PackedScene" uid="uid://b8phlhu85dsl8" path="res://scenes/quack_world/ui/cards/card_upgrade.tscn" id="1_wrmxp"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/cards/egg_power.gd" id="2_5t2je"]
+
+[node name="EggPower" instance=ExtResource("1_wrmxp")]
+script = ExtResource("2_5t2je")
+id = 5
+
+[node name="Name" parent="." index="0"]
+text = "Egg Boom!"
+
+[node name="Desc" parent="." index="1"]
+text = "Increase egg damage by 10%"

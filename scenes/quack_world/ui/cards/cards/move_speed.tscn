@@ -11,4 +11,4 @@ id = 2
 text = "Move Speed"
 
 [node name="Desc" parent="." index="1"]
-text = "Gain +2% movement speed!"
+text = "Gain +12% movement speed!"

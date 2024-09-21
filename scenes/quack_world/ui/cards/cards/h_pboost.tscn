@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b273p3yfgnj4p"]
+
+[ext_resource type="PackedScene" uid="uid://b8phlhu85dsl8" path="res://scenes/quack_world/ui/cards/card_upgrade.tscn" id="1_825j1"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/cards/h_pboost.gd" id="2_rrwj6"]
+
+[node name="HPboost" instance=ExtResource("1_825j1")]
+script = ExtResource("2_rrwj6")
+id = 7
+
+[node name="Name" parent="." index="0"]
+text = "Healthy!!"
+
+[node name="Desc" parent="." index="1"]
+text = "Use this card to increase hp by 1 point."
