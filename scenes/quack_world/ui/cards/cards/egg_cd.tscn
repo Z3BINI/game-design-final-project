@@ -6,6 +6,7 @@
 [node name="EggCD" instance=ExtResource("1_ybioe")]
 script = ExtResource("2_mybxb")
 id = 8
+needs_egg = true
 
 [node name="Name" parent="." index="0"]
 text = "Faster Eggs"

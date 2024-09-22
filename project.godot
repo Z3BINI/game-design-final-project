@@ -27,6 +27,8 @@ game_clutter=""
 ui=""
 player_wep=""
 game=""
+stats=""
+ducky=""
 
 [input]
 

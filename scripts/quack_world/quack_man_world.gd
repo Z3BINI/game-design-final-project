@@ -8,6 +8,7 @@ signal game_over
 var spawn_points : Array[Node]
 var player : PlayerQuack
 var current_difficulty : float = 1
+var cages_spawned : int = 0
 
 @onready var spawn_points_node = $SpawnPoints
 @onready var enemy_spawn : Timer = $EnemySpawn
@@ -32,6 +33,9 @@ func spawn_enemy():
 	enemy_spawn.wait_time = BASE_ENEMY_SPAWN_CD / current_difficulty
 
 func _on_player_player_died():
+	difficulty.paused = true
+	duck.paused = true
+	enemy_spawn.paused = true
 	game_over.emit()
 
 func spawn_ducky_cage():
@@ -39,16 +43,18 @@ func spawn_ducky_cage():
 	if off_screen_spawn_point:
 		off_screen_spawn_point.spawn()
 	
-	if player.ducks + 1 == 4:
+	cages_spawned += 1
+	
+	if cages_spawned == 4:
 		duck.stop()
 
 func _on_enemy_spawn_timeout():
 	spawn_enemy()
 
 func _on_difficulty_timeout():
-	if !player.disable_player:
-		current_difficulty += 0.2
-		ui.card_choice_screen.show_cards()
+	current_difficulty += 0.15
+	ui.card_choice_screen.show_cards()
+	
 	
 func _on_duck_timeout():
 	spawn_ducky_cage()

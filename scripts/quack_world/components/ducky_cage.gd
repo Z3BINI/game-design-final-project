@@ -33,7 +33,7 @@ func _physics_process(delta):
 		if !player.disable_player:
 			player.disable_player = true
 		
-		if release_progress >= release_time:
+		if release_progress >= release_time and player.disable_player:
 			release_ducky()
 			player.disable_player = false
 			
@@ -69,7 +69,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	player_near = false
 
 func release_ducky():
-	player.enable_ducky(player.ducks)
 	player.ducks += 1
+	player.enable_ducky(player.ducks)
 	my_pointer.queue_free()
 	queue_free()

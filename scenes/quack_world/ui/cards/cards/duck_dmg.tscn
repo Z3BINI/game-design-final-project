@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm5m11dl7vfn6"]
+
+[ext_resource type="PackedScene" uid="uid://b8phlhu85dsl8" path="res://scenes/quack_world/ui/cards/card_upgrade.tscn" id="1_r2b1r"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/cards/duck_dmg.gd" id="2_4nlbp"]
+
+[node name="DuckDmg" instance=ExtResource("1_r2b1r")]
+script = ExtResource("2_4nlbp")
+id = 10
+needs_duck = true
+
+[node name="Name" parent="." index="0"]
+text = "Duck Power!"
+
+[node name="Desc" parent="." index="1"]
+text = "Increase Duck Damage by 50%"

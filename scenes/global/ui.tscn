@@ -1,13 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfe5rhh563gce"]
+[gd_scene load_steps=18 format=3 uid="uid://dfe5rhh563gce"]
 
 [ext_resource type="Script" path="res://scripts/global/ui.gd" id="1_1uvjt"]
 [ext_resource type="Texture2D" uid="uid://dlqpbxa0f26du" path="res://assets/quack_man/ui/game_over_bg.png" id="1_kqrcc"]
 [ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="2_ihl2g"]
 [ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="3_058pg"]
+[ext_resource type="Script" path="res://scripts/ui/stats.gd" id="5_cxqcr"]
 [ext_resource type="Texture2D" uid="uid://b1qyp4vu313ym" path="res://assets/quack_man/ui/player_hp_bar/background.png" id="5_tbbmf"]
 [ext_resource type="Texture2D" uid="uid://ckbohqdrprfm7" path="res://assets/quack_man/ui/player_hp_bar/border.png" id="6_ikpkv"]
 [ext_resource type="Texture2D" uid="uid://cvmjwye4tfvqu" path="res://assets/quack_man/ui/player_hp_bar/fill.png" id="7_colg5"]
 [ext_resource type="PackedScene" uid="uid://be8ls1bc3hayv" path="res://scenes/quack_world/ui/cards/card_choice_screen.tscn" id="7_lgfy8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0jtbx"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_ac2cr"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_mykfa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7oquq"]
 shader = ExtResource("3_058pg")
@@ -165,6 +174,104 @@ nine_patch_stretch = true
 texture_under = ExtResource("5_tbbmf")
 texture_over = ExtResource("6_ikpkv")
 texture_progress = ExtResource("7_colg5")
+
+[node name="Stats" type="PanelContainer" parent="." groups=["stats"]]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 230.0
+offset_top = 12.0
+offset_right = 310.0
+offset_bottom = 162.0
+grow_vertical = 2
+pivot_offset = Vector2(40, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("5_cxqcr")
+
+[node name="Title" type="Label" parent="Stats"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Stats"
+label_settings = SubResource("LabelSettings_0jtbx")
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Stats/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Hp" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_ac2cr")
+
+[node name="MovementSpeed" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_ac2cr")
+
+[node name="BasicAttack" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_ac2cr")
+
+[node name="BasicCd" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_ac2cr")
+
+[node name="EggAttack" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_ac2cr")
+
+[node name="EggCd" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_ac2cr")
+
+[node name="DuckAttack" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_ac2cr")
+
+[node name="DuckCd" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_ac2cr")
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = 134.0
+offset_right = 30.0
+offset_bottom = 194.0
+grow_horizontal = 2
+pivot_offset = Vector2(30, 30)
+text = "SCORE
+999999"
+label_settings = SubResource("LabelSettings_mykfa")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="FishEyeShaderEffect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_7oquq")

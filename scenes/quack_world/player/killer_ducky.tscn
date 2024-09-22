@@ -17,7 +17,7 @@ color = Color(0.517184, 0.517184, 0.517184, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_o23va"]
 radius = 449.071
 
-[node name="KillerDucky" type="Node2D"]
+[node name="KillerDucky" type="Node2D" groups=["ducky"]]
 script = ExtResource("1_sfpkn")
 bullet_scene = ExtResource("2_ha6li")
 

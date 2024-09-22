@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt7xtaj1qfemr"]
+
+[ext_resource type="PackedScene" uid="uid://b8phlhu85dsl8" path="res://scenes/quack_world/ui/cards/card_upgrade.tscn" id="1_xdhol"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/cards/duck_speed.gd" id="2_q8f28"]
+
+[node name="DuckSpeed" instance=ExtResource("1_xdhol")]
+script = ExtResource("2_q8f28")
+id = 9
+needs_duck = true
+
+[node name="Name" parent="." index="0"]
+text = "Ducky Rage"
+
+[node name="Desc" parent="." index="1"]
+text = "Increase Ducky attack speed by 30%"

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name PlayerQuack
 
+signal learned_duck
 signal player_died
 signal player_damaged
 
@@ -29,29 +30,42 @@ var egg_cd : bool = false
 
 var killer_duckies : Array[KillerDucky]
 
+var current_max_hp : float
 var current_max_speed : float
 var current_basic_dmg : float
 var current_egg_dmg : float
 var current_basic_cd : float
 var current_egg_cd : float
-
+var stats : Stats
 var projectile_holder : Node
+
+var duck_arr : Array
 
 @onready var hand = $Hand
 @onready var weapon_sprite = $Hand/Weapon
 @onready var animation_player = $AnimationPlayer
 @onready var health_component = $HealthComponent
 @onready var gun_anim = $GunAnim
+@onready var ducky_positions: Node2D = $DuckyPositions
 
 
 func _ready():
 	projectile_holder = get_tree().get_first_node_in_group("projectiles")
+	stats = get_tree().get_first_node_in_group("stats")
 	
 	current_max_speed = BASE_MAX_SPEED
 	current_basic_dmg = BASE_BASIC_DAMAGE
 	current_egg_dmg = BASE_EGG_DAMAGE
 	current_basic_cd = BASE_BASIC_CD
 	current_egg_cd = BASE_EGG_CD
+	current_max_hp = health_component.MAX_HP
+	
+	
+	
+	for child in ducky_positions.get_children():
+		duck_arr.append(child.get_child(0))
+		
+	stats.update_all()
 
 func _process(delta):
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -156,6 +170,8 @@ func _on_quack_man_world_game_over():
 	disable_player = true
 
 func enable_ducky(number: int):
+	if ducks == 1:
+		learned_duck.emit()
 	killer_duckies[number].visible = true
 	killer_duckies[number].process_mode = Node.PROCESS_MODE_INHERIT
 
@@ -167,8 +183,17 @@ func disable_duckies():
 func upgrade_hp():
 	$HealthComponent.MAX_HP += 1
 	$HealthComponent.set_bar()
+	current_max_hp = $HealthComponent.MAX_HP
 
 func replenish_hp():
 	$HealthComponent.current_hp = $HealthComponent.MAX_HP
 	$HealthComponent.set_bar()
 	
+func duck_upgrade(type : String, amount : float):
+	match type:
+		"shot_cd":
+			for killer_duck in duck_arr:
+				killer_duck.current_shoot_cd -= (killer_duck.current_shoot_cd * amount)
+		"shot_dmg":
+			for killer_duck in duck_arr:
+				killer_duck.current_damage += (killer_duck.current_damage * amount)

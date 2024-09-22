@@ -6,6 +6,7 @@
 [node name="EggPower" instance=ExtResource("1_wrmxp")]
 script = ExtResource("2_5t2je")
 id = 5
+needs_egg = true
 
 [node name="Name" parent="." index="0"]
 text = "Egg Boom!"

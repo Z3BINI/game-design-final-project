@@ -52,13 +52,13 @@ sources/0 = SubResource("TileSetAtlasSource_3wh7w")
 script = ExtResource("1_gin2k")
 
 [node name="Difficulty" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 60.0
 autostart = true
 
 [node name="EnemySpawn" type="Timer" parent="."]
 
 [node name="Duck" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 45.0
 autostart = true
 
 [node name="Sea" type="Sprite2D" parent="."]

@@ -5,6 +5,8 @@ signal choice_done(id : int)
 
 @export var one_time_use : bool = false
 @export var id : int = 0
+@export var needs_egg : bool = false
+@export var needs_duck : bool = false
 
 @onready var border : Sprite2D = $Border
 

@@ -25,10 +25,13 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if !possible_targets.is_empty():
 		look_at(possible_targets[0].global_position)
-		if !shoot_cd:
-			shoot()
-			shoot_cd = true
-
+		if !possible_targets[0].dead:
+			if !shoot_cd:
+				shoot()
+				shoot_cd = true
+		else:
+			possible_targets.pop_front()
+			
 func _on_enemy_detector_body_entered(body: Enemy) -> void:
 	possible_targets.append(body)
 
