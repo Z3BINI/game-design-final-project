@@ -29,6 +29,7 @@ player_wep=""
 game=""
 stats=""
 ducky=""
+score=""
 
 [input]
 

@@ -13,6 +13,8 @@ var BASE_HP : float = 4
 
 var current_multiplyer : float = 1
 
+var score : Score
+
 @onready var navigation_agent_2d : NavigationAgent2D = $NavigationAgent2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var health_component : HealthComponent = $HealthComponent
@@ -31,6 +33,7 @@ var dead : bool = false
 
 func _ready():	
 	player = get_tree().get_first_node_in_group("player")
+	score = get_tree().get_first_node_in_group("score")
 	navigation_agent_2d.target_desired_distance = ATTACK_DISTANCE
 	
 	set_physics_process(false) # Fix Nav error on first frame
@@ -81,6 +84,7 @@ func dump_first_physics_frame() -> void:
 
 func _on_health_component_died() -> void:
 	dead = true
+	score.update_score(10)
 	animation_player.play("dead")
 	await animation_player.animation_finished
 	my_pointer.queue_free()
