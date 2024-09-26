@@ -6,6 +6,8 @@ var duck_card_array : Array[CardUpgrade]
 
 @onready var card_holder_1 : Control = $Card1
 @onready var card_holder_2 : Control = $Card2
+@onready var card_holder_3 : Control = $Card3
+
 @onready var card_animations : AnimationPlayer = $card_animations
 
 var game_scene : Node2D
@@ -22,27 +24,31 @@ func _ready():
 	
 	player.learned_duck.connect(player_learned_duck)
 	
-func load_two_random():
-	var rand_indx_1 : int = randi_range(0, base_card_array.size() - 1)
-	var rand_indx_2 : int = randi_range(0, base_card_array.size() - 1)
+func load_three_random():
+	var base_copy : Array[CardUpgrade] = base_card_array.duplicate(true)
 	
-	while (rand_indx_2 == rand_indx_1):
-		rand_indx_2 = randi_range(0, base_card_array.size() - 1)
+	var optn_1 : CardUpgrade = base_copy.pick_random().duplicate()
+	base_copy.erase(optn_1)
 	
-	var optn_1 : CardUpgrade = base_card_array[rand_indx_1].duplicate()
-	var optn_2 : CardUpgrade = base_card_array[rand_indx_2].duplicate()
+	var optn_2 : CardUpgrade = base_copy.pick_random().duplicate()
+	base_copy.erase(optn_2)
+	
+	var optn_3 : CardUpgrade = base_copy.pick_random().duplicate()
+	base_copy.erase(optn_3)
 
 	optn_1.choice_done.connect(_on_card_upgrade_choice_done)
 	optn_2.choice_done.connect(_on_card_upgrade_choice_done)
+	optn_3.choice_done.connect(_on_card_upgrade_choice_done)
 	
 	card_holder_1.add_child(optn_1)
 	card_holder_2.add_child(optn_2)
+	card_holder_3.add_child(optn_3)
 
 func show_cards():
 	player.disable_player = true
 	game_scene.toggle_pause(true)
 	
-	load_two_random()
+	load_three_random()
 	card_animations.play("show")
 
 func _on_card_upgrade_choice_done(used_card_id : int):
