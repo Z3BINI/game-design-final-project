@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://be8ls1bc3hayv"]
+[gd_scene load_steps=11 format=3 uid="uid://be8ls1bc3hayv"]
 
 [ext_resource type="Script" path="res://scripts/ui/card_choice_screen.gd" id="1_s4quk"]
+[ext_resource type="Script" path="res://scripts/ui/stats.gd" id="2_pa2rv"]
 
 [sub_resource type="Animation" id="Animation_pw06t"]
 resource_name = "chose"
@@ -135,6 +136,12 @@ color_ramp = SubResource("GradientTexture1D_r3gjy")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_81mya"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_xq61n"]
+font_size = 8
+
 [node name="CardChoiceScreen" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -198,3 +205,85 @@ process_material = SubResource("ParticleProcessMaterial_x57yw")
 lifetime = 3.0
 explosiveness = 1.0
 randomness = 1.0
+
+[node name="Stats" type="PanelContainer" parent="." groups=["stats"]]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 145.0
+offset_top = 11.5
+offset_right = 225.0
+offset_bottom = 161.5
+grow_vertical = 2
+pivot_offset = Vector2(40, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_pa2rv")
+
+[node name="Title" type="Label" parent="Stats"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Stats"
+label_settings = SubResource("LabelSettings_81mya")
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Stats/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Hp" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="MovementSpeed" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="BasicAttack" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="BasicCd" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="EggAttack" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="EggCd" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="DuckAttack" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="DuckCd" type="Label" parent="Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
