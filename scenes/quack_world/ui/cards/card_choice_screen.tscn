@@ -1,7 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://be8ls1bc3hayv"]
+[gd_scene load_steps=12 format=3 uid="uid://be8ls1bc3hayv"]
 
 [ext_resource type="Script" path="res://scripts/ui/card_choice_screen.gd" id="1_s4quk"]
 [ext_resource type="Script" path="res://scripts/ui/stats.gd" id="2_pa2rv"]
+[ext_resource type="Script" path="res://scripts/quack_world/ui/enemy_stats.gd" id="3_luxmc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_81mya"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_xq61n"]
+font_size = 8
 
 [sub_resource type="Animation" id="Animation_pw06t"]
 resource_name = "chose"
@@ -136,12 +143,6 @@ color_ramp = SubResource("GradientTexture1D_r3gjy")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_81mya"]
-font_size = 12
-
-[sub_resource type="LabelSettings" id="LabelSettings_xq61n"]
-font_size = 8
-
 [node name="CardChoiceScreen" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -153,68 +154,15 @@ grow_vertical = 2
 script = ExtResource("1_s4quk")
 metadata/_edit_use_anchors_ = true
 
-[node name="Card1" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -164.0
-offset_top = -128.0
-offset_right = -36.0
-offset_bottom = 128.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(64, 128)
-
-[node name="Card2" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 36.0
-offset_top = -128.0
-offset_right = 164.0
-offset_bottom = 128.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(64, 128)
-
-[node name="card_animations" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_rf8dh")
-}
-
-[node name="CelebrationLeft" type="GPUParticles2D" parent="."]
-position = Vector2(-4, 654)
-rotation = -1.10573
-amount = 128
-process_material = SubResource("ParticleProcessMaterial_x57yw")
-lifetime = 3.0
-explosiveness = 1.0
-randomness = 1.0
-
-[node name="CelebrationRight" type="GPUParticles2D" parent="."]
-position = Vector2(1151, 648)
-rotation = 4.26789
-amount = 128
-process_material = SubResource("ParticleProcessMaterial_x57yw")
-lifetime = 3.0
-explosiveness = 1.0
-randomness = 1.0
-
 [node name="Stats" type="PanelContainer" parent="." groups=["stats"]]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 145.0
-offset_top = 11.5
-offset_right = 225.0
-offset_bottom = 161.5
+offset_left = 80.0
+offset_top = -75.0
+offset_right = 160.0
+offset_bottom = 75.0
 grow_vertical = 2
 pivot_offset = Vector2(40, 100)
 size_flags_horizontal = 4
@@ -225,7 +173,7 @@ script = ExtResource("2_pa2rv")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "Stats"
+text = "player"
 label_settings = SubResource("LabelSettings_81mya")
 uppercase = true
 
@@ -287,3 +235,119 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Test: 69"
 label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="EnemyStats" type="PanelContainer" parent="." groups=["stats"]]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -75.0
+offset_right = -80.0
+offset_bottom = 75.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(40, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("3_luxmc")
+
+[node name="Title" type="Label" parent="EnemyStats"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Enemy"
+label_settings = SubResource("LabelSettings_81mya")
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="EnemyStats"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnemyStats/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Hp" type="Label" parent="EnemyStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="MovementSpeed" type="Label" parent="EnemyStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="BasicAttack" type="Label" parent="EnemyStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="BasicCd" type="Label" parent="EnemyStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Test: 69"
+label_settings = SubResource("LabelSettings_xq61n")
+
+[node name="Card1" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -128.0
+offset_right = -36.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 128)
+
+[node name="Card2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = -128.0
+offset_right = 164.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 128)
+
+[node name="card_animations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rf8dh")
+}
+
+[node name="CelebrationLeft" type="GPUParticles2D" parent="."]
+position = Vector2(-4, 654)
+rotation = -1.10573
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_x57yw")
+lifetime = 3.0
+explosiveness = 1.0
+randomness = 1.0
+
+[node name="CelebrationRight" type="GPUParticles2D" parent="."]
+position = Vector2(1151, 648)
+rotation = 4.26789
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_x57yw")
+lifetime = 3.0
+explosiveness = 1.0
+randomness = 1.0
+
+[connection signal="visibility_changed" from="EnemyStats" to="EnemyStats" method="_on_visibility_changed"]
