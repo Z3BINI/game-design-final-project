@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://drkiadhghqljs"]
+
+[ext_resource type="Texture2D" uid="uid://do1adcyjerghm" path="res://assets/textures/arcade_carpet/diffuse.png" id="1_tjxa1"]
+[ext_resource type="Texture2D" uid="uid://c2v3pceprc01g" path="res://assets/textures/arcade_carpet/emission.png" id="2_qqh5k"]
+[ext_resource type="Texture2D" uid="uid://b5wi521jx70r6" path="res://assets/textures/arcade_carpet/normal.png" id="3_fh8vb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voqmi"]
+albedo_texture = ExtResource("1_tjxa1")
+emission_enabled = true
+emission_texture = ExtResource("2_qqh5k")
+normal_enabled = true
+normal_texture = ExtResource("3_fh8vb")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eycga"]
+material = SubResource("StandardMaterial3D_voqmi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d4ed1"]
+margin = 0.01
+size = Vector3(2, 0.05, 2)
+
+[node name="FloorTile" type="StaticBody3D"]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_eycga")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.024174, 0)
+shape = SubResource("BoxShape3D_d4ed1")
