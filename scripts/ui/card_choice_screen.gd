@@ -25,16 +25,25 @@ func _ready():
 	player.learned_duck.connect(player_learned_duck)
 	
 func load_three_random():
-	var base_copy : Array[CardUpgrade] = base_card_array.duplicate(true)
+	var numbers : Array[int]
 	
-	var optn_1 : CardUpgrade = base_copy.pick_random().duplicate()
-	base_copy.erase(optn_1)
+	for i in range(base_card_array.size()):
+		numbers.append(i)
 	
-	var optn_2 : CardUpgrade = base_copy.pick_random().duplicate()
-	base_copy.erase(optn_2)
 	
-	var optn_3 : CardUpgrade = base_copy.pick_random().duplicate()
-	base_copy.erase(optn_3)
+	
+	var index_1 : int = numbers.pick_random()
+	numbers.erase(index_1)
+	
+	var index_2 : int = numbers.pick_random()
+	numbers.erase(index_2)
+	
+	var index_3 : int = numbers.pick_random()
+	numbers.erase(index_3)
+	
+	var optn_1 : CardUpgrade = base_card_array[index_1].duplicate()
+	var optn_2 : CardUpgrade = base_card_array[index_2].duplicate()
+	var optn_3 : CardUpgrade = base_card_array[index_3].duplicate()
 
 	optn_1.choice_done.connect(_on_card_upgrade_choice_done)
 	optn_2.choice_done.connect(_on_card_upgrade_choice_done)
