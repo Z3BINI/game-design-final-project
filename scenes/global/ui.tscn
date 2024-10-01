@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfe5rhh563gce"]
+[gd_scene load_steps=25 format=3 uid="uid://dfe5rhh563gce"]
 
 [ext_resource type="Script" path="res://scripts/global/ui.gd" id="1_1uvjt"]
 [ext_resource type="Texture2D" uid="uid://dlqpbxa0f26du" path="res://assets/quack_man/ui/game_over_bg.png" id="1_kqrcc"]
@@ -6,8 +6,10 @@
 [ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="3_058pg"]
 [ext_resource type="Texture2D" uid="uid://b1qyp4vu313ym" path="res://assets/quack_man/ui/player_hp_bar/background.png" id="5_tbbmf"]
 [ext_resource type="Texture2D" uid="uid://ckbohqdrprfm7" path="res://assets/quack_man/ui/player_hp_bar/border.png" id="6_ikpkv"]
+[ext_resource type="LabelSettings" uid="uid://cnhovedde8bgo" path="res://assets/quack_man/ui/font_settings.tres" id="7_7y3nu"]
 [ext_resource type="Texture2D" uid="uid://cvmjwye4tfvqu" path="res://assets/quack_man/ui/player_hp_bar/fill.png" id="7_colg5"]
 [ext_resource type="PackedScene" uid="uid://be8ls1bc3hayv" path="res://scenes/quack_world/ui/cards/card_choice_screen.tscn" id="7_lgfy8"]
+[ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_miq7a"]
 [ext_resource type="Script" path="res://scripts/quack_world/ui/score.gd" id="7_tibsc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7oquq"]
@@ -18,6 +20,125 @@ shader_parameter/radius = 1.0
 shader_parameter/alpha = 1.0
 shader_parameter/crop = 1.0
 shader_parameter/crop_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i88bu"]
+font = ExtResource("7_miq7a")
+font_size = 20
+font_color = Color(1, 0.743055, 0.550187, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_agto1"]
+color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3a8k"]
+bg_color = Color(0.231373, 0.541176, 0.105882, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_quvtn"]
+font = ExtResource("7_miq7a")
+font_size = 20
+font_color = Color(0.953544, 0.928041, 0.922227, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4s2t8"]
+font = ExtResource("7_miq7a")
+font_size = 32
+font_color = Color(0.959729, 0.937591, 0.932544, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_lr3ro"]
+resource_name = "add_points"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Added:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Added:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Added:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-44, -14)]
+}
+
+[sub_resource type="Animation" id="Animation_7ft7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Added:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Added:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Added:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(386, -134)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pprdq"]
+_data = {
+"RESET": SubResource("Animation_7ft7x"),
+"add_points": SubResource("Animation_lr3ro")
+}
 
 [sub_resource type="Animation" id="Animation_1g352"]
 length = 0.001
@@ -209,13 +330,14 @@ grow_vertical = 2
 
 [node name="Score" type="Control" parent="FishEyeShaderEffect/FullScreen" groups=["score"]]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 81.0
+offset_top = -88.0
+offset_right = 121.0
+offset_bottom = -48.0
+grow_vertical = 0
 script = ExtResource("7_tibsc")
 
 [node name="ScoreLabel" type="Label" parent="FishEyeShaderEffect/FullScreen/Score"]
@@ -226,13 +348,26 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -75.0
-offset_top = -12.5
+offset_top = -1.0
 offset_right = 75.0
-offset_bottom = 12.5
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(75, 12.5)
 text = "0000000000000000"
+label_settings = ExtResource("7_7y3nu")
+
+[node name="Label" type="Label" parent="FishEyeShaderEffect/FullScreen/Score"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "SCORE"
+label_settings = SubResource("LabelSettings_i88bu")
 
 [node name="MultiplierTime" type="ProgressBar" parent="FishEyeShaderEffect/FullScreen/Score"]
 visible = false
@@ -243,11 +378,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -73.0
-offset_top = -7.0
+offset_top = -66.0
 offset_right = 71.0
-offset_bottom = 4.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxLine_agto1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e3a8k")
 value = 20.0
 show_percentage = false
 
@@ -258,12 +395,34 @@ offset_top = 7.0
 offset_right = 91.0
 offset_bottom = 30.0
 text = "x1"
+label_settings = SubResource("LabelSettings_quvtn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MultiplierCD" type="Timer" parent="FishEyeShaderEffect/FullScreen/Score"]
 process_mode = 1
 wait_time = 10.0
+
+[node name="Added" type="Label" parent="FishEyeShaderEffect/FullScreen/Score"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 386.0
+offset_top = -134.0
+offset_right = 403.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 21)
+text = "+ 10"
+label_settings = SubResource("LabelSettings_4s2t8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FishEyeShaderEffect/FullScreen/Score"]
+libraries = {
+"": SubResource("AnimationLibrary_pprdq")
+}
 
 [node name="CardChoiceScreen" parent="FishEyeShaderEffect/FullScreen" instance=ExtResource("7_lgfy8")]
 visible = false

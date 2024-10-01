@@ -7,6 +7,9 @@ class_name Score
 @onready var multiplier_time: ProgressBar = $MultiplierTime
 @onready var multiplier: Label = $MultiplierTime/Multiplier
 @onready var multiplier_cd: Timer = $MultiplierCD
+@onready var added: Label = $Added
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 var current_multiplier : int = 1
 var current_score : int = 0
@@ -17,12 +20,21 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	score_label.text = str(current_score)
+	score_label.text = str("%016d" % current_score)
 	if multiplier_time.visible:
 		multiplier_time.value = multiplier_cd.time_left
 
 
 func update_score(amount : int):
+	added.text = "+ " + str(current_multiplier * amount)
+	
+	var canvas_position = added.get_canvas_transform().origin
+	added.global_position = get_global_mouse_position() - canvas_position
+	
+	
+	animation_player.play("add_points")
+	await animation_player.animation_finished
+	
 	if !multiplier_time.visible:
 		multiplier_time.visible = true
 
