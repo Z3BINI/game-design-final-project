@@ -28,9 +28,7 @@ func _physics_process(delta: float) -> void:
 func update_score(amount : int):
 	added.text = "+ " + str(current_multiplier * amount)
 	
-	var canvas_position = added.get_canvas_transform().origin
-	added.global_position = get_global_mouse_position() - canvas_position
-	
+	added.position = get_local_mouse_position()
 	
 	animation_player.play("add_points")
 	await animation_player.animation_finished
