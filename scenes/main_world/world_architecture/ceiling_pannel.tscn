@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj5gutgt2vqbi"]
+
+[ext_resource type="PackedScene" uid="uid://cx3vndtajft3d" path="res://assets/models/arcade_room/ceiling.glb" id="1_ev3yi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b7psq"]
+size = Vector3(4, 0.05, 8)
+
+[node name="CeilingPannel" type="StaticBody3D"]
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_b7psq")
+
+[node name="ceiling" parent="." instance=ExtResource("1_ev3yi")]

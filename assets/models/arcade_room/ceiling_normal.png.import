@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cdp5aulwc0m8w"
+path.s3tc="res://.godot/imported/ceiling_normal.png-c9cd2086e02c511be9a86b70ac7cc1c2.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "f28d3fcb8ee2d3b91c6f60b9d5484b8f"
+}
+
+[deps]
+
+source_file="res://assets/models/arcade_room/ceiling_normal.png"
+dest_files=["res://.godot/imported/ceiling_normal.png-c9cd2086e02c511be9a86b70ac7cc1c2.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://assets/models/arcade_room/ceiling_normal.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

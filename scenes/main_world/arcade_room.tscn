@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=5 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="PackedScene" uid="uid://bl5w0m6c5dn60" path="res://scenes/main_world/player/player.tscn" id="2_ca12t"]
 [ext_resource type="PackedScene" uid="uid://cpxsfq6ggdpxj" path="res://scenes/main_world/world_architecture/wall.tscn" id="2_q8nu5"]
+[ext_resource type="PackedScene" uid="uid://cj5gutgt2vqbi" path="res://scenes/main_world/world_architecture/ceiling_pannel.tscn" id="3_qtf48"]
 
 [node name="ArcadeRoom" type="Node3D"]
 
@@ -353,6 +354,44 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 0, 
 
 [node name="Wall19" parent="Walls" instance=ExtResource("2_q8nu5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 0, -29)
+
+[node name="CeilingPannels" type="Node3D" parent="."]
+
+[node name="CeilingPannel" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -3)
+
+[node name="CeilingPannel2" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -3)
+
+[node name="CeilingPannel3" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -3)
+
+[node name="CeilingPannel4" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -11)
+
+[node name="CeilingPannel5" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -11)
+
+[node name="CeilingPannel6" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -11)
+
+[node name="CeilingPannel7" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -19)
+
+[node name="CeilingPannel8" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -19)
+
+[node name="CeilingPannel9" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -19)
+
+[node name="CeilingPannel10" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -27)
+
+[node name="CeilingPannel11" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, -27)
+
+[node name="CeilingPannel12" parent="CeilingPannels" instance=ExtResource("3_qtf48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -27)
 
 [node name="Player" parent="." instance=ExtResource("2_ca12t")]
 
