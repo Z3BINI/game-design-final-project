@@ -84,7 +84,7 @@ func dump_first_physics_frame() -> void:
 
 func _on_health_component_died() -> void:
 	dead = true
-	score.update_score(10)
+	score.update_score(10, global_position)
 	animation_player.play("dead")
 	await animation_player.animation_finished
 	my_pointer.queue_free()

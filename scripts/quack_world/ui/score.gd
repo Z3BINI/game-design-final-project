@@ -8,7 +8,6 @@ class_name Score
 @onready var multiplier: Label = $MultiplierTime/Multiplier
 @onready var multiplier_cd: Timer = $MultiplierCD
 @onready var added: Label = $Added
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 var current_multiplier : int = 1
@@ -25,23 +24,22 @@ func _physics_process(delta: float) -> void:
 		multiplier_time.value = multiplier_cd.time_left
 
 
-func update_score(amount : int):
-	added.text = "+ " + str(current_multiplier * amount)
-	
-	var animation = animation_player.get_animation("add_points")
-	var track_index = animation.add_track(Animation.TYPE_VALUE)
+func update_score(amount : int, from : Vector2):
+
+	var plus_label : Label = added.duplicate()
 	var final_position = Vector2(-13, -4) 
 	var start_position = get_local_mouse_position()
+	var tween = get_tree().create_tween()
 	
-	animation.track_set_path(track_index, "Added:position")
-	animation.track_insert_key(track_index, 0.0, start_position)
-	animation.track_insert_key(track_index, 0.4, start_position)
-	animation.track_insert_key(track_index, 0.5, final_position)
+	plus_label.text = "+ " + str(current_multiplier * amount)
+	plus_label.position = start_position
+	plus_label.visible = true
 	
-	animation_player.play("add_points")
-	await animation_player.animation_finished
+	add_child(plus_label)
 	
-	animation.remove_track(track_index)
+	tween.tween_property(plus_label, "scale", Vector2(1, 1), 0.5)
+	tween.tween_property(plus_label, "position", final_position, 0.25)
+	tween.tween_callback(plus_label.queue_free)
 	
 	if !multiplier_time.visible:
 		multiplier_time.visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dfe5rhh563gce"]
+[gd_scene load_steps=22 format=3 uid="uid://dfe5rhh563gce"]
 
 [ext_resource type="Script" path="res://scripts/global/ui.gd" id="1_1uvjt"]
 [ext_resource type="Texture2D" uid="uid://dlqpbxa0f26du" path="res://assets/quack_man/ui/game_over_bg.png" id="1_kqrcc"]
@@ -53,68 +53,6 @@ font_size = 32
 font_color = Color(0.959729, 0.937591, 0.932544, 1)
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_7ft7x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Added:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Added:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_lr3ro"]
-resource_name = "add_points"
-length = 0.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Added:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Added:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pprdq"]
-_data = {
-"RESET": SubResource("Animation_7ft7x"),
-"add_points": SubResource("Animation_lr3ro")
-}
 
 [sub_resource type="Animation" id="Animation_1g352"]
 length = 0.001
@@ -379,14 +317,10 @@ offset_right = 4.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(32, 21)
 text = "+ 10"
 label_settings = SubResource("LabelSettings_4s2t8")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FishEyeShaderEffect/FullScreen/Score"]
-libraries = {
-"": SubResource("AnimationLibrary_pprdq")
-}
 
 [node name="CardChoiceScreen" parent="FishEyeShaderEffect/FullScreen" instance=ExtResource("7_lgfy8")]
 visible = false

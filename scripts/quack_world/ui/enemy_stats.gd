@@ -6,7 +6,10 @@ class_name EnemyStats
 @onready var basic_attack: Label = $MarginContainer/VBoxContainer/BasicAttack
 @onready var basic_cd: Label = $MarginContainer/VBoxContainer/BasicCd
 
+var enemy_scene : PackedScene = preload("res://scenes/quack_world/enemies/basic_enemy.tscn")
+
 var enemy : Enemy
+
 
 func update_all():
 	update_hp_label()
@@ -28,4 +31,6 @@ func update_basic_cd_label():
 	
 func _on_visibility_changed() -> void:
 	enemy = get_tree().get_first_node_in_group("enemy")
+	if (enemy == null):
+		enemy = enemy_scene.instantiate()
 	update_all()
