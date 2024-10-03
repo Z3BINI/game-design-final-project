@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://crsty120ywhpd"]
+
+[ext_resource type="PackedScene" uid="uid://cnbyqlo35c8u8" path="res://assets/models/arcade_room/lamp.glb" id="1_3i05v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_638jh"]
+size = Vector3(0.767628, 2.54619, 0.58374)
+
+[node name="Lamp" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000440598, 1.2386, -0.00134277)
+shape = SubResource("BoxShape3D_638jh")
+
+[node name="lamp" parent="." instance=ExtResource("1_3i05v")]
+transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0.0760703, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0442, -0.871987)
+light_energy = 2.0
+shadow_enabled = true
+omni_range = 100.0
+omni_attenuation = 2.0
