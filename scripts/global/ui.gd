@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+var main_world : PackedScene = load("res://scenes/main_world/arcade_room.tscn")
 
 @onready var player_hp = $PlayerHp
 @onready var game_over = $FishEyeShaderEffect/FullScreen/GameOver
@@ -20,3 +21,6 @@ func _on_player_player_damaged():
 
 func on_egg_explosion():
 	animation_player.play("screen_shake")
+
+func _on_quit_button_pressed():
+	get_tree().change_scene_to_packed(main_world)

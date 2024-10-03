@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=8 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
+[ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
 [ext_resource type="PackedScene" uid="uid://bl5w0m6c5dn60" path="res://scenes/main_world/player/player.tscn" id="2_ca12t"]
 [ext_resource type="PackedScene" uid="uid://cpxsfq6ggdpxj" path="res://scenes/main_world/world_architecture/wall.tscn" id="2_q8nu5"]
 [ext_resource type="PackedScene" uid="uid://cj5gutgt2vqbi" path="res://scenes/main_world/world_architecture/ceiling_pannel.tscn" id="3_qtf48"]
@@ -8,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://crsty120ywhpd" path="res://scenes/main_world/world_architecture/lamp.tscn" id="6_1g7fv"]
 
 [node name="ArcadeRoom" type="Node3D"]
+script = ExtResource("1_d6cfw")
 
 [node name="FloorTiles" type="Node3D" parent="."]
 

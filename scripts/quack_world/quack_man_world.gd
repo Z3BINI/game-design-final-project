@@ -17,6 +17,8 @@ var cages_spawned : int = 0
 @onready var ui = $UI
 
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	spawn_points = spawn_points_node.get_children()
 	player = get_tree().get_first_node_in_group("player")
 	
