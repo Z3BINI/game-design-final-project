@@ -28,10 +28,20 @@ func _physics_process(delta: float) -> void:
 func update_score(amount : int):
 	added.text = "+ " + str(current_multiplier * amount)
 	
-	added.position = get_local_mouse_position()
+	var animation = animation_player.get_animation("add_points")
+	var track_index = animation.add_track(Animation.TYPE_VALUE)
+	var final_position = Vector2(-13, -4) 
+	var start_position = get_local_mouse_position()
+	
+	animation.track_set_path(track_index, "Added:position")
+	animation.track_insert_key(track_index, 0.0, start_position)
+	animation.track_insert_key(track_index, 0.4, start_position)
+	animation.track_insert_key(track_index, 0.5, final_position)
 	
 	animation_player.play("add_points")
 	await animation_player.animation_finished
+	
+	animation.remove_track(track_index)
 	
 	if !multiplier_time.visible:
 		multiplier_time.visible = true
