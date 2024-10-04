@@ -33,4 +33,6 @@ func _on_visibility_changed() -> void:
 	enemy = get_tree().get_first_node_in_group("enemy")
 	if (enemy == null):
 		enemy = enemy_scene.instantiate()
+		get_tree().get_first_node_in_group("game_clutter").add_child(enemy)
+		enemy = get_tree().get_first_node_in_group("enemy")
 	update_all()
