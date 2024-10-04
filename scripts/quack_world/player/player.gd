@@ -163,6 +163,7 @@ func _on_health_component_died():
 	disable_duckies()
 	animation_player.play("die")
 	await animation_player.animation_finished
+	disable_player = true
 	player_died.emit()
 
 func _on_quack_man_world_game_over():
