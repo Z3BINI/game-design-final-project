@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfe5rhh563gce"]
+[gd_scene load_steps=27 format=3 uid="uid://dfe5rhh563gce"]
 
 [ext_resource type="Script" path="res://scripts/global/ui.gd" id="1_1uvjt"]
 [ext_resource type="Texture2D" uid="uid://dlqpbxa0f26du" path="res://assets/quack_man/ui/game_over_bg.png" id="1_kqrcc"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://be8ls1bc3hayv" path="res://scenes/quack_world/ui/cards/card_choice_screen.tscn" id="7_lgfy8"]
 [ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_miq7a"]
 [ext_resource type="Script" path="res://scripts/quack_world/ui/score.gd" id="7_tibsc"]
+[ext_resource type="Texture2D" uid="uid://wxe7pui3pywn" path="res://assets/quack_man/ui/diff_timer.png" id="10_ucu43"]
+[ext_resource type="Texture2D" uid="uid://d2rtp877b2jtk" path="res://assets/quack_man/weapons/pistol.png" id="12_7ici1"]
+[ext_resource type="Texture2D" uid="uid://cnpe4bgb8uuoj" path="res://assets/quack_man/ui/radial_bar_white/fill_progress.png" id="12_mr6y6"]
+[ext_resource type="Texture2D" uid="uid://tr6ego75fr4t" path="res://assets/quack_man/weapons/explosive_egg.png" id="14_e7nea"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7oquq"]
 shader = ExtResource("3_058pg")
@@ -51,6 +55,12 @@ outline_color = Color(0, 0, 0, 1)
 font = ExtResource("7_miq7a")
 font_size = 32
 font_color = Color(0.959729, 0.937591, 0.932544, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_enig3"]
+font = ExtResource("7_miq7a")
+font_size = 32
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
@@ -335,6 +345,27 @@ label_settings = SubResource("LabelSettings_4s2t8")
 visible = false
 layout_mode = 1
 
+[node name="TimeLeftUi" type="TextureRect" parent="FishEyeShaderEffect/FullScreen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -129.0
+offset_top = 9.0
+offset_right = -5.0
+offset_bottom = 133.0
+grow_horizontal = 0
+texture = ExtResource("10_ucu43")
+
+[node name="TimeLeft" type="Label" parent="FishEyeShaderEffect/FullScreen/TimeLeftUi"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 44.0
+offset_right = 110.0
+offset_bottom = 83.0
+text = "69"
+label_settings = SubResource("LabelSettings_enig3")
+
 [node name="GameOver" type="TextureRect" parent="FishEyeShaderEffect/FullScreen"]
 visible = false
 layout_mode = 1
@@ -448,6 +479,81 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Quit
 "
+
+[node name="ReloadUi" type="TextureRect" parent="FishEyeShaderEffect/FullScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -266.0
+offset_top = -29.0
+offset_right = -226.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -1.5708
+texture = ExtResource("12_7ici1")
+
+[node name="ReloadBar" type="TextureProgressBar" parent="FishEyeShaderEffect/FullScreen/ReloadUi"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -7.0
+offset_right = -19.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.01
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = ExtResource("12_mr6y6")
+texture_progress = ExtResource("12_mr6y6")
+tint_under = Color(0, 0, 0, 0.580392)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0, 1, 0, 1)
+
+[node name="ReloadUi2" type="TextureRect" parent="FishEyeShaderEffect/FullScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -231.0
+offset_top = -66.0
+offset_right = -202.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("14_e7nea")
+
+[node name="ReloadBar" type="TextureProgressBar" parent="FishEyeShaderEffect/FullScreen/ReloadUi2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -6.5
+offset_top = 6.0
+offset_right = 7.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+step = 0.01
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = ExtResource("12_mr6y6")
+texture_progress = ExtResource("12_mr6y6")
+tint_under = Color(0, 0, 0, 0.580392)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0, 1, 0, 1)
 
 [node name="ArcadeBorder" type="TextureRect" parent="."]
 anchors_preset = 15

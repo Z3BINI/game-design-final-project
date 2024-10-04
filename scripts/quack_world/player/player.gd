@@ -41,6 +41,11 @@ var projectile_holder : Node
 
 var duck_arr : Array
 
+
+var ui : CanvasLayer
+var reload_timer : SceneTreeTimer
+var egg_timer : SceneTreeTimer
+
 @onready var hand = $Hand
 @onready var weapon_sprite = $Hand/Weapon
 @onready var animation_player = $AnimationPlayer
@@ -50,6 +55,8 @@ var duck_arr : Array
 
 
 func _ready():
+	ui = get_tree().get_first_node_in_group("ui")
+	
 	projectile_holder = get_tree().get_first_node_in_group("projectiles")
 	stats = get_tree().get_first_node_in_group("stats")
 	
@@ -109,7 +116,10 @@ func drop_egg():
 	
 	egg.set_damage(current_egg_dmg)
 	
-	await get_tree().create_timer(current_egg_cd).timeout
+	egg_timer = get_tree().create_timer(current_egg_cd)
+	ui.egg_reload_timer = egg_timer
+	ui.set_egg_bar(current_egg_cd)
+	await egg_timer.timeout
 	
 	egg_cd = false
 	
@@ -127,7 +137,11 @@ func shoot():
 	
 	bullet.set_damage(current_basic_dmg)
 	
-	await get_tree().create_timer(current_basic_cd).timeout
+	
+	reload_timer = get_tree().create_timer(current_basic_cd)
+	ui.reload_timer = reload_timer
+	ui.set_reload_bar(current_basic_cd)
+	await reload_timer.timeout
 	
 	shoot_cd = false
 

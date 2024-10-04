@@ -8,7 +8,6 @@ class_name Score
 @onready var multiplier: Label = $MultiplierTime/Multiplier
 @onready var multiplier_cd: Timer = $MultiplierCD
 @onready var added: Label = $Added
-@onready var ui: CanvasLayer = $"../../.."
 
 
 var current_multiplier : int = 1
@@ -38,8 +37,8 @@ func update_score(amount : int, from : Vector2):
 	
 	add_child(plus_label)
 	
-	tween.tween_property(plus_label, "scale", Vector2(1, 1), 0.5)
-	tween.tween_property(plus_label, "position", final_position, 0.25)
+	tween.tween_property(plus_label, "scale", Vector2(1, 1), 0.75)
+	tween.tween_property(plus_label, "position", final_position, 0.2)
 	tween.tween_callback(plus_label.queue_free)
 	
 	if !multiplier_time.visible:
