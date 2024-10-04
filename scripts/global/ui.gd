@@ -2,7 +2,7 @@ extends CanvasLayer
 
 var main_world : PackedScene = load("res://scenes/main_world/arcade_room.tscn")
 
-@onready var player_hp = $PlayerHp
+@onready var player_hp: TextureProgressBar = $FishEyeShaderEffect/FullScreen/PlayerHp
 @onready var game_over = $FishEyeShaderEffect/FullScreen/GameOver
 @onready var pause_menu = $FishEyeShaderEffect/FullScreen/PauseMenu
 @onready var animation_player = $AnimationPlayer
