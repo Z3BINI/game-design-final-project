@@ -8,6 +8,7 @@ class_name Score
 @onready var multiplier: Label = $MultiplierTime/Multiplier
 @onready var multiplier_cd: Timer = $MultiplierCD
 @onready var added: Label = $Added
+@onready var ui: CanvasLayer = $"../../.."
 
 
 var current_multiplier : int = 1
@@ -28,7 +29,7 @@ func update_score(amount : int, from : Vector2):
 
 	var plus_label : Label = added.duplicate()
 	var final_position = Vector2(-13, -4) 
-	var start_position = get_local_mouse_position()
+	var start_position = (Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized() * randi_range(20, 70)) + get_local_mouse_position()
 	var tween = get_tree().create_tween()
 	
 	plus_label.text = "+ " + str(current_multiplier * amount)
