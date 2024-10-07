@@ -2,17 +2,18 @@ extends CanvasLayer
 
 var main_world : PackedScene = load("res://scenes/main_world/arcade_room.tscn")
 
-@onready var difficulty_time_left: Label = $FishEyeShaderEffect/FullScreen/TimeLeftUi/TimeLeft
+@onready var difficulty_time_left: Label = $FishEyeShaderEffect/FullScreen/TimeLeft/TimeLeft
 @onready var player_hp: TextureProgressBar = $FishEyeShaderEffect/FullScreen/PlayerHp
 @onready var game_over = $FishEyeShaderEffect/FullScreen/GameOver
 @onready var pause_menu = $FishEyeShaderEffect/FullScreen/PauseMenu
 @onready var animation_player = $AnimationPlayer
 @onready var card_choice_screen = $FishEyeShaderEffect/FullScreen/CardChoiceScreen
-@onready var time_left_ui: TextureRect = $FishEyeShaderEffect/FullScreen/TimeLeftUi
+@onready var time_left_ui: Control = $FishEyeShaderEffect/FullScreen/TimeLeft
 @onready var reload_bar: TextureProgressBar = $FishEyeShaderEffect/FullScreen/ReloadUi/ReloadBar
 @onready var reload_ui: TextureRect = $FishEyeShaderEffect/FullScreen/ReloadUi
 @onready var reload_bar_egg: TextureProgressBar = $FishEyeShaderEffect/FullScreen/ReloadUi2/ReloadBar
 @onready var reload_ui_egg: TextureRect = $FishEyeShaderEffect/FullScreen/ReloadUi2
+
 
 
 var level_difficulty_timer : Timer

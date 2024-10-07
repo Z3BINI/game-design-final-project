@@ -5,10 +5,9 @@
 [ext_resource type="Script" path="res://scripts/quack_world/ui/enemy_stats.gd" id="3_luxmc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_81mya"]
-font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_xq61n"]
-font_size = 8
+font_size = 12
 
 [sub_resource type="Animation" id="Animation_3sxi0"]
 length = 0.001
@@ -22,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1.5, 1.5)]
 }
 
 [sub_resource type="Animation" id="Animation_pw06t"]
@@ -179,20 +178,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_s4quk")
-metadata/_edit_use_anchors_ = true
 
 [node name="Stats" type="PanelContainer" parent="." groups=["stats"]]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = -75.0
-offset_right = 160.0
-offset_bottom = 75.0
+offset_left = 100.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
 grow_vertical = 2
-pivot_offset = Vector2(40, 100)
+pivot_offset = Vector2(75, 100)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("2_pa2rv")
@@ -271,13 +271,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -75.0
-offset_right = -80.0
-offset_bottom = 75.0
+offset_left = -250.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = 100.0
 grow_horizontal = 0
 grow_vertical = 2
-pivot_offset = Vector2(40, 100)
+pivot_offset = Vector2(75, 100)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("3_luxmc")
@@ -330,11 +330,12 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 200.0
+offset_left = 395.0
 offset_top = -128.0
-offset_right = 328.0
+offset_right = 523.0
 offset_bottom = 128.0
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(64, 128)
 
 [node name="Card2" type="Control" parent="."]
@@ -350,6 +351,7 @@ offset_right = 64.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(64, 128)
 
 [node name="Card3" type="Control" parent="."]
@@ -359,12 +361,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -328.0
+offset_left = -533.0
 offset_top = -128.0
-offset_right = -200.0
+offset_right = -405.0
 offset_bottom = 128.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(64, 128)
 
 [node name="card_animations" type="AnimationPlayer" parent="."]
@@ -373,7 +376,7 @@ libraries = {
 }
 
 [node name="CelebrationLeft" type="GPUParticles2D" parent="."]
-position = Vector2(-4, 654)
+position = Vector2(3.05176e-05, 898)
 rotation = -1.10573
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_x57yw")
@@ -382,8 +385,9 @@ explosiveness = 1.0
 randomness = 1.0
 
 [node name="CelebrationRight" type="GPUParticles2D" parent="."]
-position = Vector2(1151, 648)
-rotation = 4.26789
+position = Vector2(1584, 907)
+rotation = -2.0153
+scale = Vector2(1, 1)
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_x57yw")
 lifetime = 3.0

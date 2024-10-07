@@ -21,11 +21,11 @@ func _physics_process(delta):
 			use()
 
 func _on_mouse_entered():
-	scale = Vector2(1.15, 1.15) 
+	scale = Vector2(1.65, 1.65) 
 	border.visible = true
 
 func _on_mouse_exited():
-	scale = Vector2(1, 1)
+	scale = Vector2(1.5, 1.5)
 	border.visible = false
 
 func use():

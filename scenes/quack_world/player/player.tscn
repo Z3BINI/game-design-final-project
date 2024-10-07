@@ -316,7 +316,6 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_y3xqc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.65, 0.65)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 

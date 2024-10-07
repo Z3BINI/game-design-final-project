@@ -19,6 +19,7 @@ offset_right = 64.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(64, 128)
 texture = ExtResource("1_yck4k")
 script = ExtResource("2_t5c0o")
