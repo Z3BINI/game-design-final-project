@@ -1,0 +1,305 @@
+[gd_scene load_steps=11 format=3 uid="uid://db8hflx8ubsdj"]
+
+[ext_resource type="Script" path="res://scripts/insane_pool/crazy_pool.gd" id="1_54vtn"]
+[ext_resource type="Texture2D" uid="uid://bg1gwtvp0g2uf" path="res://assets/insane_pool/world/table.png" id="1_70ftb"]
+[ext_resource type="PackedScene" uid="uid://cu3d8pbv58cai" path="res://scenes/insane_pool/player/player.tscn" id="1_ewdgo"]
+[ext_resource type="Texture2D" uid="uid://c2bhn08t1a7mp" path="res://assets/insane_pool/pool_balls/ball_spawner.png" id="4_j5q8o"]
+
+[sub_resource type="Animation" id="Animation_m6j7i"]
+resource_name = "spawn_left"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallSpawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1100, -331), Vector2(-848, -331)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallSpawner:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BallSpawner:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ghgfi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallSpawner:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallSpawner:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1100, -331)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BallSpawner:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fknov"]
+resource_name = "spawn_left_leave"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallSpawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-848, -331), Vector2(-1100, -331)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallSpawner:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BallSpawner:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_56h6f"]
+resource_name = "spawn_right"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallSpawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1100, -331), Vector2(848, -331)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallSpawner:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BallSpawner:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lmvv5"]
+resource_name = "spawn_right_leave"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallSpawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(848, -331), Vector2(1100, -331)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallSpawner:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BallSpawner:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4b4au"]
+_data = {
+"RESET": SubResource("Animation_ghgfi"),
+"spawn_left": SubResource("Animation_m6j7i"),
+"spawn_left_leave": SubResource("Animation_fknov"),
+"spawn_right": SubResource("Animation_56h6f"),
+"spawn_right_leave": SubResource("Animation_lmvv5")
+}
+
+[node name="CrazyPool" type="Node2D"]
+script = ExtResource("1_54vtn")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("1_70ftb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_ewdgo")]
+position = Vector2(-22, 521)
+move_speed = 1000.0
+
+[node name="TableBounds" type="StaticBody2D" parent="."]
+collision_mask = 26
+collision_priority = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TableBounds"]
+position = Vector2(8094.77, -12723.1)
+scale = Vector2(8.41146, 24.0143)
+polygon = PackedVector2Array(-962.469, 507.285, -1076.48, 507.327, -1076.48, 552.3, -962.35, 552.3, -962.35, 549.968, -1069.82, 549.968, -1069.7, 509.326, -962.35, 509.326)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TableBounds"]
+position = Vector2(-8094, 12715)
+rotation = 3.14159
+scale = Vector2(8.41146, 24.0143)
+polygon = PackedVector2Array(-962.259, 506.99, -1076.39, 506.99, -1076.39, 551.963, -962.14, 552.004, -962.259, 549.964, -1069.73, 549.964, -1069.7, 509.326, -962.259, 509.322)
+
+[node name="Holes" type="Node2D" parent="."]
+
+[node name="HoleSpawnPos" type="Marker2D" parent="Holes"]
+position = Vector2(-160, -519)
+
+[node name="HoleSpawnPos2" type="Marker2D" parent="Holes"]
+position = Vector2(-480, -519)
+
+[node name="HoleSpawnPos3" type="Marker2D" parent="Holes"]
+position = Vector2(-800, -519)
+
+[node name="HoleSpawnPos4" type="Marker2D" parent="Holes"]
+position = Vector2(160, -519)
+
+[node name="HoleSpawnPos5" type="Marker2D" parent="Holes"]
+position = Vector2(480, -519)
+
+[node name="HoleSpawnPos6" type="Marker2D" parent="Holes"]
+position = Vector2(800, -519)
+
+[node name="Balls" type="Node" parent="."]
+
+[node name="Switches" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Switches"]
+position = Vector2(-532, -30)
+
+[node name="Marker2D2" type="Marker2D" parent="Switches"]
+position = Vector2(539, -310)
+
+[node name="Marker2D3" type="Marker2D" parent="Switches"]
+position = Vector2(-572, -252)
+
+[node name="Marker2D4" type="Marker2D" parent="Switches"]
+position = Vector2(-15, -262)
+
+[node name="Marker2D5" type="Marker2D" parent="Switches"]
+position = Vector2(-297, -174)
+
+[node name="Marker2D6" type="Marker2D" parent="Switches"]
+position = Vector2(234, -151)
+
+[node name="Marker2D7" type="Marker2D" parent="Switches"]
+position = Vector2(552, -17)
+
+[node name="StageTimer" type="Timer" parent="."]
+wait_time = 120.0
+autostart = true
+
+[node name="BallSpawner" type="Sprite2D" parent="."]
+visible = false
+z_index = 50
+position = Vector2(-1100, -331)
+scale = Vector2(7, 7)
+texture = ExtResource("4_j5q8o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4b4au")
+}
+
+[connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]

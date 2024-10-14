@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=3 uid="uid://p7eye6cipa2q"]
+
+[ext_resource type="Script" path="res://scripts/insane_pool/ball/color_ball.gd" id="1_oyryg"]
+[ext_resource type="Script" path="res://scripts/insane_pool/game_object.gd" id="2_iq8wy"]
+[ext_resource type="Texture2D" uid="uid://bwc41slnwg6nj" path="res://assets/insane_pool/pool_balls/ball_blue.png" id="3_611mj"]
+[ext_resource type="Script" path="res://scripts/insane_pool/ball/trajectory_line.gd" id="3_x1guv"]
+[ext_resource type="Texture2D" uid="uid://d2rnngy28rr6r" path="res://assets/insane_pool/pool_balls/ball_green.png" id="4_xoyux"]
+[ext_resource type="Texture2D" uid="uid://cbrfprfqu68iw" path="res://assets/insane_pool/pool_balls/ball_orange.png" id="5_coj1a"]
+[ext_resource type="Texture2D" uid="uid://dyaj77jbq2s5g" path="res://assets/insane_pool/pool_balls/ball_red.png" id="6_6l6km"]
+[ext_resource type="Texture2D" uid="uid://bujefxc3elqna" path="res://assets/insane_pool/pool_balls/ball_shadow.png" id="7_5f8ol"]
+[ext_resource type="Texture2D" uid="uid://c4xmju428gpwv" path="res://assets/insane_pool/pool_balls/ball_traj.png" id="8_3fdm7"]
+
+[sub_resource type="Resource" id="Resource_mikl4"]
+resource_local_to_scene = true
+script = ExtResource("2_iq8wy")
+my_color = 2
+texture_options = Array[CompressedTexture2D]([ExtResource("3_611mj"), ExtResource("4_xoyux"), ExtResource("5_coj1a"), ExtResource("6_6l6km")])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2pefj"]
+radius = 22.0227
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0c0gu"]
+radius = 22.0
+
+[node name="ColorBall" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_oyryg")
+game_object_data = SubResource("Resource_mikl4")
+SUCK_SPEED = 1500.0
+
+[node name="BallShadow" type="Sprite2D" parent="."]
+position = Vector2(-8, 8)
+scale = Vector2(3, 3)
+texture = ExtResource("7_5f8ol")
+
+[node name="TrajectoryLine" type="Line2D" parent="."]
+texture_repeat = 2
+width = 16.0
+texture = ExtResource("8_3fdm7")
+texture_mode = 1
+end_cap_mode = 2
+script = ExtResource("3_x1guv")
+
+[node name="TrajectoryBounceProbe" type="CharacterBody2D" parent="TrajectoryLine"]
+collision_layer = 16
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrajectoryLine/TrajectoryBounceProbe"]
+shape = SubResource("CircleShape2D_2pefj")
+debug_color = Color(0.637879, 0.525932, 0, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("6_6l6km")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0c0gu")

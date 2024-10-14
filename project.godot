@@ -33,6 +33,7 @@ game=""
 stats=""
 ducky=""
 score=""
+hole=""
 
 [input]
 

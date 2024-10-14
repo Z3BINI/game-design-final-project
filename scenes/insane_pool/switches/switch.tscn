@@ -1,0 +1,160 @@
+[gd_scene load_steps=14 format=3 uid="uid://bceb1qab0auhu"]
+
+[ext_resource type="Script" path="res://scripts/insane_pool/switches/switch.gd" id="1_ex5h3"]
+[ext_resource type="Texture2D" uid="uid://4hcln1exwipu" path="res://assets/insane_pool/world/switches/switch_orange.png" id="1_u0xka"]
+[ext_resource type="Resource" uid="uid://d0lkba8meqonw" path="res://scripts/insane_pool/game_obj_res.tres" id="2_hxy7p"]
+[ext_resource type="Texture2D" uid="uid://3jvbcho88x0v" path="res://assets/insane_pool/world/switches/switch_shadow.png" id="3_8470q"]
+[ext_resource type="Script" path="res://scripts/insane_pool/switches/switch_button.gd" id="3_inx0q"]
+[ext_resource type="Texture2D" uid="uid://c5mt66qo3lwt8" path="res://assets/insane_pool/world/switches/pin.png" id="5_tg7qw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6h06"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wp2vn"]
+radius = 24.0
+height = 80.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcg1x"]
+radius = 28.0
+height = 86.0
+
+[sub_resource type="Animation" id="Animation_uddcr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwitchButton/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.5, 2.5)]
+}
+
+[sub_resource type="Animation" id="Animation_ghbhe"]
+resource_name = "off"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwitchButton/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwitchButton/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2.5, 2.5), Vector2(3, 3), Vector2(2.5, 2.5)]
+}
+
+[sub_resource type="Animation" id="Animation_e7mow"]
+resource_name = "on"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwitchButton/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwitchButton/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2.5, 2.5), Vector2(3, 3), Vector2(2.5, 2.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qauaa"]
+_data = {
+"RESET": SubResource("Animation_uddcr"),
+"off": SubResource("Animation_ghbhe"),
+"on": SubResource("Animation_e7mow")
+}
+
+[node name="Switch" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ex5h3")
+game_object_data = ExtResource("2_hxy7p")
+metadata/_edit_vertical_guides_ = [-338.0]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 377)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="PinJoint" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../SwitchButton")
+softness = 16.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_h6h06")
+
+[node name="SwitchButton" type="RigidBody2D" parent="."]
+position = Vector2(98, 116)
+collision_layer = 2
+collision_mask = 9
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("3_inx0q")
+
+[node name="SwitchShadow" type="Sprite2D" parent="SwitchButton"]
+position = Vector2(-8, 8)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_8470q")
+
+[node name="Sprite2D" type="Sprite2D" parent="SwitchButton"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_u0xka")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchButton"]
+shape = SubResource("CapsuleShape2D_wp2vn")
+
+[node name="Trigger" type="Area2D" parent="SwitchButton"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchButton/Trigger"]
+shape = SubResource("CapsuleShape2D_qcg1x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qauaa")
+}
+
+[node name="Pin" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(2, 2)
+texture = ExtResource("5_tg7qw")
+
+[connection signal="body_entered" from="SwitchButton/Trigger" to="." method="_on_switch_trigger_body_entered"]

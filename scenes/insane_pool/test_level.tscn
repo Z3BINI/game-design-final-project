@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://doe5dgyunwh5x"]
+
+[ext_resource type="PackedScene" uid="uid://cu3d8pbv58cai" path="res://scenes/insane_pool/player/player.tscn" id="1_ke1l2"]
+[ext_resource type="PackedScene" uid="uid://p7eye6cipa2q" path="res://scenes/insane_pool/balls/color_ball.tscn" id="2_ijy58"]
+[ext_resource type="Script" path="res://scripts/insane_pool/game_object.gd" id="3_guakj"]
+[ext_resource type="Texture2D" uid="uid://bwc41slnwg6nj" path="res://assets/insane_pool/pool_balls/ball_blue.png" id="4_crmyp"]
+[ext_resource type="Texture2D" uid="uid://d2rnngy28rr6r" path="res://assets/insane_pool/pool_balls/ball_green.png" id="5_7glkj"]
+[ext_resource type="Texture2D" uid="uid://cbrfprfqu68iw" path="res://assets/insane_pool/pool_balls/ball_orange.png" id="6_gr6er"]
+[ext_resource type="Texture2D" uid="uid://dyaj77jbq2s5g" path="res://assets/insane_pool/pool_balls/ball_red.png" id="7_c6uxl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6171"]
+size = Vector2(1588, 20)
+
+[sub_resource type="Resource" id="Resource_p8kl1"]
+resource_local_to_scene = true
+script = ExtResource("3_guakj")
+my_color = 2
+texture_options = Array[CompressedTexture2D]([ExtResource("4_crmyp"), ExtResource("5_7glkj"), ExtResource("6_gr6er"), ExtResource("7_c6uxl")])
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ke1l2")]
+position = Vector2(495, 559)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(444, 649)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_d6171")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(109, 340)
+rotation = 1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_d6171")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(993, 340)
+rotation = 1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_d6171")
+
+[node name="ColorBall" parent="." instance=ExtResource("2_ijy58")]
+position = Vector2(237, 478)
+game_object_data = SubResource("Resource_p8kl1")
