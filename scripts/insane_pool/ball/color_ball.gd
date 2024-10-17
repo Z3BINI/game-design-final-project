@@ -20,10 +20,9 @@ var speed_manager : float = 1
 func _ready() -> void:
 	sprite_2d.texture = game_object_data.get_my_color_texture()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	trajectory_line.update_trajectory(velocity, delta)
-
-func _physics_process(delta: float) -> void:	
+	
 	if suck_pos != Vector2.ZERO:
 		suck_me((suck_pos - global_position).normalized(), delta)
 		move_and_slide()

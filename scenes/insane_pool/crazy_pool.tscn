@@ -1,9 +1,50 @@
-[gd_scene load_steps=11 format=3 uid="uid://db8hflx8ubsdj"]
+[gd_scene load_steps=14 format=3 uid="uid://db8hflx8ubsdj"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/crazy_pool.gd" id="1_54vtn"]
 [ext_resource type="Texture2D" uid="uid://bg1gwtvp0g2uf" path="res://assets/insane_pool/world/table.png" id="1_70ftb"]
 [ext_resource type="PackedScene" uid="uid://cu3d8pbv58cai" path="res://scenes/insane_pool/player/player.tscn" id="1_ewdgo"]
 [ext_resource type="Texture2D" uid="uid://c2bhn08t1a7mp" path="res://assets/insane_pool/pool_balls/ball_spawner.png" id="4_j5q8o"]
+[ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="5_e1ijn"]
+[ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="5_s4j82"]
+
+[sub_resource type="Animation" id="Animation_ghgfi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallSpawner:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallSpawner:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1100, -331)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BallSpawner:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_m6j7i"]
 resource_name = "spawn_left"
@@ -31,45 +72,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BallSpawner:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_ghgfi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BallSpawner:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BallSpawner:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1100, -331)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -213,6 +215,15 @@ _data = {
 "spawn_right_leave": SubResource("Animation_lmvv5")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1sjv"]
+shader = ExtResource("5_e1ijn")
+shader_parameter/aspect = 0.4
+shader_parameter/distortion = 0.7
+shader_parameter/radius = 1.0
+shader_parameter/alpha = 1.0
+shader_parameter/crop = 1.0
+shader_parameter/crop_color = Color(0, 0, 0, 1)
+
 [node name="CrazyPool" type="Node2D"]
 script = ExtResource("1_54vtn")
 
@@ -221,6 +232,7 @@ scale = Vector2(8, 8)
 texture = ExtResource("1_70ftb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
 
 [node name="Player" parent="." instance=ExtResource("1_ewdgo")]
 position = Vector2(-22, 521)
@@ -301,5 +313,46 @@ texture = ExtResource("4_j5q8o")
 libraries = {
 "": SubResource("AnimationLibrary_4b4au")
 }
+
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="FishEyeShaderEffect" type="ColorRect" parent="Ui"]
+material = SubResource("ShaderMaterial_n1sjv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 95.0
+offset_top = 74.0
+offset_right = -99.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(491, 258)
+color = Color(1, 1, 1, 0)
+
+[node name="TimerLabel" type="Label" parent="Ui/FishEyeShaderEffect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 102.0
+offset_top = -110.0
+offset_right = 142.0
+offset_bottom = -87.0
+grow_vertical = 0
+text = "69"
+
+[node name="ArcadeBorder" type="TextureRect" parent="Ui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(567, 311)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("5_s4j82")
+expand_mode = 2
 
 [connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]

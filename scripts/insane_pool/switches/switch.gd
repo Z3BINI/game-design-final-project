@@ -25,6 +25,7 @@ func _ready() -> void:
 	for hole_node : Hole in level_holes:
 		if hole_node.game_object_data.my_color == game_object_data.my_color:
 			my_color_holes.append(hole_node)
+			hole_node.ate_ball.connect(toggle_switch)
 
 func _physics_process(delta: float) -> void:
 	line_2d.points[1] = switch_button.position
@@ -36,15 +37,18 @@ func point_sprites_to_player(flip : bool):
 	sprite_2d.flip_h = flip
 	switch_shadow.flip_h = flip
 
-func _on_switch_trigger_body_entered(body) -> void:
-	if (body is ColorBall and !switch_cd):
-		switch_cd = true
+func _on_switch_trigger_body_entered(body : ColorBall) -> void:
+	if (body.game_object_data.my_color == game_object_data.my_color and !switch_cd):
+		toggle_switch()
+
+func toggle_switch():
+	switch_cd = true
 		
-		switch = !switch
-		animation_player.play("on") if switch else animation_player.play("off")
-		
-		for my_color_hole in my_color_holes:
-			my_color_hole.toggle_on_off()
-		
-		await get_tree().create_timer(1).timeout
-		switch_cd = false
+	switch = !switch
+	animation_player.play("on") if switch else animation_player.play("off")
+	
+	for my_color_hole in my_color_holes:
+		my_color_hole.toggle_on_off()
+	
+	await get_tree().create_timer(1).timeout
+	switch_cd = false

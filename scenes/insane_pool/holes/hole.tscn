@@ -92,12 +92,14 @@ position = Vector2(36, 220)
 emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_o7ltl")
+lifetime = 0.75
 
 [node name="SuckEffectL" type="GPUParticles2D" parent="."]
 position = Vector2(-36, 220)
 emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_8y6h5")
+lifetime = 0.75
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(10, 10)

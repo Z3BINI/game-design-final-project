@@ -1,6 +1,8 @@
 extends Node2D
 class_name Hole
 
+signal ate_ball
+
 @export var game_object_data : GameObject
 
 @onready var suckage_detector: Area2D = $SuckageDetector
@@ -16,8 +18,8 @@ func _ready() -> void:
 
 func toggle_on_off()->void:
 	sprite_2d.frame = 1 if (sprite_2d.frame == 0) else 0
-	suckage_detector.monitoring = !suckage_detector.monitoring
-	hole_detector.monitoring = !hole_detector.monitoring
+	suckage_detector.set_deferred("monitoring", !suck_effect_r.emitting)
+	hole_detector.set_deferred("monitoring", !suck_effect_r.emitting)
 	suck_effect_r.emitting = !suck_effect_r.emitting
 	suck_effect_l.emitting = !suck_effect_l.emitting
 
@@ -33,3 +35,4 @@ func _on_suckage_detector_body_exited(body: ColorBall) -> void:
 
 func _on_hole_detector_body_entered(body: ColorBall) -> void:
 	body.queue_free()
+	ate_ball.emit()

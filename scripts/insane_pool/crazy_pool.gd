@@ -1,3 +1,33 @@
+'''
+Level logic:
+	
+	Timer for clearing each stage. Starts at 120 seconds.
+	Max holes/switches: 4
+	Max balls per stage: 8
+	Max balls at a time: TBD
+	
+	Start:
+		1 ball
+		1 switch
+		1 hole
+		120 seconds
+		
+	Two types of difficulty increase:
+		Add ball (+hole&switch)
+		Reduce time
+		
+	difficulty:
+		Max Step: 4
+		Stage difficulty increaseas every 4 sub increase
+		Stage sub difficulty increases every time until 4 and reset
+		
+		sub stage difficulty 1-4:
+			same balls reduce time
+		
+		stage dificulty 1-4:
+			increase total balls on stage
+'''
+
 extends Node2D
 
 signal stage_cleared
@@ -12,32 +42,38 @@ var hole_scene : PackedScene = preload("res://scenes/insane_pool/holes/hole.tscn
 @onready var switches: Node2D = $Switches
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+const STAGE_DIFFICULTY_STEP : int = 4
+
 var stage_started : bool = false
 var stage_game_objects : Array
+var stage_difficulty : int = 1
+var stage_sub_difficulty : int = 1
+
 
 func _ready() -> void:
-	test_level()
-	
+	await init_stage()
+	stage_started = true
+
+
 func _process(delta: float) -> void:
 	if stage_started and balls.get_child_count() <= 0:
 		stage_started=false
 		stage_cleared.emit()
 
-func test_level():
-	var rand_color : GameObject.Colors = GameObject.Colors.values().pick_random()
+func init_stage():
 	
-	await get_tree().create_timer(2).timeout
-	spawn_hole(rand_color)
-	
-	await get_tree().create_timer(2).timeout
-	spawn_switch(rand_color)
-	
-	await get_tree().create_timer(2).timeout
-	spawn_ball(rand_color)
-	
-	await get_tree().create_timer(1.5).timeout
-	
-	stage_started = true
+	for i in range(stage_difficulty):
+		var color : GameObject.Colors
+		
+		if stage_difficulty == 1:
+			color = GameObject.Colors.values()[stage_sub_difficulty-1]
+		else:
+			color = GameObject.Colors.values()[i]
+
+		spawn_hole(color)
+		spawn_switch(color)
+		spawn_ball(color)
+		await get_tree().create_timer(2).timeout
 
 func spawn_ball(color: GameObject.Colors):
 	var color_ball: ColorBall = ball_scene.instantiate()
@@ -96,5 +132,16 @@ func clear_stage():
 	stage_game_objects.clear()
 
 func _on_stage_cleared() -> void:
-	clear_stage()
-	test_level()
+	await clear_stage()
+	
+	await get_tree().create_timer(2).timeout
+	
+	if stage_sub_difficulty < 4:
+		stage_sub_difficulty += 1
+	else:
+		stage_sub_difficulty = 1
+		if stage_difficulty < 4:
+			stage_difficulty += 1
+	
+	await init_stage()
+	stage_started = true
