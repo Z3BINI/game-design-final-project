@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=10 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmojf4bca5yf6" path="res://scenes/main_world/objects/cabinets/playable/quack_man.tscn" id="4_ckxmh"]
 [ext_resource type="PackedScene" uid="uid://baaxwr6c02jvi" path="res://assets/models/arcade_room/ac.glb" id="5_fd2xj"]
 [ext_resource type="PackedScene" uid="uid://crsty120ywhpd" path="res://scenes/main_world/world_architecture/lamp.tscn" id="6_1g7fv"]
+[ext_resource type="PackedScene" uid="uid://wwus3jsvn5jm" path="res://assets/models/arcade_room/trash_can.glb" id="7_fbjh3"]
 
 [node name="ArcadeRoom" type="Node3D"]
 script = ExtResource("1_d6cfw")
@@ -1178,6 +1179,9 @@ transform = Transform3D(0.998769, 0, 0.0495994, 0, 1, 0, -0.0495994, 0, 0.998769
 
 [node name="QuackMan5" parent="PlayableArcades" instance=ExtResource("4_ckxmh")]
 transform = Transform3D(0.999932, 0, -0.0116585, 0, 1, 0, 0.0116585, 0, 0.999932, 3.45862, 0, -38.4631)
+
+[node name="trash_can" parent="PlayableArcades" instance=ExtResource("7_fbjh3")]
+transform = Transform3D(0.0229141, 0, 0.999737, 0, 1, 0, -0.999737, 0, 0.0229141, 5.05122, 0.000826096, -12.1996)
 
 [node name="Player" parent="." instance=ExtResource("2_ca12t")]
 
