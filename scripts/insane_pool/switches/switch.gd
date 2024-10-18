@@ -41,7 +41,7 @@ func _on_switch_trigger_body_entered(body : ColorBall) -> void:
 	if (body.game_object_data.my_color == game_object_data.my_color and !switch_cd):
 		toggle_switch()
 
-func toggle_switch():
+func toggle_switch(_points : int = 0):
 	switch_cd = true
 		
 	switch = !switch

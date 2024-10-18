@@ -50,6 +50,8 @@ var stage_difficulty : int = 1
 var stage_sub_difficulty : int = 1
 var base_time : float = 80
 
+var points : int = 0
+
 func _ready() -> void:
 	await init_stage()
 	stage_started = true
@@ -114,9 +116,11 @@ func spawn_switch(color: GameObject.Colors):
 	stage_game_objects.append(switch)
 	
 func spawn_hole(color: GameObject.Colors):
-	var hole = hole_scene.instantiate()
+	var hole : Hole = hole_scene.instantiate()
 	
 	hole.game_object_data.my_color = color
+	
+	hole.ate_ball.connect(add_points)
 	
 	var hole_spawn : Marker2D = get_random_childless_node(holes.get_children())
 		
@@ -156,3 +160,7 @@ func _on_stage_cleared() -> void:
 func _on_stage_timer_timeout() -> void:
 	print("LOST!")
 	get_tree().reload_current_scene()
+	
+func add_points(amount : int):
+	points += amount
+	$Ui/FishEyeShaderEffect/PointsLabel.text = str(points)

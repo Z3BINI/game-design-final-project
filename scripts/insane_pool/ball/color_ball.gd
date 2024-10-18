@@ -13,6 +13,8 @@ var suck_pos : Vector2 = Vector2.ZERO
 var suck_failed : bool = false
 var caught : bool = false
 
+var my_points : int = 11
+
 var canon : Canon
 
 @onready var trajectory_line: Line2D = $TrajectoryLine
@@ -50,6 +52,9 @@ func shoot_in(from : Vector2):
 	velocity += -from * randf_range(300, 600)
 
 func catch():
+	if my_points > 2:
+		my_points -= 1
+	
 	trajectory_line.visible = true
 	velocity = Vector2.ZERO
 	caught = true
