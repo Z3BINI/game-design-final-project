@@ -299,8 +299,7 @@ position = Vector2(234, -151)
 position = Vector2(552, -17)
 
 [node name="StageTimer" type="Timer" parent="."]
-wait_time = 120.0
-autostart = true
+wait_time = 60.0
 
 [node name="BallSpawner" type="Sprite2D" parent="."]
 visible = false
@@ -356,3 +355,4 @@ texture = ExtResource("5_s4j82")
 expand_mode = 2
 
 [connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]
+[connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

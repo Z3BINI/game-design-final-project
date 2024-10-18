@@ -48,7 +48,7 @@ var stage_started : bool = false
 var stage_game_objects : Array
 var stage_difficulty : int = 1
 var stage_sub_difficulty : int = 1
-
+var base_time : float = 80
 
 func _ready() -> void:
 	await init_stage()
@@ -56,6 +56,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	$Ui/FishEyeShaderEffect/TimerLabel.text = str(stage_timer.time_left)
+	
 	if stage_started and balls.get_child_count() <= 0:
 		stage_started=false
 		stage_cleared.emit()
@@ -74,6 +76,8 @@ func init_stage():
 		spawn_switch(color)
 		spawn_ball(color)
 		await get_tree().create_timer(2).timeout
+		
+	stage_timer.start(base_time / (STAGE_DIFFICULTY_STEP - (stage_difficulty - 1)))
 
 func spawn_ball(color: GameObject.Colors):
 	var color_ball: ColorBall = ball_scene.instantiate()
@@ -132,6 +136,9 @@ func clear_stage():
 	stage_game_objects.clear()
 
 func _on_stage_cleared() -> void:
+	
+	stage_timer.stop()
+	
 	await clear_stage()
 	
 	await get_tree().create_timer(2).timeout
@@ -145,3 +152,7 @@ func _on_stage_cleared() -> void:
 	
 	await init_stage()
 	stage_started = true
+
+func _on_stage_timer_timeout() -> void:
+	print("LOST!")
+	get_tree().reload_current_scene()

@@ -1,5 +1,5 @@
 extends StaticBody2D
-class_name Trampoline
+class_name Canon
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -16,4 +16,5 @@ func _process(delta: float) -> void:
 func _on_ball_detector_body_entered(body: ColorBall) -> void:
 	animation_player.play("bounce")
 	if (body is ColorBall):
-		body.increase_velocity()
+		#body.increase_velocity()
+		body.catch()

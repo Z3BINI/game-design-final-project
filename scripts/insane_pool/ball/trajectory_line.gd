@@ -15,7 +15,7 @@ func _ready() -> void:
 			default_color = Color.DARK_BLUE
 
 func update_trajectory(ball_velocity : Vector2, delta : float):
-	var max_points : int = 150 if ball_velocity.length() < 650 else 75
+	var max_points : int = 150
 	clear_points()
 	var pos: Vector2 = Vector2.ZERO
 	var vel = ball_velocity
@@ -26,9 +26,7 @@ func update_trajectory(ball_velocity : Vector2, delta : float):
 		
 		var collision_probe = trajectory_bounce_probe.move_and_collide(vel * delta, false, true, true)
 		if collision_probe:
-			if collision_probe.get_collider() is Trampoline:
-				vel += vel * color_ball.BOUNCE_AMOUNT
-			vel = vel.bounce(collision_probe.get_normal()) 
+			vel = vel.bounce(collision_probe.get_normal()) * color_ball.DAMPEN_AMOUNT
 			
-		pos += vel * color_ball.speed_manager * delta
+		pos += vel * delta 
 		trajectory_bounce_probe.position = pos
