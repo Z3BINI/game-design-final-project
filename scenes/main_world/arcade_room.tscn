@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=11 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmojf4bca5yf6" path="res://scenes/main_world/objects/cabinets/playable/quack_man.tscn" id="4_ckxmh"]
 [ext_resource type="PackedScene" uid="uid://baaxwr6c02jvi" path="res://assets/models/arcade_room/ac.glb" id="5_fd2xj"]
 [ext_resource type="PackedScene" uid="uid://crsty120ywhpd" path="res://scenes/main_world/world_architecture/lamp.tscn" id="6_1g7fv"]
+[ext_resource type="PackedScene" uid="uid://doacf1f0yqhh5" path="res://assets/models/arcade_room/reception.glb" id="6_6q5uv"]
 [ext_resource type="PackedScene" uid="uid://wwus3jsvn5jm" path="res://assets/models/arcade_room/trash_can.glb" id="7_fbjh3"]
 
 [node name="ArcadeRoom" type="Node3D"]
@@ -1163,6 +1164,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, -51)
 [node name="ac" parent="WorldDecoration" instance=ExtResource("5_fd2xj")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -15.0295)
 
+[node name="reception" parent="WorldDecoration" instance=ExtResource("6_6q5uv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.47184, 0.610046, -5.04176)
+
 [node name="PlayableArcades" type="Node3D" parent="."]
 
 [node name="QuackMan" parent="PlayableArcades" instance=ExtResource("4_ckxmh")]
@@ -1186,4 +1190,4 @@ transform = Transform3D(0.0229141, 0, 0.999737, 0, 1, 0, -0.999737, 0, 0.0229141
 [node name="Player" parent="." instance=ExtResource("2_ca12t")]
 
 [node name="Lamp" parent="." instance=ExtResource("6_1g7fv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+transform = Transform3D(0.300706, 0, 0.953717, 0, 1, 0, -0.953717, 0, 0.300706, 6.60898, 0, -3.07733)
