@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=13 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpxsfq6ggdpxj" path="res://scenes/main_world/world_architecture/wall.tscn" id="2_q8nu5"]
 [ext_resource type="PackedScene" uid="uid://cj5gutgt2vqbi" path="res://scenes/main_world/world_architecture/ceiling_pannel.tscn" id="3_qtf48"]
 [ext_resource type="PackedScene" uid="uid://bmojf4bca5yf6" path="res://scenes/main_world/objects/cabinets/playable/quack_man.tscn" id="4_ckxmh"]
+[ext_resource type="PackedScene" uid="uid://dx534jl7abxit" path="res://assets/models/arcade_room/SHELF.glb" id="5_7qp73"]
 [ext_resource type="PackedScene" uid="uid://bgk5qedplgbwm" path="res://assets/models/arcade_room/DOOR.glb" id="5_bk2d7"]
 [ext_resource type="PackedScene" uid="uid://baaxwr6c02jvi" path="res://assets/models/arcade_room/ac.glb" id="5_fd2xj"]
 [ext_resource type="PackedScene" uid="uid://crsty120ywhpd" path="res://scenes/main_world/world_architecture/lamp.tscn" id="6_1g7fv"]
@@ -1164,11 +1165,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, -51)
 
 [node name="Reception" type="Node3D" parent="WorldDecoration"]
 
+[node name="SHELF" parent="WorldDecoration/Reception" instance=ExtResource("5_7qp73")]
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 6.59788, 1.48118, -15.4682)
+
 [node name="reception" parent="WorldDecoration/Reception" instance=ExtResource("6_6q5uv")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.47184, 0.610046, -5.04176)
 
 [node name="Lamp" parent="WorldDecoration/Reception" instance=ExtResource("6_1g7fv")]
-transform = Transform3D(0.663926, 0, 0.747798, 0, 1, 0, -0.747798, 0, 0.663926, 4.83872, 0, -3.11847)
+transform = Transform3D(0.894154, 0, -0.447759, 0, 1, 0, 0.447759, 0, 0.894154, 4.95173, 0, -13.3823)
+
+[node name="Lamp2" parent="WorldDecoration/Reception" instance=ExtResource("6_1g7fv")]
+transform = Transform3D(-0.83962, 0, -0.543175, 0, 1, 0, 0.543175, 0, -0.83962, 5.09103, 0, -17.3709)
 
 [node name="DOOR" parent="WorldDecoration/Reception" instance=ExtResource("5_bk2d7")]
 transform = Transform3D(-1.75, 0, -2.64243e-07, 0, 1.75, 0, 2.64243e-07, 0, -1.75, -1.00641, 1.50909, 0.962726)
