@@ -48,7 +48,7 @@ var stage_started : bool = false
 var stage_game_objects : Array
 var stage_difficulty : int = 1
 var stage_sub_difficulty : int = 1
-var base_time : float = 80
+var base_time : float = 60
 
 var points : int = 0
 
