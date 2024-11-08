@@ -3,6 +3,8 @@ class_name Canon
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var has_ball : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -15,6 +17,7 @@ func _process(delta: float) -> void:
 
 func _on_ball_detector_body_entered(body: ColorBall) -> void:
 	animation_player.play("bounce")
-	if (body is ColorBall):
+	if (body is ColorBall and !has_ball):
 		#body.increase_velocity()
+		has_ball = true
 		body.catch()

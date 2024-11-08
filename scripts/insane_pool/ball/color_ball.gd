@@ -63,6 +63,7 @@ func catch():
 	shoot()
 	
 func shoot():
+	canon.has_ball = false
 	trajectory_line.visible = false
 	caught = false
 	velocity = canon.global_transform.x * SHOOT_FORCE
