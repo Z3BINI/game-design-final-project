@@ -15,7 +15,7 @@ func _ready() -> void:
 			default_color = Color.DARK_BLUE
 
 func update_trajectory(ball_velocity : Vector2, delta : float):
-	var max_points : int = 150
+	var max_points : int = 75
 	clear_points()
 	var pos: Vector2 = Vector2.ZERO
 	var vel = ball_velocity
