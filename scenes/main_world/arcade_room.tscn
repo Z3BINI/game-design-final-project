@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=14 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dx534jl7abxit" path="res://assets/models/arcade_room/SHELF.glb" id="5_7qp73"]
 [ext_resource type="PackedScene" uid="uid://bgk5qedplgbwm" path="res://assets/models/arcade_room/DOOR.glb" id="5_bk2d7"]
 [ext_resource type="PackedScene" uid="uid://baaxwr6c02jvi" path="res://assets/models/arcade_room/ac.glb" id="5_fd2xj"]
+[ext_resource type="PackedScene" uid="uid://fn8gdi2a863g" path="res://assets/models/arcade_room/poster.glb" id="5_hlwwt"]
 [ext_resource type="PackedScene" uid="uid://crsty120ywhpd" path="res://scenes/main_world/world_architecture/lamp.tscn" id="6_1g7fv"]
 [ext_resource type="PackedScene" uid="uid://doacf1f0yqhh5" path="res://assets/models/arcade_room/reception.glb" id="6_6q5uv"]
 [ext_resource type="PackedScene" uid="uid://wwus3jsvn5jm" path="res://assets/models/arcade_room/trash_can.glb" id="7_fbjh3"]
@@ -1165,6 +1166,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, -51)
 
 [node name="Reception" type="Node3D" parent="WorldDecoration"]
 
+[node name="poster" parent="WorldDecoration/Reception" instance=ExtResource("5_hlwwt")]
+transform = Transform3D(-4.37114e-08, 0.052336, -0.99863, 0, 0.99863, 0.052336, 1, 2.28768e-09, -4.36515e-08, 6.94273, 2.09621, -6.13749)
+
 [node name="SHELF" parent="WorldDecoration/Reception" instance=ExtResource("5_7qp73")]
 transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 6.59788, 1.48118, -15.4682)
 
@@ -1183,8 +1187,11 @@ transform = Transform3D(-1.75, 0, -2.64243e-07, 0, 1.75, 0, 2.64243e-07, 0, -1.7
 [node name="ac" parent="WorldDecoration/Reception" instance=ExtResource("5_fd2xj")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -6.96858)
 
+[node name="ac2" parent="WorldDecoration/Reception" instance=ExtResource("5_fd2xj")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -22.9974)
+
 [node name="trash_can" parent="WorldDecoration/Reception" instance=ExtResource("7_fbjh3")]
-transform = Transform3D(0.0488497, 0, 0.998806, 0, 1, 0, -0.998806, 0, 0.0488497, 3.71027, 0.000826096, -8.83889)
+transform = Transform3D(0.0488497, 0, 0.998806, 0, 1, 0, -0.998806, 0, 0.0488497, 3.30951, 0.000826096, -8.83889)
 
 [node name="PlayableArcades" type="Node3D" parent="."]
 
