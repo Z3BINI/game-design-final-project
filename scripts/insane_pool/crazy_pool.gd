@@ -85,6 +85,7 @@ func spawn_ball(color: GameObject.Colors):
 	var color_ball: ColorBall = ball_scene.instantiate()
 	
 	color_ball.game_object_data.my_color = color
+	color_ball.SHOOT_CD /= stage_difficulty 
 	
 	var coin_toss: int = randi_range(0, 1)
 	
