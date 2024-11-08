@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqr4k03k1xnmq"]
+
+[ext_resource type="PackedScene" uid="uid://cb6paumv3d1n4" path="res://scenes/rocket_man/rocket.tscn" id="1_tt47s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5wbk"]
+albedo_color = Color(1.05888e-06, 0.69624, 1.15514e-06, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vmnlr"]
+material = SubResource("StandardMaterial3D_c5wbk")
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crxnn"]
+size = Vector3(50, 0.1, 50)
+
+[node name="Test" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999489, -0.0319517, 0, 0.0319517, 0.999489, 0, 1.09082, 25)
+
+[node name="Rocket" parent="." instance=ExtResource("1_tt47s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.724902, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_vmnlr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0193815, 0)
+shape = SubResource("BoxShape3D_crxnn")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.370784, 0.888067, -0.271764, 0, 0.292622, 0.956228, 0.928719, -0.354554, 0.1085, -12.5328, 4.76789, 0.887301)
