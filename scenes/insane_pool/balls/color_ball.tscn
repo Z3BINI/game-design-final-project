@@ -56,3 +56,12 @@ texture = ExtResource("6_6l6km")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0c0gu")
+
+[node name="ShootTimer" type="ProgressBar" parent="."]
+visible = false
+modulate = Color(0, 1, 0, 1)
+offset_left = -40.0
+offset_top = 26.0
+offset_right = 41.0
+offset_bottom = 33.0
+show_percentage = false

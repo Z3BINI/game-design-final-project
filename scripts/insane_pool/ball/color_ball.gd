@@ -12,6 +12,7 @@ class_name ColorBall
 var suck_pos : Vector2 = Vector2.ZERO
 var suck_failed : bool = false
 var caught : bool = false
+var timer : SceneTreeTimer = null
 
 var my_points : int = 11
 
@@ -21,10 +22,16 @@ var canon : Canon
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _ready() -> void:
+	$ShootTimer.max_value = SHOOT_CD
+	$ShootTimer.value = SHOOT_CD
+	
 	canon = get_tree().get_first_node_in_group("canon")
 	sprite_2d.texture = game_object_data.get_my_color_texture()
 
 func _physics_process(delta: float) -> void:	
+	if timer != null:
+		$ShootTimer.value = timer.time_left
+	
 	if suck_pos != Vector2.ZERO:
 		suck_me((suck_pos - global_position).normalized(), delta)
 		move_and_slide()
@@ -52,6 +59,7 @@ func shoot_in(from : Vector2):
 	velocity += -from * randf_range(300, 600)
 
 func catch():
+	$ShootTimer.visible = true
 	if my_points > 2:
 		my_points -= 1
 	
@@ -59,7 +67,11 @@ func catch():
 	velocity = Vector2.ZERO
 	caught = true
 	
-	await get_tree().create_timer(SHOOT_CD).timeout
+	timer = get_tree().create_timer(SHOOT_CD)
+	await timer.timeout
+	timer = null
+	
+	$ShootTimer.visible = false
 	shoot()
 	
 func shoot():
