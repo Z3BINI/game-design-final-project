@@ -12,9 +12,9 @@ func _process(delta: float) -> void:
 	#arms_pivot.look_at(get_global_mouse_position())
 	x_input_direction = Input.get_axis("move_left", "move_right")
 	
-	if (Input.is_action_pressed("ui_right")):
+	if (Input.is_action_pressed("ui_right") and arms_pivot.rotation_degrees < 0):
 		arms_pivot.rotation_degrees += rotation_amount * delta
-	if (Input.is_action_pressed("ui_left")):
+	if (Input.is_action_pressed("ui_left") and arms_pivot.rotation_degrees > -180):
 		arms_pivot.rotation_degrees -= rotation_amount * delta
 	
 func _physics_process(delta: float) -> void:
