@@ -1,64 +1,87 @@
 [gd_scene load_steps=8 format=3 uid="uid://w3w416clxd86"]
 
-[ext_resource type="Texture2D" uid="uid://c4k4tpem3okcs" path="res://assets/insane_pool/player/trampoline.png" id="1_5wcet"]
 [ext_resource type="Script" path="res://scripts/insane_pool/player/trampoline.gd" id="1_f72xn"]
+[ext_resource type="Texture2D" uid="uid://c2dgg4st3o33h" path="res://assets/insane_pool/player/canon.png" id="2_fn8ac"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_htmgv"]
 radius = 6.0
 height = 150.0
 
-[sub_resource type="Animation" id="Animation_54f8m"]
+[sub_resource type="Animation" id="Animation_yeufq"]
+resource_name = "shoot"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Canon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(3, 3), Vector2(6, 6), Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Canon:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0872665, 0.139626, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_70nok"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Trampoline:frame")
+tracks/0/path = NodePath("Canon:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Vector2(5, 5)]
 }
-
-[sub_resource type="Animation" id="Animation_we8in"]
-resource_name = "bounce"
-length = 0.15
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Trampoline:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 0]
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Canon:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_65lp8"]
 _data = {
-"RESET": SubResource("Animation_54f8m"),
-"bounce": SubResource("Animation_we8in")
+"RESET": SubResource("Animation_70nok"),
+"shoot": SubResource("Animation_yeufq")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5qg57"]
-radius = 3.0
-height = 146.0
+radius = 9.0
+height = 44.0
 
-[node name="Trampoline" type="StaticBody2D" groups=["canon"]]
+[node name="Canon" type="StaticBody2D" groups=["canon"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_f72xn")
 
-[node name="Trampoline" type="Sprite2D" parent="."]
-rotation = 1.5708
-scale = Vector2(3, 3)
-texture = ExtResource("1_5wcet")
-hframes = 4
+[node name="Canon" type="Sprite2D" parent="."]
+position = Vector2(35, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("2_fn8ac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-9, 0)
@@ -71,10 +94,14 @@ libraries = {
 }
 
 [node name="BallDetector" type="Area2D" parent="."]
+position = Vector2(86, 1)
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallDetector"]
 shape = SubResource("CapsuleShape2D_5qg57")
+
+[node name="HoldMyBalls" type="Marker2D" parent="."]
+position = Vector2(67, 0)
 
 [connection signal="body_entered" from="BallDetector" to="." method="_on_ball_detector_body_entered"]
