@@ -20,6 +20,7 @@ var canon : Canon
 
 @onready var trajectory_line: Line2D = $TrajectoryLine
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var ball_shadow: Sprite2D = $BallShadow
 
 func _ready() -> void:
 	$ShootTimer.max_value = SHOOT_CD
@@ -38,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	
 	elif caught == true:
 		
-		global_position = canon.global_position
+		global_position = canon.hold_my_balls.global_position
 		trajectory_line.update_trajectory(canon.global_transform.x * SHOOT_FORCE, delta)
 		
 	else:
@@ -59,6 +60,8 @@ func shoot_in(from : Vector2):
 	velocity += -from * randf_range(300, 600)
 
 func catch():
+	sprite_2d.visible = false
+	ball_shadow.visible = false
 	$ShootTimer.visible = true
 	if my_points > 2:
 		my_points -= 1
@@ -75,9 +78,14 @@ func catch():
 	shoot()
 	
 func shoot():
-	canon.has_ball = false
 	trajectory_line.visible = false
+	sprite_2d.visible = true
+	ball_shadow.visible = true
 	caught = false
 	velocity = canon.global_transform.x * SHOOT_FORCE
+	canon.animation_player.play("shoot")
+	
+	await get_tree().create_timer(0.25).timeout # wait for ball to pass colider
+	canon.has_ball = false
 	
 	

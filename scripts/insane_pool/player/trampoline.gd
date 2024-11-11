@@ -2,6 +2,7 @@ extends StaticBody2D
 class_name Canon
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hold_my_balls: Marker2D = $HoldMyBalls
 
 var has_ball : bool = false
 
@@ -16,8 +17,6 @@ func _process(delta: float) -> void:
 
 
 func _on_ball_detector_body_entered(body: ColorBall) -> void:
-	animation_player.play("bounce")
 	if (body is ColorBall and !has_ball):
-		#body.increase_velocity()
 		has_ball = true
 		body.catch()
