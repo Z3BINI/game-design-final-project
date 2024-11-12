@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://db8hflx8ubsdj"]
+[gd_scene load_steps=17 format=3 uid="uid://db8hflx8ubsdj"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/crazy_pool.gd" id="1_54vtn"]
 [ext_resource type="Texture2D" uid="uid://bg1gwtvp0g2uf" path="res://assets/insane_pool/world/table.png" id="1_70ftb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c2bhn08t1a7mp" path="res://assets/insane_pool/pool_balls/ball_spawner.png" id="4_j5q8o"]
 [ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="5_e1ijn"]
 [ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="5_s4j82"]
+[ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="8_28sne"]
 
 [sub_resource type="Animation" id="Animation_ghgfi"]
 length = 0.001
@@ -225,6 +226,12 @@ shader_parameter/alpha = 1.0
 shader_parameter/crop = 1.0
 shader_parameter/crop_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_5xwjv"]
+font = ExtResource("8_28sne")
+font_size = 64
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [node name="CrazyPool" type="Node2D"]
 script = ExtResource("1_54vtn")
 
@@ -370,6 +377,18 @@ size_flags_vertical = 3
 mouse_filter = 2
 texture = ExtResource("5_s4j82")
 expand_mode = 2
+
+[node name="PointAdder" type="Label" parent="."]
+visible = false
+offset_left = 28.0
+offset_top = -283.0
+offset_right = 118.0
+offset_bottom = -206.0
+text = "+11"
+label_settings = SubResource("LabelSettings_5xwjv")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-3, -481)
 
 [connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

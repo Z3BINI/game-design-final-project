@@ -41,6 +41,8 @@ var hole_scene : PackedScene = preload("res://scenes/insane_pool/holes/hole.tscn
 @onready var balls: Node = $Balls
 @onready var switches: Node2D = $Switches
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var point_adder: Label = $PointAdder
+
 
 const STAGE_DIFFICULTY_STEP : int = 4
 
@@ -162,6 +164,29 @@ func _on_stage_timer_timeout() -> void:
 	print("LOST!")
 	get_tree().reload_current_scene()
 	
-func add_points(amount : int):
+func add_points(amount : int, point_pos : Vector2, color):
+	match color:
+		0:
+			point_adder.label_settings.font_color = Color.ORANGE
+		1:
+			point_adder.label_settings.font_color = Color.RED
+		2:
+			point_adder.label_settings.font_color = Color.BLUE
+		3:
+			point_adder.label_settings.font_color = Color.GREEN
+			
+	point_adder.position = point_pos
+	point_adder.text = "+"+str(amount) 
+	point_adder.visible = true
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(point_adder, "position", $Marker2D.position, 1)
+	
+	await tween.finished
+	
+	point_adder.visible = false
+	
 	points += amount
 	$Ui/FishEyeShaderEffect/PointsLabel.text = str(points)
+	
+	

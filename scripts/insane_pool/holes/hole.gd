@@ -1,7 +1,7 @@
 extends Node2D
 class_name Hole
 
-signal ate_ball(points)
+signal ate_ball(points, point_pos, color)
 
 @export var game_object_data : GameObject
 
@@ -38,4 +38,4 @@ func _on_hole_detector_body_entered(body: ColorBall) -> void:
 		body.my_points -= 1
 		
 	body.queue_free()
-	ate_ball.emit(body.my_points) 
+	ate_ball.emit(body.my_points, global_position, game_object_data.my_color) 
