@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://p7eye6cipa2q"]
+[gd_scene load_steps=21 format=3 uid="uid://p7eye6cipa2q"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/ball/color_ball.gd" id="1_oyryg"]
 [ext_resource type="Script" path="res://scripts/insane_pool/game_object.gd" id="2_iq8wy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cbrfprfqu68iw" path="res://assets/insane_pool/pool_balls/ball_orange.png" id="5_coj1a"]
 [ext_resource type="Texture2D" uid="uid://dyaj77jbq2s5g" path="res://assets/insane_pool/pool_balls/ball_red.png" id="6_6l6km"]
 [ext_resource type="Texture2D" uid="uid://bujefxc3elqna" path="res://assets/insane_pool/pool_balls/ball_shadow.png" id="7_5f8ol"]
+[ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_10j6l"]
 [ext_resource type="Texture2D" uid="uid://c4xmju428gpwv" path="res://assets/insane_pool/pool_balls/ball_traj.png" id="8_3fdm7"]
 
 [sub_resource type="Resource" id="Resource_mikl4"]
@@ -15,6 +16,21 @@ resource_local_to_scene = true
 script = ExtResource("2_iq8wy")
 my_color = 2
 texture_options = Array[CompressedTexture2D]([ExtResource("3_611mj"), ExtResource("4_xoyux"), ExtResource("5_coj1a"), ExtResource("6_6l6km")])
+
+[sub_resource type="LabelSettings" id="LabelSettings_12j62"]
+font = ExtResource("7_10j6l")
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 16
+shadow_color = Color(0, 0, 0, 0.290196)
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_76gml"]
+font = ExtResource("7_10j6l")
+font_size = 32
+outline_size = 4
+outline_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2pefj"]
 radius = 22.0227
@@ -33,12 +49,125 @@ border_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg6bm"]
 bg_color = Color(0, 1, 0, 1)
 
+[sub_resource type="Animation" id="Animation_a3b6g"]
+resource_name = "reduced_points"
+length = 0.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MyPoints:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Subtract:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Subtract:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.65, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gte3n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MyPoints:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Subtract:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Subtract:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_shqjv"]
+_data = {
+"RESET": SubResource("Animation_gte3n"),
+"reduced_points": SubResource("Animation_a3b6g")
+}
+
 [node name="ColorBall" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_oyryg")
 game_object_data = SubResource("Resource_mikl4")
 SUCK_SPEED = 1500.0
+
+[node name="MyPoints" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -57.0
+offset_right = 13.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(13, 19)
+text = "11"
+label_settings = SubResource("LabelSettings_12j62")
+
+[node name="Subtract" type="Label" parent="."]
+visible = false
+offset_left = 15.0
+offset_top = -57.0
+offset_right = 38.0
+offset_bottom = -18.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(11, 19)
+text = "-1"
+label_settings = SubResource("LabelSettings_76gml")
 
 [node name="BallShadow" type="Sprite2D" parent="."]
 position = Vector2(-8, 8)
@@ -77,3 +206,8 @@ offset_bottom = -43.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rds5y")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pg6bm")
 show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_shqjv")
+}
