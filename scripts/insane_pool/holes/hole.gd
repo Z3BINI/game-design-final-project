@@ -10,6 +10,8 @@ signal ate_ball(points, point_pos, color)
 @onready var suck_effect_r: GPUParticles2D = $SuckEffectR
 @onready var suck_effect_l: GPUParticles2D = $SuckEffectL
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,7 +37,8 @@ func _on_suckage_detector_body_exited(body: ColorBall) -> void:
 
 func _on_hole_detector_body_entered(body: ColorBall) -> void:
 	if body.game_object_data.my_color != game_object_data.my_color:
+		animation_player.play("wrong_ball")
 		body.my_points -= 1
-		
-	body.queue_free()
 	ate_ball.emit(body.my_points, global_position, game_object_data.my_color) 
+	body.queue_free()
+	

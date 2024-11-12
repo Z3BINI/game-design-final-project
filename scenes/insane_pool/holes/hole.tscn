@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://do62jdhomt2h5"]
+[gd_scene load_steps=19 format=3 uid="uid://do62jdhomt2h5"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/holes/hole.gd" id="1_aaa27"]
 [ext_resource type="Texture2D" uid="uid://ctvvk22bkyrar" path="res://assets/insane_pool/world/holes/hole_orange.png" id="2_30qwm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://nii5ei4ihc54" path="res://assets/insane_pool/world/holes/hole_blue.png" id="3_mkqmo"]
 [ext_resource type="Texture2D" uid="uid://dtaont0mi8ato" path="res://assets/insane_pool/world/holes/hole_green.png" id="4_ca5ku"]
 [ext_resource type="Texture2D" uid="uid://bhp7n5vm3g7cj" path="res://assets/insane_pool/world/holes/hole_red.png" id="6_8w4as"]
+[ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_7su4r"]
 
 [sub_resource type="Resource" id="Resource_jcuyn"]
 resource_local_to_scene = true
@@ -64,6 +65,73 @@ turbulence_noise_speed = Vector3(0, -50, 0)
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.328
 
+[sub_resource type="LabelSettings" id="LabelSettings_42dk2"]
+font = ExtResource("7_7su4r")
+font_size = 32
+outline_size = 4
+outline_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_0siog"]
+resource_name = "wrong_ball"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Subtract:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Subtract:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8bir5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Subtract:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Subtract:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h6nsv"]
+_data = {
+"RESET": SubResource("Animation_8bir5"),
+"wrong_ball": SubResource("Animation_0siog")
+}
+
 [node name="Hole" type="Node2D" groups=["hole"]]
 script = ExtResource("1_aaa27")
 game_object_data = SubResource("Resource_jcuyn")
@@ -105,6 +173,22 @@ lifetime = 0.75
 scale = Vector2(10, 10)
 texture = ExtResource("2_30qwm")
 hframes = 2
+
+[node name="Subtract" type="Label" parent="."]
+visible = false
+offset_left = -11.0
+offset_top = 42.0
+offset_right = 12.0
+offset_bottom = 81.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(11, 19)
+text = "-1"
+label_settings = SubResource("LabelSettings_42dk2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h6nsv")
+}
 
 [connection signal="body_entered" from="SuckageDetector" to="." method="_on_suckage_detector_body_entered"]
 [connection signal="body_exited" from="SuckageDetector" to="." method="_on_suckage_detector_body_exited"]
