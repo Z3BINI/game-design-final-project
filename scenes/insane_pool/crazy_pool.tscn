@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://db8hflx8ubsdj"]
+[gd_scene load_steps=21 format=3 uid="uid://db8hflx8ubsdj"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/crazy_pool.gd" id="1_54vtn"]
 [ext_resource type="Texture2D" uid="uid://bg1gwtvp0g2uf" path="res://assets/insane_pool/world/table.png" id="1_70ftb"]
@@ -9,6 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="5_s4j82"]
 [ext_resource type="Texture2D" uid="uid://dc71h3vphxdpa" path="res://assets/insane_pool/world/timer.png" id="7_faygm"]
 [ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="8_28sne"]
+[ext_resource type="Texture2D" uid="uid://vrbltktbn552" path="res://assets/insane_pool/world/score.png" id="9_t5fdc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2rdb2"]
+font = ExtResource("8_28sne")
+font_size = 32
 
 [sub_resource type="Animation" id="Animation_ghgfi"]
 length = 0.001
@@ -248,6 +253,37 @@ texture = ExtResource("2_t81ns")
 scale = Vector2(8, 8)
 texture = ExtResource("1_70ftb")
 
+[node name="PointsLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -242.5
+offset_right = 124.0
+offset_bottom = -203.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(122, 19)
+text = "0000000000000"
+label_settings = SubResource("LabelSettings_2rdb2")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -251.0
+offset_right = 130.0
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(128, 28)
+texture = ExtResource("9_t5fdc")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.6, 0.6)
 
@@ -376,18 +412,6 @@ text = "69"
 label_settings = SubResource("LabelSettings_oecm8")
 horizontal_alignment = 1
 
-[node name="PointsLabel" type="Label" parent="Ui/FishEyeShaderEffect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 81.0
-offset_right = 20.0
-offset_bottom = 104.0
-grow_horizontal = 2
-text = "0"
-
 [node name="ArcadeBorder" type="TextureRect" parent="Ui"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -411,7 +435,7 @@ text = "+11"
 label_settings = SubResource("LabelSettings_5xwjv")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-3, -481)
+position = Vector2(-3, -224)
 
 [connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

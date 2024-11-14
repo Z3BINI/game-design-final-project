@@ -187,6 +187,6 @@ func add_points(amount : int, point_pos : Vector2, color):
 	point_adder.visible = false
 	
 	points += amount
-	$Ui/FishEyeShaderEffect/PointsLabel.text = str(points)
+	$PointsLabel.text = "%013d" % points
 	
 	
