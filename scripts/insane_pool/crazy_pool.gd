@@ -60,7 +60,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	$Ui/FishEyeShaderEffect/TimerLabel.text = str(stage_timer.time_left)
+	$Ui/FishEyeShaderEffect/TextureRect/TimerLabel.text = "%d" % stage_timer.time_left
 	
 	if stage_started and balls.get_child_count() <= 0:
 		stage_started=false

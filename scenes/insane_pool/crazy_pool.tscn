@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://db8hflx8ubsdj"]
+[gd_scene load_steps=19 format=3 uid="uid://db8hflx8ubsdj"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/crazy_pool.gd" id="1_54vtn"]
 [ext_resource type="Texture2D" uid="uid://bg1gwtvp0g2uf" path="res://assets/insane_pool/world/table.png" id="1_70ftb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c2bhn08t1a7mp" path="res://assets/insane_pool/pool_balls/ball_spawner.png" id="4_j5q8o"]
 [ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="5_e1ijn"]
 [ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="5_s4j82"]
+[ext_resource type="Texture2D" uid="uid://dc71h3vphxdpa" path="res://assets/insane_pool/world/timer.png" id="7_faygm"]
 [ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="8_28sne"]
 
 [sub_resource type="Animation" id="Animation_ghgfi"]
@@ -226,6 +227,10 @@ shader_parameter/alpha = 1.0
 shader_parameter/crop = 1.0
 shader_parameter/crop_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_oecm8"]
+font = ExtResource("8_28sne")
+font_size = 42
+
 [sub_resource type="LabelSettings" id="LabelSettings_5xwjv"]
 font = ExtResource("8_28sne")
 font_size = 64
@@ -341,17 +346,35 @@ grow_vertical = 2
 pivot_offset = Vector2(491, 258)
 color = Color(1, 1, 1, 0)
 
-[node name="TimerLabel" type="Label" parent="Ui/FishEyeShaderEffect"]
+[node name="TextureRect" type="TextureRect" parent="Ui/FishEyeShaderEffect"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 102.0
-offset_top = -110.0
-offset_right = 142.0
-offset_bottom = -87.0
+offset_left = 88.0
+offset_top = -182.0
+offset_right = 206.0
+offset_bottom = -64.0
 grow_vertical = 0
+texture = ExtResource("7_faygm")
+
+[node name="TimerLabel" type="Label" parent="Ui/FishEyeShaderEffect/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = 7.0
+offset_right = 25.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 25)
 text = "69"
+label_settings = SubResource("LabelSettings_oecm8")
+horizontal_alignment = 1
 
 [node name="PointsLabel" type="Label" parent="Ui/FishEyeShaderEffect"]
 layout_mode = 1
