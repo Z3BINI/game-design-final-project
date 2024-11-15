@@ -8,6 +8,9 @@ class_name PoolPlayer
 
 var x_input_direction : float
 
+func _ready() -> void:
+	arms_pivot.rotation_degrees = -90 # Look up!
+
 func _process(delta: float) -> void:
 	#arms_pivot.look_at(get_global_mouse_position())
 	x_input_direction = Input.get_axis("move_left", "move_right")
