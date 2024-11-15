@@ -8,6 +8,7 @@ class_name PoolPlayer
 
 var x_input_direction : float
 
+
 func _ready() -> void:
 	arms_pivot.rotation_degrees = -90 # Look up!
 
@@ -27,6 +28,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		
 	move_and_slide()
+	
 
 func _input(event: InputEvent) -> void:
 	pass

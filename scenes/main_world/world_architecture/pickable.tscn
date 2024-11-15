@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://chugdpycfbynm"]
+
+[ext_resource type="Script" path="res://scripts/main_world/world_objects/cabinets/pickable.gd" id="1_0la04"]
+
+[node name="Pickable" type="RigidBody3D"]
+script = ExtResource("1_0la04")
+
+[node name="PlayerNear" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[connection signal="body_entered" from="PlayerNear" to="." method="_on_player_near_body_entered"]
+[connection signal="body_exited" from="PlayerNear" to="." method="_on_player_near_body_exited"]

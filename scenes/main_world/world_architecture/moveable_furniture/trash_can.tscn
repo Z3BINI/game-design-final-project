@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b88o0a5pv3c5t"]
+
+[ext_resource type="PackedScene" uid="uid://wwus3jsvn5jm" path="res://assets/models/arcade_room/trash_can.glb" id="1_euowo"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fmnhc"]
+friction = 0.7
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j8qwh"]
+height = 1.0
+radius = 0.264521
+
+[node name="TrashCan" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 7
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_fmnhc")
+
+[node name="trash_can" parent="." instance=ExtResource("1_euowo")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.504453, 0)
+shape = SubResource("CylinderShape3D_j8qwh")
+
+[editable path="trash_can"]

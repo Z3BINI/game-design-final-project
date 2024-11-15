@@ -11,6 +11,7 @@ class_name  Player3d
 var PLAYER_GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var input_direction : Vector2 
+var push_force = 5
 
 @onready var camera_pivot = $CameraStand
 @onready var hud_label = $Hud/Label
@@ -21,6 +22,13 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
+	
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody3D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+	
+	
 	move_and_slide()
 	
 	if (input_direction != Vector2.ZERO or 

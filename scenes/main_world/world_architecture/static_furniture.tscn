@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://60flk17fvy36"]
+
+[node name="StaticFurniture" type="StaticBody3D"]
+collision_mask = 7

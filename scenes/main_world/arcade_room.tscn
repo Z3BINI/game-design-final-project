@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=15 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://cpxsfq6ggdpxj" path="res://scenes/main_world/world_architecture/wall.tscn" id="2_q8nu5"]
 [ext_resource type="PackedScene" uid="uid://cj5gutgt2vqbi" path="res://scenes/main_world/world_architecture/ceiling_pannel.tscn" id="3_qtf48"]
 [ext_resource type="PackedScene" uid="uid://bmojf4bca5yf6" path="res://scenes/main_world/objects/cabinets/playable/quack_man.tscn" id="4_ckxmh"]
-[ext_resource type="PackedScene" uid="uid://dx534jl7abxit" path="res://assets/models/arcade_room/SHELF.glb" id="5_7qp73"]
 [ext_resource type="PackedScene" uid="uid://bgk5qedplgbwm" path="res://assets/models/arcade_room/DOOR.glb" id="5_bk2d7"]
 [ext_resource type="PackedScene" uid="uid://baaxwr6c02jvi" path="res://assets/models/arcade_room/ac.glb" id="5_fd2xj"]
 [ext_resource type="PackedScene" uid="uid://fn8gdi2a863g" path="res://assets/models/arcade_room/poster.glb" id="5_hlwwt"]
 [ext_resource type="PackedScene" uid="uid://crsty120ywhpd" path="res://scenes/main_world/world_architecture/lamp.tscn" id="6_1g7fv"]
-[ext_resource type="PackedScene" uid="uid://doacf1f0yqhh5" path="res://assets/models/arcade_room/reception.glb" id="6_6q5uv"]
-[ext_resource type="PackedScene" uid="uid://wwus3jsvn5jm" path="res://assets/models/arcade_room/trash_can.glb" id="7_fbjh3"]
+[ext_resource type="PackedScene" uid="uid://df14qhgo7q0oj" path="res://scenes/main_world/world_architecture/static_furniture/shelf.tscn" id="11_3f0ux"]
+[ext_resource type="PackedScene" uid="uid://b88o0a5pv3c5t" path="res://scenes/main_world/world_architecture/moveable_furniture/trash_can.tscn" id="11_dbl5s"]
+[ext_resource type="PackedScene" uid="uid://cyva5h5850b1r" path="res://scenes/main_world/world_architecture/static_furniture/reception.tscn" id="11_he1qm"]
+[ext_resource type="PackedScene" uid="uid://ci6yh8v55iuxc" path="res://scenes/main_world/world_architecture/moveable_furniture/gumball_machine.tscn" id="12_yh43j"]
 
 [node name="ArcadeRoom" type="Node3D"]
 script = ExtResource("1_d6cfw")
@@ -1169,17 +1170,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, -51)
 [node name="poster" parent="WorldDecoration/Reception" instance=ExtResource("5_hlwwt")]
 transform = Transform3D(-4.37114e-08, 0.052336, -0.99863, 0, 0.99863, 0.052336, 1, 2.28768e-09, -4.36515e-08, 6.94273, 2.09621, -6.13749)
 
-[node name="SHELF" parent="WorldDecoration/Reception" instance=ExtResource("5_7qp73")]
-transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 6.59788, 1.48118, -15.4682)
-
-[node name="reception" parent="WorldDecoration/Reception" instance=ExtResource("6_6q5uv")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.47184, 0.610046, -5.04176)
-
 [node name="Lamp" parent="WorldDecoration/Reception" instance=ExtResource("6_1g7fv")]
 transform = Transform3D(0.894154, 0, -0.447759, 0, 1, 0, 0.447759, 0, 0.894154, 4.95173, 0, -13.3823)
 
 [node name="Lamp2" parent="WorldDecoration/Reception" instance=ExtResource("6_1g7fv")]
 transform = Transform3D(-0.83962, 0, -0.543175, 0, 1, 0, 0.543175, 0, -0.83962, 5.09103, 0, -17.3709)
+mass = 30.0
 
 [node name="DOOR" parent="WorldDecoration/Reception" instance=ExtResource("5_bk2d7")]
 transform = Transform3D(-1.75, 0, -2.64243e-07, 0, 1.75, 0, 2.64243e-07, 0, -1.75, -1.00641, 1.50909, 0.962726)
@@ -1190,8 +1186,18 @@ transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.0339
 [node name="ac2" parent="WorldDecoration/Reception" instance=ExtResource("5_fd2xj")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -22.9974)
 
-[node name="trash_can" parent="WorldDecoration/Reception" instance=ExtResource("7_fbjh3")]
-transform = Transform3D(0.0488497, 0, 0.998806, 0, 1, 0, -0.998806, 0, 0.0488497, 3.30951, 0.000826096, -8.83889)
+[node name="Reception" parent="WorldDecoration/Reception" instance=ExtResource("11_he1qm")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.4341, 0.629454, -6.55007)
+collision_mask = 1
+
+[node name="TrashCan" parent="WorldDecoration/Reception" instance=ExtResource("11_dbl5s")]
+transform = Transform3D(0.156434, 0, 0.987688, 0, 1, 0, -0.987688, 0, 0.156434, 3.76316, 0, -10.476)
+
+[node name="Shelf" parent="WorldDecoration/Reception" instance=ExtResource("11_3f0ux")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.57573, 1.4909, -15.2362)
+
+[node name="GumballMachine" parent="WorldDecoration/Reception" instance=ExtResource("12_yh43j")]
+transform = Transform3D(-0.995396, 0, 0.0958458, 0, 1, 0, -0.0958458, 0, -0.995396, 6.36724, 0.926939, -0.542999)
 
 [node name="PlayableArcades" type="Node3D" parent="."]
 

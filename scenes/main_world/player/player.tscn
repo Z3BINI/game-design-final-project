@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bl5w0m6c5dn60"]
+[gd_scene load_steps=12 format=3 uid="uid://bl5w0m6c5dn60"]
 
 [ext_resource type="Script" path="res://scripts/main_world/player/player.gd" id="1_ofqso"]
 
@@ -20,6 +20,51 @@ rings = 16
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m5ynv"]
 radius = 0.529824
 height = 2.06386
+
+[sub_resource type="Gradient" id="Gradient_qwsgo"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8n615"]
+gradient = SubResource("Gradient_qwsgo")
+
+[sub_resource type="Animation" id="Animation_4kl0s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hud/EyeLids:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kuhye"]
+resource_name = "wake_up"
+length = 5.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hud/EyeLids:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kubj3"]
+_data = {
+"RESET": SubResource("Animation_4kl0s"),
+"wake_up": SubResource("Animation_kuhye")
+}
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 4
@@ -69,3 +114,18 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "PRESS [E] TO PLAY"
+
+[node name="EyeLids" type="TextureRect" parent="Hud"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_8n615")
+expand_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kubj3")
+}
+autoplay = "wake_up"
