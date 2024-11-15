@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=16 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b88o0a5pv3c5t" path="res://scenes/main_world/world_architecture/moveable_furniture/trash_can.tscn" id="11_dbl5s"]
 [ext_resource type="PackedScene" uid="uid://cyva5h5850b1r" path="res://scenes/main_world/world_architecture/static_furniture/reception.tscn" id="11_he1qm"]
 [ext_resource type="PackedScene" uid="uid://ci6yh8v55iuxc" path="res://scenes/main_world/world_architecture/moveable_furniture/gumball_machine.tscn" id="12_yh43j"]
+[ext_resource type="PackedScene" uid="uid://ewn4uob2i153" path="res://scenes/main_world/world_architecture/pickable_furniture/gone_fishing_sign.tscn" id="13_klecc"]
 
 [node name="ArcadeRoom" type="Node3D"]
 script = ExtResource("1_d6cfw")
@@ -1198,6 +1199,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.5757
 
 [node name="GumballMachine" parent="WorldDecoration/Reception" instance=ExtResource("12_yh43j")]
 transform = Transform3D(-0.995396, 0, 0.0958458, 0, 1, 0, -0.0958458, 0, -0.995396, 6.36724, 0.926939, -0.542999)
+
+[node name="GoneFishingSign" parent="WorldDecoration/Reception" instance=ExtResource("13_klecc")]
+transform = Transform3D(-0.968148, 0, -0.25038, 0, 1, 0, 0.25038, 0, -0.968148, 3.4808, 1.31492, -6.65381)
+collision_layer = 1
+collision_mask = 1
 
 [node name="PlayableArcades" type="Node3D" parent="."]
 

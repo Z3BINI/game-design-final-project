@@ -15,6 +15,7 @@ var push_force = 5
 
 @onready var camera_pivot = $CameraStand
 @onready var hud_label = $Hud/Label
+@onready var hold_position: Marker3D = $HoldPosition
 
 
 # Called when the node enters the scene tree for the first time.
