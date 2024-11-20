@@ -11,5 +11,7 @@ script = ExtResource("1_0la04")
 collision_layer = 0
 collision_mask = 4
 
+[connection signal="drop" from="." to="." method="_on_drop"]
+[connection signal="pick_up" from="." to="." method="_on_pick_up"]
 [connection signal="body_entered" from="PlayerNear" to="." method="_on_player_near_body_entered"]
 [connection signal="body_exited" from="PlayerNear" to="." method="_on_player_near_body_exited"]
