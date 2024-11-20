@@ -19,19 +19,21 @@ func _input(event: InputEvent) -> void:
 		else:
 			is_picked = false
 			drop.emit()
-	
+
+func _physics_process(delta: float) -> void:
+	if is_picked:
+		global_position = player_hold_node.global_position
+		look_at(player_hold_node.get_parent().global_position)
+
 func _on_player_near_body_entered(body: Player3d) -> void:
 	player_hold_node = body.hold_position
 
 func _on_player_near_body_exited(body: Player3d) -> void:
 	player_hold_node = null
-	drop.emit() # Drop in case player buggs the item out
+	drop.emit() 
 	
 func _on_pick_up() -> void:
-	gravity_scale = 0
-	global_position = player_hold_node.global_position
-	reparent(player_hold_node)
+	freeze = true
 
 func _on_drop() -> void:
-	gravity_scale = 1
-	reparent(original_parent_node)
+	freeze = false

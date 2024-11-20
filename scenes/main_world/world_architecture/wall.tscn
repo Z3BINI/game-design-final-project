@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d73eoh5lpwv" path="res://assets/models/arcade_room/wall.glb" id="1_gd08y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cerho"]
-size = Vector3(4, 4, 0.05)
+size = Vector3(4, 4, 0.422632)
 
 [node name="Wall" type="StaticBody3D"]
 collision_mask = 7
@@ -13,7 +13,7 @@ collision_priority = 999.0
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.166394)
 shape = SubResource("BoxShape3D_cerho")
 
 [node name="SpotLight3D" type="OmniLight3D" parent="."]

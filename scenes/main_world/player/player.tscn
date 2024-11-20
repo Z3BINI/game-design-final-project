@@ -70,19 +70,18 @@ _data = {
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ofqso")
-
-[node name="HoldPosition" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23081, -1.15042)
+MAX_SPEED = 5.0
+ACCEL = 0.75
+DECEL = 0.5
 
 [node name="CameraStand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62527, 0)
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraStand"]
-spring_length = 2.0
-margin = 0.5
+[node name="Camera3D" type="Camera3D" parent="CameraStand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.493886)
 
-[node name="Camera3D" type="Camera3D" parent="CameraStand/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.22032)
+[node name="HoldPosition" type="Marker3D" parent="CameraStand/Camera3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.348299, -0.168507, -0.681792)
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00248, 0)

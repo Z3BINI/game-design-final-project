@@ -8,7 +8,7 @@ friction = 0.5
 bounce = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w55t5"]
-radius = 1.0
+radius = 1.58469
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_untjj"]
 size = Vector3(0.140747, 0.132782, 0.479736)
@@ -22,10 +22,10 @@ physics_material_override = SubResource("PhysicsMaterial_ml75s")
 shape = SubResource("SphereShape3D_w55t5")
 
 [node name="gone_fishing" parent="." index="1" instance=ExtResource("2_rxfyl")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.0323318, 0)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0.0323318, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00186157, 0.0217743, -0.00231934)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.00186157, 0.0217743, -0.00231934)
 shape = SubResource("BoxShape3D_untjj")
 
 [editable path="gone_fishing"]

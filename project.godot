@@ -92,6 +92,11 @@ interact={
 2d_physics/layer_6="health"
 2d_physics/layer_7="hurt"
 
+[physics]
+
+common/physics_ticks_per_second=90
+common/physics_jitter_fix=0.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
