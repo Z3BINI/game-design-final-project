@@ -1202,8 +1202,6 @@ transform = Transform3D(-0.995396, 0, 0.0958458, 0, 1, 0, -0.0958458, 0, -0.9953
 
 [node name="GoneFishingSign" parent="WorldDecoration/Reception" instance=ExtResource("13_klecc")]
 transform = Transform3D(-0.968148, 0, -0.25038, 0, 1, 0, 0.25038, 0, -0.968148, 3.4808, 1.31492, -6.65381)
-collision_layer = 1
-collision_mask = 1
 
 [node name="PlayableArcades" type="Node3D" parent="."]
 

@@ -19,6 +19,8 @@ margin = 0.01
 size = Vector3(2, 0.05, 2)
 
 [node name="FloorTile" type="StaticBody3D"]
+collision_mask = 7
+collision_priority = 999.0
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_eycga")

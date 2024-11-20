@@ -14,7 +14,8 @@ radius = 1.0
 size = Vector3(0.140747, 0.132782, 0.479736)
 
 [node name="GoneFishingSign" instance=ExtResource("1_ddtpu")]
-mass = 0.5
+collision_priority = 999.0
+mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_ml75s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNear" index="0"]
