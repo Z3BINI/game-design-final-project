@@ -65,6 +65,7 @@ func fall(delta: float):
 func rotate_pov(prev_mouse_pos : Vector2):
 	rotate_y(deg_to_rad(-prev_mouse_pos.x * mouse_sens))
 	camera_pivot.rotate_x(deg_to_rad(-prev_mouse_pos.y * mouse_sens))
+	camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-90.0), deg_to_rad(90.0))
 	
 func toggle_hud_label(value : bool, interact_text : String = ""):
 	hud_label.text = interact_text
