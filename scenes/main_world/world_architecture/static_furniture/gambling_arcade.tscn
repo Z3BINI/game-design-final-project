@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjlqmvxeqbauq"]
+
+[ext_resource type="PackedScene" uid="uid://60flk17fvy36" path="res://scenes/main_world/world_architecture/static_furniture.tscn" id="1_kxb4k"]
+[ext_resource type="PackedScene" uid="uid://freet2dv8bbw" path="res://assets/models/arcade_room/GLB format/gambling-machine.glb" id="2_qp8b2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_843fo"]
+size = Vector3(1.25391, 2.3139, 1.43555)
+
+[node name="GamblingArcade" instance=ExtResource("1_kxb4k")]
+
+[node name="gambling-machine2" parent="." index="0" instance=ExtResource("2_qp8b2")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1525, 0)
+shape = SubResource("BoxShape3D_843fo")

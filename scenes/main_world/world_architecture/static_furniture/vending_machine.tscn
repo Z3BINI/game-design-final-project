@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgt46wcvtq00m"]
+
+[ext_resource type="PackedScene" uid="uid://60flk17fvy36" path="res://scenes/main_world/world_architecture/static_furniture.tscn" id="1_bcifj"]
+[ext_resource type="PackedScene" uid="uid://c3gcqcb7fwadr" path="res://assets/models/arcade_room/GLB format/vending-machine.glb" id="2_7ysgd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yaqah"]
+size = Vector3(1.50366, 2.25494, 1.30371)
+
+[node name="VendingMachine" instance=ExtResource("1_bcifj")]
+
+[node name="vending-machine2" parent="." index="0" instance=ExtResource("2_7ysgd")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12167, 0)
+shape = SubResource("BoxShape3D_yaqah")

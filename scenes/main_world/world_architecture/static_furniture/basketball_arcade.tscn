@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://djcdhu31fxgg6"]
+
+[ext_resource type="PackedScene" uid="uid://60flk17fvy36" path="res://scenes/main_world/world_architecture/static_furniture.tscn" id="1_hprxy"]
+[ext_resource type="PackedScene" uid="uid://b6bdf73cg2oix" path="res://assets/models/arcade_room/GLB format/basketball-game.glb" id="2_2lbj3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6lpl2"]
+size = Vector3(1.93774, 2.38452, 3.03809)
+
+[node name="BasketballArcade" instance=ExtResource("1_hprxy")]
+
+[node name="basketball-game2" parent="." index="0" instance=ExtResource("2_2lbj3")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19788, 0)
+shape = SubResource("BoxShape3D_6lpl2")
