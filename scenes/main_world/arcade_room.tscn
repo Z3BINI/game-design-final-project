@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=26 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ci6yh8v55iuxc" path="res://scenes/main_world/world_architecture/moveable_furniture/gumball_machine.tscn" id="12_yh43j"]
 [ext_resource type="PackedScene" uid="uid://ewn4uob2i153" path="res://scenes/main_world/world_architecture/pickable_furniture/gone_fishing_sign.tscn" id="13_klecc"]
 [ext_resource type="PackedScene" uid="uid://b4ifijq3b8vr1" path="res://scenes/main_world/world_architecture/static_furniture/air_hockey.tscn" id="14_2klj4"]
+[ext_resource type="PackedScene" uid="uid://wilqh4gkv8bx" path="res://scenes/main_world/world_architecture/static_furniture/prizes.tscn" id="14_k6da6"]
 [ext_resource type="PackedScene" uid="uid://1nvyd2ntsj2f" path="res://scenes/main_world/world_architecture/static_furniture/arcade_machine.tscn" id="15_m55oe"]
 [ext_resource type="PackedScene" uid="uid://djcdhu31fxgg6" path="res://scenes/main_world/world_architecture/static_furniture/basketball_arcade.tscn" id="16_ln0mg"]
 [ext_resource type="PackedScene" uid="uid://e7wilhvot0sx" path="res://scenes/main_world/world_architecture/static_furniture/claw_arcade.tscn" id="17_kyfoc"]
@@ -1217,7 +1218,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, -51)
 [node name="Reception" type="Node3D" parent="WorldDecoration"]
 
 [node name="poster" parent="WorldDecoration/Reception" instance=ExtResource("5_hlwwt")]
-transform = Transform3D(-4.37114e-08, 0.052336, -0.99863, 0, 0.99863, 0.052336, 1, 2.28768e-09, -4.36515e-08, 6.94273, 2.09621, -6.13749)
+transform = Transform3D(-4.37114e-08, 0.052336, -0.99863, 0, 0.99863, 0.052336, 1, 2.28768e-09, -4.36515e-08, 6.94273, 2.09621, -11.7777)
 
 [node name="Lamp" parent="WorldDecoration/Reception" instance=ExtResource("6_1g7fv")]
 transform = Transform3D(0.894154, 0, -0.447759, 0, 1, 0, 0.447759, 0, 0.894154, 4.95173, 0, -13.3823)
@@ -1230,10 +1231,7 @@ mass = 30.0
 transform = Transform3D(-1.75, 0, -2.64243e-07, 0, 1.75, 0, 2.64243e-07, 0, -1.75, -1.00641, 1.50909, 0.962726)
 
 [node name="ac" parent="WorldDecoration/Reception" instance=ExtResource("5_fd2xj")]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -6.96858)
-
-[node name="ac2" parent="WorldDecoration/Reception" instance=ExtResource("5_fd2xj")]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -22.9974)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -14.945)
 
 [node name="Reception" parent="WorldDecoration/Reception" instance=ExtResource("11_he1qm")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.4341, 0.629454, -6.55007)
@@ -1246,10 +1244,16 @@ transform = Transform3D(0.156434, 0, 0.987688, 0, 1, 0, -0.987688, 0, 0.156434, 
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.57573, 1.4909, -15.2362)
 
 [node name="GumballMachine" parent="WorldDecoration/Reception" instance=ExtResource("12_yh43j")]
-transform = Transform3D(-0.995396, 0, 0.0958458, 0, 1, 0, -0.0958458, 0, -0.995396, 6.36724, 0.926939, -0.542999)
+transform = Transform3D(-0.643028, 0, 0.765842, 0, 1, 0, -0.765842, 0, -0.643028, 6.31737, 0.926939, 0.254071)
 
 [node name="GoneFishingSign" parent="WorldDecoration/Reception" instance=ExtResource("13_klecc")]
-transform = Transform3D(-0.968148, 0, -0.25038, 0, 1, 0, 0.25038, 0, -0.968148, 3.4808, 1.31492, -6.65381)
+transform = Transform3D(-0.0782502, 0, 0.996934, 0, 1, 0, -0.996934, 0, -0.0782502, 3.4808, 1.31492, -7.41203)
+
+[node name="Prizes" parent="WorldDecoration/Reception" instance=ExtResource("14_k6da6")]
+transform = Transform3D(0.0244321, 0, -0.999702, 0, 1, 0, 0.999702, 0, 0.0244321, 6.65913, 0, -5.64661)
+
+[node name="Prizes2" parent="WorldDecoration/Reception" instance=ExtResource("14_k6da6")]
+transform = Transform3D(0.0406549, 0, -0.999173, 0, 1, 0, 0.999173, 0, 0.0406549, 6.65913, 0, -8.69418)
 
 [node name="PlayArea" type="Node3D" parent="WorldDecoration"]
 
@@ -1339,6 +1343,15 @@ transform = Transform3D(0.99983, 0, -0.0184296, 0, 1, 0, 0.0184296, 0, 0.99983, 
 
 [node name="VendingMachine2" parent="WorldDecoration/PlayArea" instance=ExtResource("22_m1hsi")]
 transform = Transform3D(-0.022129, 0, -0.999755, 0, 1, 0, 0.999755, 0, -0.022129, 18.331, 0, -38.5673)
+
+[node name="ac2" parent="WorldDecoration/PlayArea" instance=ExtResource("5_fd2xj")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -34.3696)
+
+[node name="ac3" parent="WorldDecoration/PlayArea" instance=ExtResource("5_fd2xj")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -10.7605, 4, -49.8072)
+
+[node name="ac4" parent="WorldDecoration/PlayArea" instance=ExtResource("5_fd2xj")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 12.9817, 4, -49.8072)
 
 [node name="PlayableArcades" type="Node3D" parent="."]
 
