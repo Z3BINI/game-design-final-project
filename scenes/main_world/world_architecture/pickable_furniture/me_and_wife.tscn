@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bul7ji0dyusn"]
+
+[ext_resource type="PackedScene" uid="uid://chugdpycfbynm" path="res://scenes/main_world/world_architecture/pickable.tscn" id="1_jatat"]
+[ext_resource type="PackedScene" uid="uid://b1sd0koc17yh" path="res://assets/models/arcade_room/small_frame_me_wife.glb" id="2_q4mw1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ggq2"]
+radius = 1.11931
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xkhd2"]
+size = Vector3(0.598297, 0.402588, 0.326172)
+
+[node name="MeAndWife" instance=ExtResource("1_jatat")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNear" index="0"]
+shape = SubResource("SphereShape3D_3ggq2")
+
+[node name="small_frame_me_wife" parent="." index="1" instance=ExtResource("2_q4mw1")]
+transform = Transform3D(0.886142, 0, 1.79297, 0, 2, 0, -1.79297, 0, 0.886142, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0567474, -0.0531006, 0.107422)
+shape = SubResource("BoxShape3D_xkhd2")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl62j58vohvhk"]
+
+[ext_resource type="PackedScene" uid="uid://chugdpycfbynm" path="res://scenes/main_world/world_architecture/pickable.tscn" id="1_p6j6p"]
+[ext_resource type="PackedScene" uid="uid://c1to8ihl14xvq" path="res://assets/models/arcade_room/small_frame_me_lua.glb" id="2_nm2aa"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uw1s8"]
+radius = 0.784689
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vugts"]
+size = Vector3(0.254883, 0.353516, 0.196289)
+
+[node name="MeAndLua" instance=ExtResource("1_p6j6p")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNear" index="0"]
+shape = SubResource("SphereShape3D_uw1s8")
+
+[node name="small_frame_me_lua" parent="." index="1" instance=ExtResource("2_nm2aa")]
+transform = Transform3D(-5.68248e-08, 0, 1.3, 0, 1.3, 0, -1.3, 0, -5.68248e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+shape = SubResource("BoxShape3D_vugts")

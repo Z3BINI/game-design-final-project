@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbxhi0v0l647r"]
+
+[ext_resource type="PackedScene" uid="uid://chugdpycfbynm" path="res://scenes/main_world/world_architecture/pickable.tscn" id="1_7n8vs"]
+[ext_resource type="PackedScene" uid="uid://fgab1ldoew0g" path="res://assets/models/arcade_room/small_frame_me_floki.glb" id="2_as1u0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pfqdw"]
+radius = 0.866199
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_efnbx"]
+size = Vector3(0.22168, 0.40625, 0.296631)
+
+[node name="MeAndFloki" instance=ExtResource("1_7n8vs")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerNear" index="0"]
+shape = SubResource("SphereShape3D_pfqdw")
+
+[node name="small_frame_me_floki" parent="." index="1" instance=ExtResource("2_as1u0")]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_efnbx")

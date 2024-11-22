@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=31 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -21,9 +21,12 @@
 [ext_resource type="PackedScene" uid="uid://1nvyd2ntsj2f" path="res://scenes/main_world/world_architecture/static_furniture/arcade_machine.tscn" id="15_m55oe"]
 [ext_resource type="PackedScene" uid="uid://dpwsc4sqvqbu3" path="res://assets/models/arcade_room/tv_2.glb" id="16_8pwij"]
 [ext_resource type="PackedScene" uid="uid://djcdhu31fxgg6" path="res://scenes/main_world/world_architecture/static_furniture/basketball_arcade.tscn" id="16_ln0mg"]
+[ext_resource type="PackedScene" uid="uid://cbxhi0v0l647r" path="res://scenes/main_world/world_architecture/pickable_furniture/me_and_floki.tscn" id="17_if6do"]
 [ext_resource type="PackedScene" uid="uid://e7wilhvot0sx" path="res://scenes/main_world/world_architecture/static_furniture/claw_arcade.tscn" id="17_kyfoc"]
 [ext_resource type="PackedScene" uid="uid://bwrpiay6pwqql" path="res://scenes/main_world/world_architecture/static_furniture/dance_arcade.tscn" id="18_jpdsy"]
+[ext_resource type="PackedScene" uid="uid://bl62j58vohvhk" path="res://scenes/main_world/world_architecture/pickable_furniture/me_and_lua.tscn" id="18_mtyh5"]
 [ext_resource type="PackedScene" uid="uid://bsouf4hpjupv5" path="res://scenes/main_world/world_architecture/static_furniture/ticket_machine.tscn" id="19_7ix5i"]
+[ext_resource type="PackedScene" uid="uid://bul7ji0dyusn" path="res://scenes/main_world/world_architecture/pickable_furniture/me_and_wife.tscn" id="19_apltj"]
 [ext_resource type="PackedScene" uid="uid://coy8yfg5fakye" path="res://scenes/main_world/world_architecture/static_furniture/wheel_arcade.tscn" id="20_kd1rf"]
 [ext_resource type="PackedScene" uid="uid://c20tq70tu1qwv" path="res://scenes/main_world/world_architecture/static_furniture/pinball.tscn" id="21_biwev"]
 [ext_resource type="PackedScene" uid="uid://dgt46wcvtq00m" path="res://scenes/main_world/world_architecture/static_furniture/vending_machine.tscn" id="22_m1hsi"]
@@ -1262,6 +1265,15 @@ transform = Transform3D(0.999961, -0.00883125, 0, 0.00883125, 0.999961, 0, 0, 0,
 
 [node name="tv_2" parent="WorldDecoration/Reception" instance=ExtResource("16_8pwij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90662, 2.08472, -24.9821)
+
+[node name="MeAndFloki" parent="WorldDecoration/Reception" instance=ExtResource("17_if6do")]
+transform = Transform3D(0.34038, 0, 0.940288, 0, 1, 0, -0.940288, 0, 0.34038, 6.49915, 1.79177, -16.0878)
+
+[node name="MeAndLua" parent="WorldDecoration/Reception" instance=ExtResource("18_mtyh5")]
+transform = Transform3D(-0.313992, 0, 0.949425, 0, 1, 0, -0.949425, 0, -0.313992, 6.6599, 1.71138, -17.9978)
+
+[node name="MeAndWife" parent="WorldDecoration/Reception" instance=ExtResource("19_apltj")]
+transform = Transform3D(-0.026177, 0, 0.999657, 0, 1, 0, -0.999657, 0, -0.026177, 6.60519, 1.80342, -17.0488)
 
 [node name="PlayArea" type="Node3D" parent="WorldDecoration"]
 
