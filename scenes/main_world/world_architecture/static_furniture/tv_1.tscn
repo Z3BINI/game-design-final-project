@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c54v2noge60cw"]
+
+[ext_resource type="PackedScene" uid="uid://60flk17fvy36" path="res://scenes/main_world/world_architecture/static_furniture.tscn" id="1_j7i7r"]
+[ext_resource type="PackedScene" uid="uid://b5uffjh3s4r5n" path="res://assets/models/arcade_room/tv_1.glb" id="2_isfkd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_52rwb"]
+size = Vector3(0.134766, 1.99219, 3.99512)
+
+[node name="TV1" instance=ExtResource("1_j7i7r")]
+
+[node name="tv_1" parent="." index="0" instance=ExtResource("2_isfkd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("BoxShape3D_52rwb")

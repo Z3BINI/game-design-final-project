@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=28 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -17,7 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://ewn4uob2i153" path="res://scenes/main_world/world_architecture/pickable_furniture/gone_fishing_sign.tscn" id="13_klecc"]
 [ext_resource type="PackedScene" uid="uid://b4ifijq3b8vr1" path="res://scenes/main_world/world_architecture/static_furniture/air_hockey.tscn" id="14_2klj4"]
 [ext_resource type="PackedScene" uid="uid://wilqh4gkv8bx" path="res://scenes/main_world/world_architecture/static_furniture/prizes.tscn" id="14_k6da6"]
+[ext_resource type="PackedScene" uid="uid://c54v2noge60cw" path="res://scenes/main_world/world_architecture/static_furniture/tv_1.tscn" id="15_b7cyj"]
 [ext_resource type="PackedScene" uid="uid://1nvyd2ntsj2f" path="res://scenes/main_world/world_architecture/static_furniture/arcade_machine.tscn" id="15_m55oe"]
+[ext_resource type="PackedScene" uid="uid://dpwsc4sqvqbu3" path="res://assets/models/arcade_room/tv_2.glb" id="16_8pwij"]
 [ext_resource type="PackedScene" uid="uid://djcdhu31fxgg6" path="res://scenes/main_world/world_architecture/static_furniture/basketball_arcade.tscn" id="16_ln0mg"]
 [ext_resource type="PackedScene" uid="uid://e7wilhvot0sx" path="res://scenes/main_world/world_architecture/static_furniture/claw_arcade.tscn" id="17_kyfoc"]
 [ext_resource type="PackedScene" uid="uid://bwrpiay6pwqql" path="res://scenes/main_world/world_architecture/static_furniture/dance_arcade.tscn" id="18_jpdsy"]
@@ -1218,13 +1220,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, -51)
 [node name="Reception" type="Node3D" parent="WorldDecoration"]
 
 [node name="poster" parent="WorldDecoration/Reception" instance=ExtResource("5_hlwwt")]
-transform = Transform3D(-4.37114e-08, 0.052336, -0.99863, 0, 0.99863, 0.052336, 1, 2.28768e-09, -4.36515e-08, 6.94273, 2.09621, -11.7777)
+transform = Transform3D(-4.37114e-08, 0.052336, -0.99863, 0, 0.99863, 0.052336, 1, 2.28768e-09, -4.36515e-08, 6.94273, 2.09621, -12.9408)
 
 [node name="Lamp" parent="WorldDecoration/Reception" instance=ExtResource("6_1g7fv")]
-transform = Transform3D(0.894154, 0, -0.447759, 0, 1, 0, 0.447759, 0, 0.894154, 4.95173, 0, -13.3823)
+transform = Transform3D(0.894154, 0, -0.447759, 0, 1, 0, 0.447759, 0, 0.894154, 4.95173, 0, -15.1192)
 
 [node name="Lamp2" parent="WorldDecoration/Reception" instance=ExtResource("6_1g7fv")]
-transform = Transform3D(-0.83962, 0, -0.543175, 0, 1, 0, 0.543175, 0, -0.83962, 5.09103, 0, -17.3709)
+transform = Transform3D(-0.83962, 0, -0.543175, 0, 1, 0, 0.543175, 0, -0.83962, 5.09103, 0, -19.1078)
 mass = 30.0
 
 [node name="DOOR" parent="WorldDecoration/Reception" instance=ExtResource("5_bk2d7")]
@@ -1234,14 +1236,14 @@ transform = Transform3D(-1.75, 0, -2.64243e-07, 0, 1.75, 0, 2.64243e-07, 0, -1.7
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -14.945)
 
 [node name="Reception" parent="WorldDecoration/Reception" instance=ExtResource("11_he1qm")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.4341, 0.629454, -6.55007)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.31252, 0.629454, -6.55007)
 collision_mask = 1
 
 [node name="TrashCan" parent="WorldDecoration/Reception" instance=ExtResource("11_dbl5s")]
 transform = Transform3D(0.156434, 0, 0.987688, 0, 1, 0, -0.987688, 0, 0.156434, 3.76316, 0, -10.476)
 
 [node name="Shelf" parent="WorldDecoration/Reception" instance=ExtResource("11_3f0ux")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.57573, 1.4909, -15.2362)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.57573, 1.4909, -16.9731)
 
 [node name="GumballMachine" parent="WorldDecoration/Reception" instance=ExtResource("12_yh43j")]
 transform = Transform3D(-0.643028, 0, 0.765842, 0, 1, 0, -0.765842, 0, -0.643028, 6.31737, 0.926939, 0.254071)
@@ -1250,10 +1252,16 @@ transform = Transform3D(-0.643028, 0, 0.765842, 0, 1, 0, -0.765842, 0, -0.643028
 transform = Transform3D(-0.0782502, 0, 0.996934, 0, 1, 0, -0.996934, 0, -0.0782502, 3.4808, 1.31492, -7.41203)
 
 [node name="Prizes" parent="WorldDecoration/Reception" instance=ExtResource("14_k6da6")]
-transform = Transform3D(0.0244321, 0, -0.999702, 0, 1, 0, 0.999702, 0, 0.0244321, 6.65913, 0, -5.64661)
+transform = Transform3D(0.0244321, 0, -0.999702, 0, 1, 0, 0.999702, 0, 0.0244321, 6.35999, 0, -5.64661)
 
 [node name="Prizes2" parent="WorldDecoration/Reception" instance=ExtResource("14_k6da6")]
-transform = Transform3D(0.0406549, 0, -0.999173, 0, 1, 0, 0.999173, 0, 0.0406549, 6.65913, 0, -8.69418)
+transform = Transform3D(0.0406549, 0, -0.999173, 0, 1, 0, 0.999173, 0, 0.0406549, 6.35999, 0, -8.69418)
+
+[node name="TV1" parent="WorldDecoration/Reception" instance=ExtResource("15_b7cyj")]
+transform = Transform3D(0.999961, -0.00883125, 0, 0.00883125, 0.999961, 0, 0, 0, 1, -4.93508, 2.09755, -17.013)
+
+[node name="tv_2" parent="WorldDecoration/Reception" instance=ExtResource("16_8pwij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90662, 2.08472, -24.9821)
 
 [node name="PlayArea" type="Node3D" parent="WorldDecoration"]
 
@@ -1352,6 +1360,12 @@ transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -10.76
 
 [node name="ac4" parent="WorldDecoration/PlayArea" instance=ExtResource("5_fd2xj")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 12.9817, 4, -49.8072)
+
+[node name="TrashCan2" parent="WorldDecoration/PlayArea" instance=ExtResource("11_dbl5s")]
+transform = Transform3D(0.809775, 0, 0.58674, 0, 1, 0, -0.58674, 0, 0.809775, -5.57524, 0, -43.5851)
+
+[node name="TrashCan3" parent="WorldDecoration/PlayArea" instance=ExtResource("11_dbl5s")]
+transform = Transform3D(0.809775, 0, 0.58674, 0, 1, 0, -0.58674, 0, 0.809775, 7.56462, 0, -46.2719)
 
 [node name="PlayableArcades" type="Node3D" parent="."]
 

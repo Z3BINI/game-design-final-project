@@ -6,10 +6,12 @@ signal drop
 var player_hold_node : Marker3D = null # Acts as player nearby bool as well
 var original_parent_node : Node3D
 var is_picked : bool = false
+var player : Player3d
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	original_parent_node = get_parent()
+	player = get_tree().get_first_node_in_group("player")
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("interact")):
@@ -27,13 +29,16 @@ func _physics_process(delta: float) -> void:
 
 func _on_player_near_body_entered(body: Player3d) -> void:
 	player_hold_node = body.hold_position
+	body.toggle_hud_label(true, "Press [E] to inspect!")
 
 func _on_player_near_body_exited(body: Player3d) -> void:
+	body.toggle_hud_label(false)
 	player_hold_node = null
-	drop.emit() 
 	
 func _on_pick_up() -> void:
+	player.toggle_hud_label(true, "Press [E] to drop!")
 	freeze = true
 
 func _on_drop() -> void:
+	player.toggle_hud_label(true, "Press [E] to inspect!")
 	freeze = false
