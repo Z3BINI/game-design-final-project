@@ -1280,7 +1280,10 @@ transform = Transform3D(-0.026177, 0, 0.999657, 0, 1, 0, -0.999657, 0, -0.026177
 transform = Transform3D(-0.325568, 0, 0.945519, 0, 1, 0, -0.945519, 0, -0.325568, -3.84664, 0.069729, 0.428807)
 
 [node name="FireExtinguisher2" parent="WorldDecoration/Reception" instance=ExtResource("20_g74hs")]
-transform = Transform3D(-0.848972, 0, -0.528438, 0, 1, 0, 0.528438, 0, -0.848972, 6.50237, 0.0506395, -22.7834)
+transform = Transform3D(-0.848972, 0, -0.528438, 0, 1, 0, 0.528438, 0, -0.848972, 6.50237, 0.0506395, -25.4002)
+
+[node name="VendingMachine" parent="WorldDecoration/Reception" instance=ExtResource("22_m1hsi")]
+transform = Transform3D(0.0265783, 0, -0.999647, 0, 1, 0, 0.999647, 0, 0.0265783, 6.29909, 0, -24.0655)
 
 [node name="PlayArea" type="Node3D" parent="WorldDecoration"]
 
