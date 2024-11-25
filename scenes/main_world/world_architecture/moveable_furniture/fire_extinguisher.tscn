@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhvsykigmkyfw"]
+
+[ext_resource type="PackedScene" uid="uid://btg3fnqw6vv2t" path="res://assets/models/arcade_room/FireExtinguisher_lowpo.gltf" id="1_1dmqd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xpkvv"]
+friction = 0.8
+rough = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3gxjt"]
+height = 0.953096
+radius = 0.177622
+
+[node name="FireExtinguisher" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 7
+mass = 15.0
+physics_material_override = SubResource("PhysicsMaterial_xpkvv")
+
+[node name="FireExtinguisher_lowpo" parent="." instance=ExtResource("1_1dmqd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 1.44485, 0.207649, 1.87783)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0213523, 0.478375, 0)
+shape = SubResource("CylinderShape3D_3gxjt")

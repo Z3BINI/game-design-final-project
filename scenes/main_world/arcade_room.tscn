@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=32 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://bl62j58vohvhk" path="res://scenes/main_world/world_architecture/pickable_furniture/me_and_lua.tscn" id="18_mtyh5"]
 [ext_resource type="PackedScene" uid="uid://bsouf4hpjupv5" path="res://scenes/main_world/world_architecture/static_furniture/ticket_machine.tscn" id="19_7ix5i"]
 [ext_resource type="PackedScene" uid="uid://bul7ji0dyusn" path="res://scenes/main_world/world_architecture/pickable_furniture/me_and_wife.tscn" id="19_apltj"]
+[ext_resource type="PackedScene" uid="uid://bhvsykigmkyfw" path="res://scenes/main_world/world_architecture/moveable_furniture/fire_extinguisher.tscn" id="20_g74hs"]
 [ext_resource type="PackedScene" uid="uid://coy8yfg5fakye" path="res://scenes/main_world/world_architecture/static_furniture/wheel_arcade.tscn" id="20_kd1rf"]
 [ext_resource type="PackedScene" uid="uid://c20tq70tu1qwv" path="res://scenes/main_world/world_architecture/static_furniture/pinball.tscn" id="21_biwev"]
 [ext_resource type="PackedScene" uid="uid://dgt46wcvtq00m" path="res://scenes/main_world/world_architecture/static_furniture/vending_machine.tscn" id="22_m1hsi"]
@@ -1275,13 +1276,19 @@ transform = Transform3D(-0.313992, 0, 0.949425, 0, 1, 0, -0.949425, 0, -0.313992
 [node name="MeAndWife" parent="WorldDecoration/Reception" instance=ExtResource("19_apltj")]
 transform = Transform3D(-0.026177, 0, 0.999657, 0, 1, 0, -0.999657, 0, -0.026177, 6.60519, 1.80342, -17.0488)
 
+[node name="FireExtinguisher" parent="WorldDecoration/Reception" instance=ExtResource("20_g74hs")]
+transform = Transform3D(-0.325568, 0, 0.945519, 0, 1, 0, -0.945519, 0, -0.325568, -3.84664, 0.069729, 0.428807)
+
+[node name="FireExtinguisher2" parent="WorldDecoration/Reception" instance=ExtResource("20_g74hs")]
+transform = Transform3D(-0.848972, 0, -0.528438, 0, 1, 0, 0.528438, 0, -0.848972, 6.50237, 0.0506395, -22.7834)
+
 [node name="PlayArea" type="Node3D" parent="WorldDecoration"]
 
 [node name="AirHockey" parent="WorldDecoration/PlayArea" instance=ExtResource("14_2klj4")]
 transform = Transform3D(0.897674, 0, -0.44066, 0, 1, 0, 0.44066, 0, 0.897674, 11.7059, 0, -37.87)
 
 [node name="AirHockey2" parent="WorldDecoration/PlayArea" instance=ExtResource("14_2klj4")]
-transform = Transform3D(-0.306991, 0, 0.951712, 0, 1, 0, -0.951712, 0, -0.306991, -11.9127, 0, -45.5904)
+transform = Transform3D(-0.306991, 0, 0.951712, 0, 1, 0, -0.951712, 0, -0.306991, -10.8304, 0, -45.5904)
 
 [node name="ArcadeMachine" parent="WorldDecoration/PlayArea" instance=ExtResource("15_m55oe")]
 transform = Transform3D(-0.999056, 0, -0.043445, 0, 1, 0, 0.043445, 0, -0.999056, 8.35819, 0, -32)
@@ -1341,7 +1348,7 @@ transform = Transform3D(-0.00968647, 0, 0.999953, 0, 1, 0, -0.999953, 0, -0.0096
 transform = Transform3D(0.063975, 0, 0.997951, 0, 1, 0, -0.997951, 0, 0.063975, -16.3307, 0, -40.205)
 
 [node name="WheelArcade2" parent="WorldDecoration/PlayArea" instance=ExtResource("20_kd1rf")]
-transform = Transform3D(0.0499305, 0, -0.998753, 0, 1, 0, 0.998753, 0, 0.0499305, 18.0165, 0, -45.6892)
+transform = Transform3D(0.0499305, 0, -0.998753, 0, 1, 0, 0.998753, 0, 0.0499305, 18.0165, 0, -48.0192)
 
 [node name="Pinball" parent="WorldDecoration/PlayArea" instance=ExtResource("21_biwev")]
 transform = Transform3D(0.999997, 0, -0.00242601, 0, 1, 0, 0.00242601, 0, 0.999997, 5.53614, 0, -53.9603)
@@ -1364,6 +1371,9 @@ transform = Transform3D(0.99983, 0, -0.0184296, 0, 1, 0, 0.0184296, 0, 0.99983, 
 [node name="VendingMachine2" parent="WorldDecoration/PlayArea" instance=ExtResource("22_m1hsi")]
 transform = Transform3D(-0.022129, 0, -0.999755, 0, 1, 0, 0.999755, 0, -0.022129, 18.331, 0, -38.5673)
 
+[node name="VendingMachine3" parent="WorldDecoration/PlayArea" instance=ExtResource("22_m1hsi")]
+transform = Transform3D(-0.0226873, 0, 0.999743, 0, 1, 0, -0.999743, 0, -0.0226873, -16.0915, 2.38419e-07, -46.569)
+
 [node name="ac2" parent="WorldDecoration/PlayArea" instance=ExtResource("5_fd2xj")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.03394, 4, -34.3696)
 
@@ -1378,6 +1388,12 @@ transform = Transform3D(0.809775, 0, 0.58674, 0, 1, 0, -0.58674, 0, 0.809775, -5
 
 [node name="TrashCan3" parent="WorldDecoration/PlayArea" instance=ExtResource("11_dbl5s")]
 transform = Transform3D(0.809775, 0, 0.58674, 0, 1, 0, -0.58674, 0, 0.809775, 7.56462, 0, -46.2719)
+
+[node name="FireExtinguisher2" parent="WorldDecoration/PlayArea" instance=ExtResource("20_g74hs")]
+transform = Transform3D(0.895712, 0, 0.444635, 0, 1, 0, -0.444635, 0, 0.895712, -16.7237, 0.0506395, -44.2548)
+
+[node name="FireExtinguisher3" parent="WorldDecoration/PlayArea" instance=ExtResource("20_g74hs")]
+transform = Transform3D(-0.798635, 0, -0.601815, 0, 1, 0, 0.601815, 0, -0.798635, 18.5959, 0.114345, -41.3937)
 
 [node name="PlayableArcades" type="Node3D" parent="."]
 
