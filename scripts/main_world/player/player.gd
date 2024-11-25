@@ -12,6 +12,7 @@ var PLAYER_GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gra
 
 var input_direction : Vector2 
 var push_force = 5
+var has_item : bool = false
 
 @onready var camera_pivot = $CameraStand
 @onready var hud_label = $Hud/Label

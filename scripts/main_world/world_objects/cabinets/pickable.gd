@@ -28,8 +28,10 @@ func _physics_process(delta: float) -> void:
 		look_at(player_hold_node.get_parent().global_position)
 
 func _on_player_near_body_entered(body: Player3d) -> void:
-	player_hold_node = body.hold_position
-	body.toggle_hud_label(true, "Press [E] to inspect!")
+	if !body.has_item:
+		body.has_item = true
+		player_hold_node = body.hold_position
+		body.toggle_hud_label(true, "Press [E] to inspect!")
 
 func _on_player_near_body_exited(body: Player3d) -> void:
 	body.toggle_hud_label(false)
@@ -40,5 +42,6 @@ func _on_pick_up() -> void:
 	freeze = true
 
 func _on_drop() -> void:
+	player.has_item = false
 	player.toggle_hud_label(true, "Press [E] to inspect!")
 	freeze = false
