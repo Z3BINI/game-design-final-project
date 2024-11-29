@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=33 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://bhvsykigmkyfw" path="res://scenes/main_world/world_architecture/moveable_furniture/fire_extinguisher.tscn" id="20_g74hs"]
 [ext_resource type="PackedScene" uid="uid://coy8yfg5fakye" path="res://scenes/main_world/world_architecture/static_furniture/wheel_arcade.tscn" id="20_kd1rf"]
 [ext_resource type="PackedScene" uid="uid://c20tq70tu1qwv" path="res://scenes/main_world/world_architecture/static_furniture/pinball.tscn" id="21_biwev"]
+[ext_resource type="PackedScene" uid="uid://ckcj4qvkwyjoi" path="res://scenes/main_world/world_architecture/moveable_furniture/sign.tscn" id="22_3j0ob"]
 [ext_resource type="PackedScene" uid="uid://dgt46wcvtq00m" path="res://scenes/main_world/world_architecture/static_furniture/vending_machine.tscn" id="22_m1hsi"]
 
 [node name="ArcadeRoom" type="Node3D"]
@@ -1179,6 +1180,9 @@ transform = Transform3D(-0.848972, 0, -0.528438, 0, 1, 0, 0.528438, 0, -0.848972
 
 [node name="VendingMachine" parent="WorldDecoration/Reception" instance=ExtResource("22_m1hsi")]
 transform = Transform3D(0.0265783, 0, -0.999647, 0, 1, 0, 0.999647, 0, 0.0265783, 6.29909, 0, -24.0655)
+
+[node name="Sign" parent="WorldDecoration/Reception" instance=ExtResource("22_3j0ob")]
+transform = Transform3D(0.785857, 0, -0.618408, 0, 1, 0, 0.618408, 0, 0.785857, 4.51355, 0.408834, -28.471)
 
 [node name="PlayArea" type="Node3D" parent="WorldDecoration"]
 

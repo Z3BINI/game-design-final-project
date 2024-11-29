@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckcj4qvkwyjoi"]
+
+[ext_resource type="PackedScene" uid="uid://y6nwdkwq6dhd" path="res://assets/models/arcade_room/info_thing.glb" id="1_r8cf0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_syrs0"]
+rough = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e7d8n"]
+points = PackedVector3Array(-0.305595, 0.374951, -0.0497048, -0.281963, -0.375, -0.116794, -0.305176, -0.375, 0, -0.305595, 0.374951, 0.04851, -0.305595, 1.375, -0.0497048, -0.215795, -0.375, -0.215786, -0.281963, -0.375, 0.116735, -0.305595, 1.375, 0.04851, 0.305595, 1.375, -0.0497048, 0, -0.375, -0.305159, -0.116782, -0.375, -0.28198, -0.215795, -0.375, 0.215726, 0.305595, 1.375, 0.04851, -0.116782, -0.375, 0.28192, 0, -0.375, 0.305159, 0.305595, 0.374951, -0.0497048, 0.281904, -0.375, -0.116794, 0.215735, -0.375, -0.215786, 0.116722, -0.375, -0.28198, 0.116722, -0.375, 0.28192, 0.215735, -0.375, 0.215726, 0.281904, -0.375, 0.116735, 0.305595, 0.374951, 0.04851, 0.305116, -0.375, 0)
+
+[node name="Sign" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 7
+mass = 25.0
+physics_material_override = SubResource("PhysicsMaterial_syrs0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_e7d8n")
+
+[node name="info_thing" parent="." instance=ExtResource("1_r8cf0")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.39504, 0.0277713)
+spot_range = 0.991
+spot_attenuation = 1.77
+spot_angle = 19.8382
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.153193, 1.39504, 0.0277713)
+spot_range = 0.991
+spot_attenuation = 1.77
+spot_angle = 19.8382
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.148495, 1.39504, 0.0277713)
+spot_range = 0.991
+spot_attenuation = 1.77
+spot_angle = 19.8382
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.336055, 0.0277713)
+spot_range = 0.991
+spot_attenuation = 1.77
+spot_angle = 19.8382
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.153193, 0.336055, 0.0277713)
+spot_range = 0.991
+spot_attenuation = 1.77
+spot_angle = 19.8382
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.148495, 0.336055, 0.0277713)
+spot_range = 0.991
+spot_attenuation = 1.77
+spot_angle = 19.8382
+
+[editable path="info_thing"]

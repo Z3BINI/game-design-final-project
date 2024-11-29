@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://drkiadhghqljs"]
+[gd_scene load_steps=8 format=3 uid="uid://drkiadhghqljs"]
 
+[ext_resource type="Script" path="res://scripts/main_world/world_objects/floor_tile.gd" id="1_b4yj1"]
 [ext_resource type="Texture2D" uid="uid://do1adcyjerghm" path="res://assets/textures/arcade_carpet/diffuse.png" id="1_tjxa1"]
 [ext_resource type="Texture2D" uid="uid://c2v3pceprc01g" path="res://assets/textures/arcade_carpet/emission.png" id="2_qqh5k"]
 [ext_resource type="Texture2D" uid="uid://b5wi521jx70r6" path="res://assets/textures/arcade_carpet/normal.png" id="3_fh8vb"]
@@ -21,6 +22,7 @@ size = Vector3(2, 0.05, 2)
 [node name="FloorTile" type="StaticBody3D"]
 collision_mask = 7
 collision_priority = 999.0
+script = ExtResource("1_b4yj1")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_eycga")
