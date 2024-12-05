@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=34 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://c20tq70tu1qwv" path="res://scenes/main_world/world_architecture/static_furniture/pinball.tscn" id="21_biwev"]
 [ext_resource type="PackedScene" uid="uid://ckcj4qvkwyjoi" path="res://scenes/main_world/world_architecture/moveable_furniture/sign.tscn" id="22_3j0ob"]
 [ext_resource type="PackedScene" uid="uid://dgt46wcvtq00m" path="res://scenes/main_world/world_architecture/static_furniture/vending_machine.tscn" id="22_m1hsi"]
+[ext_resource type="PackedScene" uid="uid://de732jrjao50w" path="res://scenes/main_world/objects/cabinets/playable/insane_pool.tscn" id="32_22ohr"]
 
 [node name="ArcadeRoom" type="Node3D"]
 script = ExtResource("1_d6cfw")
@@ -1301,6 +1302,10 @@ transform = Transform3D(-0.798635, 0, -0.601815, 0, 1, 0, 0.601815, 0, -0.798635
 
 [node name="QuackMan5" parent="PlayableArcades" instance=ExtResource("4_ckxmh")]
 transform = Transform3D(0.999932, 0, -0.0116585, 0, 1, 0, 0.0116585, 0, 0.999932, 3.45862, 0, -42.4631)
+
+[node name="InsanePool" parent="PlayableArcades" instance=ExtResource("32_22ohr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49838, 0, -42.5469)
+this_game = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ca12t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72194, 0, -0.78297)

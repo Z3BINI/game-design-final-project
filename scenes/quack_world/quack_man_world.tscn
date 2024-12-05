@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ck0146jgm5i4"]
+[gd_scene load_steps=14 format=4 uid="uid://ck0146jgm5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bllaylpcu6vj1" path="res://scenes/quack_world/player/player.tscn" id="1_7gm2t"]
 [ext_resource type="Script" path="res://scripts/quack_world/quack_man_world.gd" id="1_gin2k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bgjypa40jox5d" path="res://assets/quack_man/world/grass.png" id="2_4ihah"]
 [ext_resource type="Texture2D" uid="uid://bybr7dvh5egxy" path="res://assets/quack_man/world/spice.png" id="5_1iu0y"]
 [ext_resource type="PackedScene" uid="uid://dfe5rhh563gce" path="res://scenes/global/ui.tscn" id="7_dvbcu"]
+[ext_resource type="PackedScene" uid="uid://xvb7ik5v73qf" path="res://scenes/ui/pause/pause_menu.tscn" id="7_r4ka1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c8kjb"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -138,6 +139,8 @@ tile_map_data = PackedByteArray("AABb/7D/AAABAAAAAABb/7T/AAAAAAAAAABb//j/AAABAAE
 tile_set = SubResource("TileSet_rn6k0")
 
 [node name="UI" parent="." instance=ExtResource("7_dvbcu")]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("7_r4ka1")]
 
 [node name="Player" parent="." instance=ExtResource("1_7gm2t")]
 position = Vector2(-1738, 271)

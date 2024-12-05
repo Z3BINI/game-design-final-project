@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://db8hflx8ubsdj"]
+[gd_scene load_steps=22 format=3 uid="uid://db8hflx8ubsdj"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/crazy_pool.gd" id="1_54vtn"]
 [ext_resource type="Texture2D" uid="uid://bg1gwtvp0g2uf" path="res://assets/insane_pool/world/table.png" id="1_70ftb"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dc71h3vphxdpa" path="res://assets/insane_pool/world/timer.png" id="7_faygm"]
 [ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="8_28sne"]
 [ext_resource type="Texture2D" uid="uid://vrbltktbn552" path="res://assets/insane_pool/world/score.png" id="9_t5fdc"]
+[ext_resource type="PackedScene" uid="uid://xvb7ik5v73qf" path="res://scenes/ui/pause/pause_menu.tscn" id="11_t1lxw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2rdb2"]
 font = ExtResource("8_28sne")
@@ -411,6 +412,9 @@ pivot_offset = Vector2(24, 25)
 text = "69"
 label_settings = SubResource("LabelSettings_oecm8")
 horizontal_alignment = 1
+
+[node name="PauseMenu" parent="Ui/FishEyeShaderEffect" instance=ExtResource("11_t1lxw")]
+layout_mode = 1
 
 [node name="ArcadeBorder" type="TextureRect" parent="Ui"]
 anchors_preset = 15
