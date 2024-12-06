@@ -24,7 +24,7 @@ emission_energy_multiplier = 3.0
 emission_texture = SubResource("ViewportTexture_j2762")
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_xdrs7"]
-file = "res://assets/videos/cat_meme.ogg"
+file = "res://assets/videos/cat_meme.ogv"
 
 [node name="ArcadeMachine" instance=ExtResource("1_qrcjt")]
 

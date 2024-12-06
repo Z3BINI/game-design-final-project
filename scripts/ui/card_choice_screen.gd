@@ -94,7 +94,8 @@ func load_cards_to_array(path):
 			if dir.current_is_dir():
 				print("Found directory: " + file_name)
 			else:
-				var card_scene : PackedScene = load(path + "/" + file_name )
+				print(path + file_name.get_slice(".", 0) + ".tscn")
+				var card_scene : PackedScene = load(path + file_name.get_slice(".", 0) + ".tscn")
 				var card_obj : CardUpgrade = card_scene.instantiate()
 				if card_obj.needs_egg:
 					egg_card_array.append(card_obj)

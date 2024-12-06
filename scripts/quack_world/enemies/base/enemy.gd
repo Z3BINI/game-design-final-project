@@ -31,56 +31,52 @@ var cd_counter : float
 var my_pointer : Node2D
 var dead : bool = false
 
+var skrrttt : bool = true
+
 func _ready():	
 	player = get_tree().get_first_node_in_group("player")
 	score = get_tree().get_first_node_in_group("score")
 	navigation_agent_2d.target_desired_distance = ATTACK_DISTANCE
 	
-	set_physics_process(false) # Fix Nav error on first frame
-	call_deferred("dump_first_physics_frame")
-	
 	spawn_pointer()
 	set_damage()
 	set_hp()
+	
+	await get_tree().create_timer(1).timeout
+	skrrttt = false
 
 func _physics_process(delta):
-	
-	if !dead:
-		match current_state:
-			state.CHASE:
-				navigation_agent_2d.target_position = player.global_position
-				var direction : Vector2 = (navigation_agent_2d.get_next_path_position() - global_position).normalized()
-				velocity = velocity.move_toward(direction * BASE_MAX_SPEED * current_multiplyer, ACCEL * delta)
-				look_at(player.global_position)
-			state.ATTACK:
-				if !player.disable_player:
+	if !skrrttt:
+		if !dead:
+			match current_state:
+				state.CHASE:
+					navigation_agent_2d.target_position = player.global_position
+					var direction : Vector2 = (navigation_agent_2d.get_next_path_position() - global_position).normalized()
+					velocity = velocity.move_toward(direction * BASE_MAX_SPEED * current_multiplyer, ACCEL * delta)
 					look_at(player.global_position)
-					if velocity != Vector2.ZERO:
-						velocity = velocity.move_toward(Vector2.ZERO, DECEL * delta)
-					var player_dist : float = (player.global_position - global_position).length()
-					cd_counter -= delta
-					
-					if cd_counter <= 0:
-						cd_counter = BASE_ATTACK_CD / current_multiplyer
-						animation_player.play("attack")
-					
-					if player_dist > ATTACK_DISTANCE:
-						current_state = state.CHASE
-						animation_player.play("chase")
-			
-	move_and_slide()
+				state.ATTACK:
+					if !player.disable_player:
+						look_at(player.global_position)
+						if velocity != Vector2.ZERO:
+							velocity = velocity.move_toward(Vector2.ZERO, DECEL * delta)
+						var player_dist : float = (player.global_position - global_position).length()
+						cd_counter -= delta
+						
+						if cd_counter <= 0:
+							cd_counter = BASE_ATTACK_CD / current_multiplyer
+							animation_player.play("attack")
+						
+						if player_dist > ATTACK_DISTANCE:
+							current_state = state.CHASE
+							animation_player.play("chase")
+				
+		move_and_slide()
 
 func _on_navigation_agent_2d_target_reached():
 	if !dead:
 		current_state = state.ATTACK
 		if cd_counter == BASE_ATTACK_CD / current_multiplyer:
 			animation_player.play("attack")
-
-func dump_first_physics_frame() -> void:
-	#wait until just before the second physics_frame is ready to go, then
-	#re-enable _physics_process()
-	await get_tree().physics_frame
-	set_physics_process(true)
 
 func _on_health_component_died() -> void:
 	dead = true

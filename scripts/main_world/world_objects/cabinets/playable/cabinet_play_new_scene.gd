@@ -1,7 +1,7 @@
 extends StaticBody3D
 
-var quack_game : PackedScene = load("res://scenes/quack_world/quack_man_world.tscn")
-var pool_game : PackedScene = load("res://scenes/insane_pool/crazy_pool.tscn")
+var quack_game : PackedScene = preload("res://scenes/quack_world/quack_man_world.tscn")
+var pool_game : PackedScene = preload("res://scenes/insane_pool/crazy_pool.tscn")
 
 var player_near : bool = false
 enum game {QUACK, POOL}

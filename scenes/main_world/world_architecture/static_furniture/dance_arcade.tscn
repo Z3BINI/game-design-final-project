@@ -24,7 +24,7 @@ emission_energy_multiplier = 3.0
 emission_texture = SubResource("ViewportTexture_swcym")
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_dvsv6"]
-file = "res://assets/videos/shrek_dance.ogg"
+file = "res://assets/videos/shrek_dance.ogv"
 
 [node name="DanceArcade" instance=ExtResource("1_4d55l")]
 
