@@ -23,9 +23,8 @@ shape = SubResource("BoxShape3D_638jh")
 [node name="lamp" parent="." instance=ExtResource("1_3i05v")]
 transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0.0760703, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0442, -0.871987)
-light_energy = 2.0
+[node name="OmniLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.857841, 0.513916, 0, -0.513916, 0.857841, 0, 2.27976, -0.663487)
+light_energy = 7.0
 shadow_enabled = true
-omni_range = 100.0
-omni_attenuation = 2.0
+spot_angle = 64.47

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://db8hflx8ubsdj"]
+[gd_scene load_steps=27 format=3 uid="uid://db8hflx8ubsdj"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/crazy_pool.gd" id="1_54vtn"]
 [ext_resource type="Texture2D" uid="uid://bg1gwtvp0g2uf" path="res://assets/insane_pool/world/table.png" id="1_70ftb"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dc71h3vphxdpa" path="res://assets/insane_pool/world/timer.png" id="7_faygm"]
 [ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="8_28sne"]
 [ext_resource type="Texture2D" uid="uid://vrbltktbn552" path="res://assets/insane_pool/world/score.png" id="9_t5fdc"]
+[ext_resource type="Texture2D" uid="uid://dlqpbxa0f26du" path="res://assets/quack_man/ui/game_over_bg.png" id="11_dcdlh"]
 [ext_resource type="PackedScene" uid="uid://xvb7ik5v73qf" path="res://scenes/ui/pause/pause_menu.tscn" id="11_t1lxw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2rdb2"]
@@ -53,6 +54,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1248, -77)]
 }
 
 [sub_resource type="Animation" id="Animation_m6j7i"]
@@ -215,13 +228,31 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_sdt6s"]
+resource_name = "stage_cleared"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1248, -77), Vector2(-259, -77), Vector2(-535, -77), Vector2(-2198, -77)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4b4au"]
 _data = {
 "RESET": SubResource("Animation_ghgfi"),
 "spawn_left": SubResource("Animation_m6j7i"),
 "spawn_left_leave": SubResource("Animation_fknov"),
 "spawn_right": SubResource("Animation_56h6f"),
-"spawn_right_leave": SubResource("Animation_lmvv5")
+"spawn_right_leave": SubResource("Animation_lmvv5"),
+"stage_cleared": SubResource("Animation_sdt6s")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n1sjv"]
@@ -237,11 +268,30 @@ shader_parameter/crop_color = Color(0, 0, 0, 1)
 font = ExtResource("8_28sne")
 font_size = 42
 
+[sub_resource type="LabelSettings" id="LabelSettings_yjtnm"]
+font = ExtResource("8_28sne")
+font_size = 128
+font_color = Color(0.36, 0, 0, 1)
+outline_size = 8
+outline_color = Color(0.639216, 0.541176, 0.396078, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jx23k"]
+font = ExtResource("8_28sne")
+font_size = 64
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_5xwjv"]
 font = ExtResource("8_28sne")
 font_size = 64
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bhsov"]
+font = ExtResource("8_28sne")
+font_size = 128
+font_color = Color(0, 1, 0, 1)
+outline_size = 8
 
 [node name="CrazyPool" type="Node2D"]
 script = ExtResource("1_54vtn")
@@ -416,6 +466,88 @@ horizontal_alignment = 1
 [node name="PauseMenu" parent="Ui/FishEyeShaderEffect" instance=ExtResource("11_t1lxw")]
 layout_mode = 1
 
+[node name="GameOver" type="TextureRect" parent="Ui"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_dcdlh")
+
+[node name="Label" type="Label" parent="Ui/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_top = 135.0
+offset_right = 325.0
+offset_bottom = 289.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_yjtnm")
+
+[node name="Score" type="Label" parent="Ui/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -388.0
+offset_top = -91.0
+offset_right = 389.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE: 999999999999999"
+label_settings = SubResource("LabelSettings_jx23k")
+
+[node name="RetryButton" type="Button" parent="Ui/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 39.0
+offset_right = 100.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.932043, 0.889199, 0.827671, 1)
+theme_override_fonts/font = ExtResource("8_28sne")
+theme_override_font_sizes/font_size = 64
+text = "Retry"
+flat = true
+
+[node name="QuitButton" type="Button" parent="Ui/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = 139.0
+offset_right = 21.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.885107, 0.816236, 0.716757, 1)
+theme_override_fonts/font = ExtResource("8_28sne")
+theme_override_font_sizes/font_size = 32
+text = "Quit
+"
+flat = true
+
 [node name="ArcadeBorder" type="TextureRect" parent="Ui"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -441,5 +573,22 @@ label_settings = SubResource("LabelSettings_5xwjv")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-3, -224)
 
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1248.0
+offset_top = -77.0
+offset_right = 2195.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "STAGE CLEARED!"
+label_settings = SubResource("LabelSettings_bhsov")
+
 [connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]
+[connection signal="pressed" from="Ui/GameOver/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Ui/GameOver/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bl5w0m6c5dn60"]
+[gd_scene load_steps=15 format=3 uid="uid://bl5w0m6c5dn60"]
 
 [ext_resource type="Script" path="res://scripts/main_world/player/player.gd" id="1_ofqso"]
+[ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_qpn2l"]
 [ext_resource type="PackedScene" uid="uid://xvb7ik5v73qf" path="res://scenes/ui/pause/pause_menu.tscn" id="2_y4c2f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i3sr"]
@@ -21,6 +22,12 @@ rings = 16
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m5ynv"]
 radius = 0.529824
 height = 2.06386
+
+[sub_resource type="LabelSettings" id="LabelSettings_3fics"]
+font = ExtResource("2_qpn2l")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_qwsgo"]
 offsets = PackedFloat32Array(0)
@@ -117,6 +124,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "PRESS [E] TO PLAY"
+label_settings = SubResource("LabelSettings_3fics")
 
 [node name="EyeLids" type="TextureRect" parent="Hud"]
 anchors_preset = 15

@@ -35,6 +35,7 @@ signal stage_cleared
 var switch_scene : PackedScene = preload("res://scenes/insane_pool/switches/switch.tscn")
 var ball_scene : PackedScene = preload("res://scenes/insane_pool/balls/color_ball.tscn")
 var hole_scene : PackedScene = preload("res://scenes/insane_pool/holes/hole.tscn")
+var main_world : PackedScene = load("res://scenes/main_world/arcade_room.tscn")
 
 @onready var stage_timer: Timer = $StageTimer
 @onready var holes: Node2D = $Holes
@@ -148,6 +149,9 @@ func _on_stage_cleared() -> void:
 	
 	await clear_stage()
 	
+	animation_player.play("stage_cleared")
+	await animation_player.animation_finished
+	
 	await get_tree().create_timer(2).timeout
 	
 	if stage_sub_difficulty < 4:
@@ -161,8 +165,9 @@ func _on_stage_cleared() -> void:
 	stage_started = true
 
 func _on_stage_timer_timeout() -> void:
-	print("LOST!")
-	get_tree().reload_current_scene()
+	stage_timer.stop()
+	$Ui/GameOver/Score.text = "SCORE: " + $PointsLabel.text
+	$Ui/GameOver.visible = true
 	
 func add_points(amount : int, point_pos : Vector2, color):
 	match color:
@@ -190,3 +195,12 @@ func add_points(amount : int, point_pos : Vector2, color):
 	$PointsLabel.text = "%013d" % points
 	
 	
+
+
+func _on_retry_button_pressed() -> void:
+	get_tree().reload_current_scene()
+
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().change_scene_to_packed(main_world)

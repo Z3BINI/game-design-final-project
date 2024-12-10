@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://de732jrjao50w"]
 
 [ext_resource type="Script" path="res://scripts/main_world/world_objects/cabinets/playable/cabinet_play_new_scene.gd" id="1_oumog"]
-[ext_resource type="PackedScene" uid="uid://6iwbqx2a606d" path="res://assets/models/cabinets/cabinet_quack_man.glb" id="2_t5fjv"]
+[ext_resource type="PackedScene" uid="uid://campisylom2n0" path="res://assets/models/cabinets/cabinet_insane_pool.glb" id="2_tabgq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_72ujb"]
 size = Vector3(1, 1.99246, 0.97821)
@@ -17,7 +17,7 @@ script = ExtResource("1_oumog")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999983, 0.150726)
 shape = SubResource("BoxShape3D_72ujb")
 
-[node name="cabinet_quack_man" parent="." instance=ExtResource("2_t5fjv")]
+[node name="cabinet_insane_pool" parent="." instance=ExtResource("2_tabgq")]
 
 [node name="PlayGameTrigger" type="Area3D" parent="."]
 collision_layer = 0

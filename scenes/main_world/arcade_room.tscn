@@ -1121,10 +1121,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, -51)
 transform = Transform3D(-4.37114e-08, 0.052336, -0.99863, 0, 0.99863, 0.052336, 1, 2.28768e-09, -4.36515e-08, 6.94273, 2.09621, -12.9408)
 
 [node name="Lamp" parent="WorldDecoration/Reception" instance=ExtResource("6_1g7fv")]
-transform = Transform3D(0.894154, 0, -0.447759, 0, 1, 0, 0.447759, 0, 0.894154, 4.95173, 0, -15.1192)
+transform = Transform3D(0.966819, 0, -0.255463, 0, 1, 0, 0.255463, 0, 0.966819, 4.95173, 0, -15.1192)
 
 [node name="Lamp2" parent="WorldDecoration/Reception" instance=ExtResource("6_1g7fv")]
-transform = Transform3D(-0.83962, 0, -0.543175, 0, 1, 0, 0.543175, 0, -0.83962, 5.09103, 0, -19.1078)
+transform = Transform3D(-0.893669, 0, -0.448727, 0, 1, 0, 0.448727, 0, -0.893669, 5.00505, 0, -19.1846)
 mass = 30.0
 
 [node name="DOOR" parent="WorldDecoration/Reception" instance=ExtResource("5_bk2d7")]
@@ -1293,18 +1293,25 @@ transform = Transform3D(0.809775, 0, 0.58674, 0, 1, 0, -0.58674, 0, 0.809775, -5
 transform = Transform3D(0.809775, 0, 0.58674, 0, 1, 0, -0.58674, 0, 0.809775, 7.56462, 0, -46.2719)
 
 [node name="FireExtinguisher2" parent="WorldDecoration/PlayArea" instance=ExtResource("20_g74hs")]
-transform = Transform3D(0.895712, 0, 0.444635, 0, 1, 0, -0.444635, 0, 0.895712, -16.7237, 0.0506395, -44.2548)
+transform = Transform3D(0.895712, 0, 0.444635, 0, 1, 0, -0.444635, 0, 0.895712, -16.7236, 0.0621894, -44.2555)
 
 [node name="FireExtinguisher3" parent="WorldDecoration/PlayArea" instance=ExtResource("20_g74hs")]
 transform = Transform3D(-0.798635, 0, -0.601815, 0, 1, 0, 0.601815, 0, -0.798635, 18.5959, 0.114345, -41.3937)
 
+[node name="Lamp" parent="WorldDecoration/PlayArea" instance=ExtResource("6_1g7fv")]
+transform = Transform3D(0.386099, 0, 0.922457, 0, 1, 0, -0.922457, 0, 0.386099, 4.16017, 0, -40.3172)
+
+[node name="Lamp2" parent="WorldDecoration/PlayArea" instance=ExtResource("6_1g7fv")]
+transform = Transform3D(0.428999, 0, -0.903306, 0, 1, 0, 0.903306, 0, 0.428999, -2.32088, 0, -40.2697)
+mass = 30.0
+
 [node name="PlayableArcades" type="Node3D" parent="."]
 
 [node name="QuackMan5" parent="PlayableArcades" instance=ExtResource("4_ckxmh")]
-transform = Transform3D(0.999932, 0, -0.0116585, 0, 1, 0, 0.0116585, 0, 0.999932, 3.45862, 0, -42.4631)
+transform = Transform3D(0.999932, 0, -0.0116585, 0, 1, 0, 0.0116585, 0, 0.999932, 2.37914, 0, -42.4631)
 
 [node name="InsanePool" parent="PlayableArcades" instance=ExtResource("32_22ohr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49838, 0, -42.5469)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.415755, 0, -42.5469)
 this_game = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ca12t")]

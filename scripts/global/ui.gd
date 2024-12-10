@@ -45,7 +45,7 @@ func set_egg_bar(amount : float):
 
 func _on_quack_man_world_game_over():
 	await get_tree().create_timer(5).timeout
-	
+	$FishEyeShaderEffect/FullScreen/GameOver/Score.text = "SCORE: " + $FishEyeShaderEffect/FullScreen/Score/ScoreLabel.text
 	game_over.visible = true
 
 func _on_retry_button_pressed():
