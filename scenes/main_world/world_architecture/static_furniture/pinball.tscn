@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c20tq70tu1qwv"]
+[gd_scene load_steps=5 format=3 uid="uid://c20tq70tu1qwv"]
 
 [ext_resource type="PackedScene" uid="uid://60flk17fvy36" path="res://scenes/main_world/world_architecture/static_furniture.tscn" id="1_56ljn"]
 [ext_resource type="PackedScene" uid="uid://b4l8cvts7j4c8" path="res://assets/models/arcade_room/GLB format/pinball.glb" id="2_0vwe0"]
+[ext_resource type="AudioStream" uid="uid://dokpv487wuoyk" path="res://assets/audio/ambience/arcade_world/pinball_machine.mp3" id="3_sj63y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nq8ut"]
 size = Vector3(1.35669, 0.957428, 1.93176)
@@ -14,3 +15,6 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00866699, 0.467056, 0.0791626)
 shape = SubResource("BoxShape3D_nq8ut")
+
+[node name="AudioStreamPlayer3D" parent="." index="2"]
+stream = ExtResource("3_sj63y")

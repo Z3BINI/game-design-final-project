@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4ifijq3b8vr1"]
+[gd_scene load_steps=5 format=3 uid="uid://b4ifijq3b8vr1"]
 
 [ext_resource type="PackedScene" uid="uid://60flk17fvy36" path="res://scenes/main_world/world_architecture/static_furniture.tscn" id="1_ctk2w"]
 [ext_resource type="PackedScene" uid="uid://cqyki6gmo3lr" path="res://assets/models/arcade_room/GLB format/air-hockey.glb" id="2_s4qmn"]
+[ext_resource type="AudioStream" uid="uid://c16rjxfaeigcw" path="res://assets/audio/ambience/arcade_world/air_hockey.mp3" id="3_ea0l2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yggq2"]
 size = Vector3(2.9873, 1.0127, 2.12598)
@@ -21,3 +22,7 @@ light_color = Color(0.683219, 0.471196, 1, 1)
 light_energy = 2.0
 spot_range = 2.085
 spot_angle = 75.0
+
+[node name="AudioStreamPlayer3D" parent="." index="3"]
+stream = ExtResource("3_ea0l2")
+volume_db = -5.0

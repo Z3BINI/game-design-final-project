@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://e7wilhvot0sx"]
+[gd_scene load_steps=5 format=3 uid="uid://e7wilhvot0sx"]
 
 [ext_resource type="PackedScene" uid="uid://60flk17fvy36" path="res://scenes/main_world/world_architecture/static_furniture.tscn" id="1_txuiu"]
 [ext_resource type="PackedScene" uid="uid://bprckab04pbm" path="res://assets/models/arcade_room/GLB format/claw-machine.glb" id="2_clw7w"]
+[ext_resource type="AudioStream" uid="uid://6e46ar4mn0oy" path="res://assets/audio/ambience/arcade_world/claw_machine.mp3" id="3_rlqsh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vpwdk"]
 size = Vector3(1.78296, 2.82886, 1.89551)
@@ -14,3 +15,7 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42883, 0)
 shape = SubResource("BoxShape3D_vpwdk")
+
+[node name="AudioStreamPlayer3D" parent="." index="2"]
+stream = ExtResource("3_rlqsh")
+volume_db = -40.0
