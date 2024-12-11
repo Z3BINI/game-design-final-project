@@ -1,9 +1,10 @@
 extends Node
 
-func play_sfx(sound : AudioStream, parent_node : Node, volume : float):
+func play_sfx(sound : AudioStream, parent_node : Node, volume : float, pitch : float = 1.0):
 	if sound != null or parent_node != null:
 		var stream = AudioStreamPlayer2D.new()
 		
+		stream.pitch_scale = pitch
 		stream.stream = sound
 		stream.volume_db = volume
 		

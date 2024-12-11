@@ -1,6 +1,8 @@
 extends Node2D
 class_name KillerDucky
 
+@export var shot_sfx : AudioStream
+
 @export var bullet_scene : PackedScene
 @export var BASE_SHOOT_CD : float = 2.5
 @export var BASE_DAMAGE: float = 0.2
@@ -44,6 +46,7 @@ func shoot():
 	bullet.global_position = shot_spawn.global_position
 	bullet.look_at(possible_targets[0].global_position)
 	
+	SfxHandler.play_sfx(shot_sfx, self, 0)
 	projectiles.add_child(bullet)
 	
 	shot_smoke.emitting = true

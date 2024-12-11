@@ -1,6 +1,8 @@
 extends Control
 class_name Score
 
+@export var points_sfx : AudioStream
+
 @export var multiplier_max : int = 10
 
 @onready var score_label: Label = $ScoreLabel
@@ -31,6 +33,8 @@ func update_score(amount : int, from : Vector2):
 	var start_position = (Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized() * randi_range(20, 70)) + get_local_mouse_position()
 	var tween = get_tree().create_tween()
 	
+	print(current_multiplier/10.0)
+	SfxHandler.play_sfx(points_sfx, get_tree().get_first_node_in_group("player"), 0, current_multiplier/10.0 + 1)
 	plus_label.text = "+ " + str(current_multiplier * amount)
 	plus_label.position = start_position
 	plus_label.visible = true

@@ -1,13 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cijhy7nf7ge6x"]
+[gd_scene load_steps=8 format=3 uid="uid://cijhy7nf7ge6x"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/enemies/base/enemy.gd" id="1_lm44b"]
+[ext_resource type="AudioStream" uid="uid://byoxlqlsm44xr" path="res://assets/audio/sfx/quack_man/enemy/pain_1.mp3" id="2_5s8kq"]
 [ext_resource type="PackedScene" uid="uid://cg17ct0rih7uj" path="res://scenes/quack_world/components/health_component.tscn" id="2_jk53q"]
+[ext_resource type="AudioStream" uid="uid://bbvk22kkkvf7p" path="res://assets/audio/sfx/quack_man/enemy/pain_2.mp3" id="3_o11ge"]
+[ext_resource type="AudioStream" uid="uid://coox411bvtlxq" path="res://assets/audio/sfx/quack_man/enemy/pain_3.mp3" id="4_7b10r"]
+[ext_resource type="AudioStream" uid="uid://cvtscenkmvy38" path="res://assets/audio/sfx/quack_man/enemy/pain_4.mp3" id="5_f7utv"]
+[ext_resource type="AudioStream" uid="uid://bych6mvcmcicm" path="res://assets/audio/sfx/quack_man/enemy/splatter.mp3" id="6_vcgcv"]
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
 collision_mask = 31
 motion_mode = 1
 script = ExtResource("1_lm44b")
+pain1_sfx = ExtResource("2_5s8kq")
+pain2_sfx = ExtResource("3_o11ge")
+pain3_sfx = ExtResource("4_7b10r")
+pain4_sfx = ExtResource("5_f7utv")
+blood_splatter_sfx = ExtResource("6_vcgcv")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_jk53q")]
 health_bar = NodePath("../HpBar")

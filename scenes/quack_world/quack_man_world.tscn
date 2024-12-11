@@ -1,13 +1,16 @@
-[gd_scene load_steps=14 format=4 uid="uid://ck0146jgm5i4"]
+[gd_scene load_steps=17 format=4 uid="uid://ck0146jgm5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bllaylpcu6vj1" path="res://scenes/quack_world/player/player.tscn" id="1_7gm2t"]
 [ext_resource type="Script" path="res://scripts/quack_world/quack_man_world.gd" id="1_gin2k"]
 [ext_resource type="Texture2D" uid="uid://wufpwelwanrd" path="res://assets/quack_man/world/Terrain/Water/Water.png" id="1_qx0ax"]
 [ext_resource type="PackedScene" uid="uid://ojkh110upjxp" path="res://scenes/quack_world/components/spawn_component.tscn" id="2_4clok"]
 [ext_resource type="Texture2D" uid="uid://bgjypa40jox5d" path="res://assets/quack_man/world/grass.png" id="2_4ihah"]
+[ext_resource type="AudioStream" uid="uid://b4adxeqx4obtt" path="res://assets/audio/sfx/quack_man/gameplay/tada.mp3" id="2_x80jy"]
+[ext_resource type="AudioStream" uid="uid://d3polkqmeuwdw" path="res://assets/audio/sfx/quack_man/gameplay/ambience_park.mp3" id="3_h5xau"]
 [ext_resource type="Texture2D" uid="uid://bybr7dvh5egxy" path="res://assets/quack_man/world/spice.png" id="5_1iu0y"]
 [ext_resource type="PackedScene" uid="uid://dfe5rhh563gce" path="res://scenes/global/ui.tscn" id="7_dvbcu"]
 [ext_resource type="PackedScene" uid="uid://xvb7ik5v73qf" path="res://scenes/ui/pause/pause_menu.tscn" id="7_r4ka1"]
+[ext_resource type="AudioStream" uid="uid://bf7xc7s4nw66j" path="res://assets/audio/music/quack_man/game_music.mp3" id="10_gjte0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c8kjb"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -62,6 +65,7 @@ sources/0 = SubResource("TileSetAtlasSource_lphbc")
 
 [node name="QuackManWorld" type="Node2D" groups=["game"]]
 script = ExtResource("1_gin2k")
+tada_sfx = ExtResource("2_x80jy")
 
 [node name="Difficulty" type="Timer" parent="."]
 wait_time = 30.0
@@ -144,6 +148,26 @@ tile_set = SubResource("TileSet_rn6k0")
 
 [node name="Player" parent="." instance=ExtResource("1_7gm2t")]
 position = Vector2(-1738, 271)
+
+[node name="ParkVibe" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(508, 6)
+stream = ExtResource("3_h5xau")
+autoplay = true
+
+[node name="ParkVibe2" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-495, 6)
+stream = ExtResource("3_h5xau")
+autoplay = true
+
+[node name="Bruh" type="Node2D" parent="Player"]
+process_mode = 3
+position = Vector2(4, -4)
+
+[node name="MainTheme" type="AudioStreamPlayer2D" parent="Player/Bruh"]
+position = Vector2(1, 4)
+stream = ExtResource("10_gjte0")
+volume_db = -25.0
+autoplay = true
 
 [connection signal="game_over" from="." to="UI" method="_on_quack_man_world_game_over"]
 [connection signal="game_over" from="." to="Player" method="_on_quack_man_world_game_over"]

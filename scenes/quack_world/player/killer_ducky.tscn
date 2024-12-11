@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://yvi0f0dfscop"]
+[gd_scene load_steps=7 format=3 uid="uid://yvi0f0dfscop"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/player/killer_ducky.gd" id="1_sfpkn"]
+[ext_resource type="AudioStream" uid="uid://0ydysuiiukwd" path="res://assets/audio/sfx/quack_man/player/ak_duck.mp3" id="2_3wirm"]
 [ext_resource type="PackedScene" uid="uid://khoqxj40ybw7" path="res://scenes/quack_world/weapons/bullet.tscn" id="2_ha6li"]
 [ext_resource type="Texture2D" uid="uid://5frq5bkgp6f1" path="res://assets/quack_man/player/ducky.png" id="4_8lktn"]
 
@@ -19,6 +20,7 @@ radius = 449.071
 
 [node name="KillerDucky" type="Node2D" groups=["ducky"]]
 script = ExtResource("1_sfpkn")
+shot_sfx = ExtResource("2_3wirm")
 bullet_scene = ExtResource("2_ha6li")
 
 [node name="ShotSmoke" type="GPUParticles2D" parent="."]

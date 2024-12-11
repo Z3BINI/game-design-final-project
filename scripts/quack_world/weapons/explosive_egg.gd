@@ -3,6 +3,8 @@ class_name ExplosiveEgg
 
 signal egg_exploded
 
+@export var explosion_sfx : AudioStream
+
 var explosion_timer : float = 3
 var explode_on_hit : bool = false
 var explosion_timer_scale : float = 1
@@ -29,9 +31,11 @@ func _physics_process(delta):
 		explode()
 
 func explode():
+	SfxHandler.play_sfx(explosion_sfx, self, 0)
 	animation_player.play("explode")
 	egg_exploded.emit()
 	await animation_player.animation_finished
+	await get_tree().create_timer(1).timeout
 	queue_free()
 
 func set_damage(amount: float):

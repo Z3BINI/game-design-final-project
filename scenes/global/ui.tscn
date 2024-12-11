@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dfe5rhh563gce"]
+[gd_scene load_steps=30 format=3 uid="uid://dfe5rhh563gce"]
 
 [ext_resource type="Script" path="res://scripts/global/ui.gd" id="1_1uvjt"]
 [ext_resource type="Texture2D" uid="uid://dlqpbxa0f26du" path="res://assets/quack_man/ui/game_over_bg.png" id="1_kqrcc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cvmjwye4tfvqu" path="res://assets/quack_man/ui/player_hp_bar/fill.png" id="7_colg5"]
 [ext_resource type="PackedScene" uid="uid://be8ls1bc3hayv" path="res://scenes/quack_world/ui/cards/card_choice_screen.tscn" id="7_lgfy8"]
 [ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_miq7a"]
+[ext_resource type="AudioStream" uid="uid://b32xvrfb2ypo0" path="res://assets/audio/sfx/quack_man/player/points.mp3" id="7_nt0h7"]
 [ext_resource type="Script" path="res://scripts/quack_world/ui/score.gd" id="7_tibsc"]
 [ext_resource type="Texture2D" uid="uid://wxe7pui3pywn" path="res://assets/quack_man/ui/diff_timer.png" id="10_ucu43"]
 [ext_resource type="Texture2D" uid="uid://d2rtp877b2jtk" path="res://assets/quack_man/weapons/pistol.png" id="12_7ici1"]
@@ -271,6 +272,7 @@ offset_right = 294.0
 offset_bottom = -138.0
 grow_vertical = 0
 script = ExtResource("7_tibsc")
+points_sfx = ExtResource("7_nt0h7")
 
 [node name="ScoreLabel" type="Label" parent="FishEyeShaderEffect/FullScreen/Score"]
 layout_mode = 1

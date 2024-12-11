@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dmwh870tgkdrn"]
+[gd_scene load_steps=23 format=3 uid="uid://dmwh870tgkdrn"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/components/ducky_cage.gd" id="1_f1jpl"]
 [ext_resource type="PackedScene" uid="uid://i64fnv6a3so5" path="res://scenes/quack_world/ui/ducky_pointer.tscn" id="2_504jp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://be272wxmy32s5" path="res://assets/quack_man/ui/help_notice.png" id="5_w7p1w"]
 [ext_resource type="Texture2D" uid="uid://cvg76vkvy7qvx" path="res://assets/quack_man/components/camp_fire.png" id="6_c038b"]
 [ext_resource type="PackedScene" uid="uid://dvql8uq18iq3q" path="res://scenes/quack_world/components/damage_component.tscn" id="7_s12nh"]
+[ext_resource type="AudioStream" uid="uid://cbp8cvc3u520w" path="res://assets/audio/sfx/quack_man/player/ducks_idle.mp3" id="10_e73tu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k6qp5"]
 radius = 70.1142
@@ -186,6 +187,10 @@ lifetime = 2.0
 libraries = {
 "": SubResource("AnimationLibrary_sxcor")
 }
+
+[node name="Quack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_e73tu")
+autoplay = true
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

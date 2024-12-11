@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bmf3aookkqmck"]
+[gd_scene load_steps=17 format=3 uid="uid://bmf3aookkqmck"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/weapons/explosive_egg.gd" id="1_adbvh"]
 [ext_resource type="Texture2D" uid="uid://tr6ego75fr4t" path="res://assets/quack_man/weapons/explosive_egg.png" id="1_ldwwl"]
+[ext_resource type="AudioStream" uid="uid://c6oflx2f2dwng" path="res://assets/audio/sfx/quack_man/grenade/explosion.mp3" id="2_745ah"]
 [ext_resource type="PackedScene" uid="uid://dvql8uq18iq3q" path="res://scenes/quack_world/components/damage_component.tscn" id="2_n8bnc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a8urf"]
@@ -181,6 +182,7 @@ contact_monitor = true
 max_contacts_reported = 1
 angular_velocity = 26.1799
 script = ExtResource("1_adbvh")
+explosion_sfx = ExtResource("2_745ah")
 
 [node name="DamageComponent" parent="." instance=ExtResource("2_n8bnc")]
 

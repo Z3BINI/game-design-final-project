@@ -1,5 +1,8 @@
 extends Control
 
+@export var card_hover_sfx : AudioStream
+@export var card_use_sfx : AudioStream
+
 var base_card_array : Array[CardUpgrade]
 var egg_card_array : Array[CardUpgrade]
 var duck_card_array : Array[CardUpgrade]
@@ -62,6 +65,7 @@ func show_cards():
 
 func _on_card_upgrade_choice_done(used_card_id : int):
 	card_animations.play("chose")
+	SfxHandler.play_sfx(card_use_sfx, self, 5)
 	
 	game_scene.toggle_pause(false)
 	player.disable_player = false
@@ -110,4 +114,7 @@ func load_cards_to_array(path):
 
 func player_learned_duck():
 	base_card_array.append_array(duck_card_array)
+	
+func play_sfx_hover():
+	SfxHandler.play_sfx(card_hover_sfx, self, 20)
 	

@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://be8ls1bc3hayv"]
+[gd_scene load_steps=15 format=3 uid="uid://be8ls1bc3hayv"]
 
 [ext_resource type="Script" path="res://scripts/ui/card_choice_screen.gd" id="1_s4quk"]
+[ext_resource type="AudioStream" uid="uid://b1eo6akvq15kv" path="res://assets/audio/sfx/quack_man/gameplay/card_hover.mp3" id="2_4hiub"]
 [ext_resource type="Script" path="res://scripts/ui/stats.gd" id="2_pa2rv"]
+[ext_resource type="AudioStream" uid="uid://br5yvkdsj8beo" path="res://assets/audio/sfx/quack_man/gameplay/card_use.mp3" id="3_amccu"]
 [ext_resource type="Script" path="res://scripts/quack_world/ui/enemy_stats.gd" id="3_luxmc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_81mya"]
@@ -181,6 +183,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_s4quk")
+card_hover_sfx = ExtResource("2_4hiub")
+card_use_sfx = ExtResource("3_amccu")
 
 [node name="Stats" type="PanelContainer" parent="." groups=["stats"]]
 layout_mode = 1
@@ -387,7 +391,6 @@ randomness = 1.0
 [node name="CelebrationRight" type="GPUParticles2D" parent="."]
 position = Vector2(1584, 907)
 rotation = -2.0153
-scale = Vector2(1, 1)
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_x57yw")
 lifetime = 3.0
@@ -395,3 +398,6 @@ explosiveness = 1.0
 randomness = 1.0
 
 [connection signal="visibility_changed" from="EnemyStats" to="EnemyStats" method="_on_visibility_changed"]
+[connection signal="mouse_entered" from="Card1" to="." method="play_sfx_hover"]
+[connection signal="mouse_entered" from="Card2" to="." method="play_sfx_hover"]
+[connection signal="mouse_entered" from="Card3" to="." method="play_sfx_hover"]
