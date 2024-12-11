@@ -15,6 +15,10 @@ run/main_scene="res://scenes/main_world/arcade_room.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SfxHandler="*res://scripts/global/sfx_handler.gd"
+
 [display]
 
 window/size/viewport_width=1920

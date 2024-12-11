@@ -1,11 +1,16 @@
-[gd_scene load_steps=23 format=3 uid="uid://bllaylpcu6vj1"]
+[gd_scene load_steps=28 format=3 uid="uid://bllaylpcu6vj1"]
 
 [ext_resource type="Script" path="res://scripts/quack_world/player/player.gd" id="1_qu3ph"]
+[ext_resource type="AudioStream" uid="uid://cr3td5c75jlcj" path="res://assets/audio/sfx/quack_man/player/shot.mp3" id="2_6rg41"]
 [ext_resource type="PackedScene" uid="uid://khoqxj40ybw7" path="res://scenes/quack_world/weapons/bullet.tscn" id="2_68t5w"]
 [ext_resource type="Texture2D" uid="uid://d2vtygn44he1k" path="res://assets/quack_man/player/player.png" id="2_kf1pm"]
+[ext_resource type="AudioStream" uid="uid://cxbrhoarwdoqi" path="res://assets/audio/sfx/quack_man/player/release_bomb.mp3" id="3_mc3co"]
 [ext_resource type="Texture2D" uid="uid://d2rtp877b2jtk" path="res://assets/quack_man/weapons/pistol.png" id="3_no28g"]
 [ext_resource type="PackedScene" uid="uid://bmf3aookkqmck" path="res://scenes/quack_world/weapons/explosive_egg.tscn" id="3_svl3i"]
+[ext_resource type="AudioStream" uid="uid://gyaq5lqxs3iw" path="res://assets/audio/sfx/quack_man/player/take_dmg.mp3" id="4_cjt5j"]
 [ext_resource type="PackedScene" uid="uid://cg17ct0rih7uj" path="res://scenes/quack_world/components/health_component.tscn" id="4_ixe35"]
+[ext_resource type="AudioStream" uid="uid://b5bj0kvpr4ee6" path="res://assets/audio/sfx/quack_man/player/hit.mp3" id="5_maoo5"]
+[ext_resource type="AudioStream" uid="uid://bd4dye3hphqbm" path="res://assets/audio/sfx/quack_man/player/died.mp3" id="5_srr6c"]
 [ext_resource type="PackedScene" uid="uid://yvi0f0dfscop" path="res://scenes/quack_world/player/killer_ducky.tscn" id="7_i1j3l"]
 [ext_resource type="Texture2D" uid="uid://blclrrc111xg8" path="res://assets/quack_man/player/dead.png" id="11_bwmd6"]
 
@@ -260,6 +265,11 @@ collision_layer = 4
 collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_qu3ph")
+shoot_sfx = ExtResource("2_6rg41")
+drop_bomb_sfx = ExtResource("3_mc3co")
+took_dmg_sfx = ExtResource("4_cjt5j")
+hit_sfx = ExtResource("5_maoo5")
+died_sfx = ExtResource("5_srr6c")
 WEAPON_MAX_DIST = 75.0
 bullet_scene = ExtResource("2_68t5w")
 explosive_egg_scene = ExtResource("3_svl3i")

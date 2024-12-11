@@ -5,6 +5,12 @@ signal learned_duck
 signal player_died
 signal player_damaged
 
+@export var shoot_sfx : AudioStream
+@export var drop_bomb_sfx : AudioStream
+@export var took_dmg_sfx : AudioStream
+@export var hit_sfx : AudioStream
+@export var died_sfx : AudioStream
+
 @export var BASE_MAX_SPEED : float = 150
 @export var BASE_BASIC_DAMAGE : float = 1
 @export var BASE_EGG_DAMAGE : float = 2
@@ -112,6 +118,7 @@ func drop_egg():
 	egg.global_position = global_position
 	egg.rotation = rotation
 	
+	SfxHandler.play_sfx(drop_bomb_sfx, self, 0)
 	projectile_holder.add_child(egg)
 	
 	egg.set_damage(current_egg_dmg)
@@ -133,6 +140,7 @@ func shoot():
 	
 	projectile_holder.add_child(bullet)
 	
+	SfxHandler.play_sfx(shoot_sfx, self, 0)
 	gun_anim.play("shoot")
 	
 	bullet.set_damage(current_basic_dmg)
@@ -170,12 +178,15 @@ func short_angle_dist(from, to):
 
 func _on_health_component_took_dmg(amount : float):
 	player_damaged.emit()
+	SfxHandler.play_sfx(hit_sfx, self, 0)
+	SfxHandler.play_sfx(took_dmg_sfx, self, -5)
 	animation_player.play("take_dmg")
 
 
 func _on_health_component_died():
 	disable_duckies()
 	animation_player.play("die")
+	SfxHandler.play_sfx(died_sfx, self, 15)
 	await animation_player.animation_finished
 	disable_player = true
 	player_died.emit()
