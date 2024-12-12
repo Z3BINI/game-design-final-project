@@ -1,17 +1,22 @@
-[gd_scene load_steps=27 format=3 uid="uid://db8hflx8ubsdj"]
+[gd_scene load_steps=32 format=3 uid="uid://db8hflx8ubsdj"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/crazy_pool.gd" id="1_54vtn"]
 [ext_resource type="Texture2D" uid="uid://bg1gwtvp0g2uf" path="res://assets/insane_pool/world/table.png" id="1_70ftb"]
 [ext_resource type="PackedScene" uid="uid://cu3d8pbv58cai" path="res://scenes/insane_pool/player/player.tscn" id="1_ewdgo"]
+[ext_resource type="AudioStream" uid="uid://j0rgla3vv3ci" path="res://assets/audio/sfx/insane_pool/hole/door_close.mp3" id="2_2okpk"]
 [ext_resource type="Texture2D" uid="uid://14rveb4ri1u5" path="res://assets/insane_pool/world/pool_floor.png" id="2_t81ns"]
+[ext_resource type="AudioStream" uid="uid://bkljpst8ulw31" path="res://assets/audio/sfx/insane_pool/hole/door_open.mp3" id="3_q4me6"]
+[ext_resource type="AudioStream" uid="uid://cg5qpy0aywph" path="res://assets/audio/sfx/insane_pool/game/stage_clear.mp3" id="4_37r1v"]
 [ext_resource type="Texture2D" uid="uid://c2bhn08t1a7mp" path="res://assets/insane_pool/pool_balls/ball_spawner.png" id="4_j5q8o"]
 [ext_resource type="Shader" path="res://scenes/quack_world/fish_eye_shader/fish_eye.gdshader" id="5_e1ijn"]
+[ext_resource type="AudioStream" uid="uid://dgnvpgjt4ppgw" path="res://assets/audio/sfx/insane_pool/game/points.mp3" id="5_ed4gj"]
 [ext_resource type="Texture2D" uid="uid://dwxng45urood" path="res://assets/arcade_game_bg.png" id="5_s4j82"]
 [ext_resource type="Texture2D" uid="uid://dc71h3vphxdpa" path="res://assets/insane_pool/world/timer.png" id="7_faygm"]
 [ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="8_28sne"]
 [ext_resource type="Texture2D" uid="uid://vrbltktbn552" path="res://assets/insane_pool/world/score.png" id="9_t5fdc"]
 [ext_resource type="Texture2D" uid="uid://dlqpbxa0f26du" path="res://assets/quack_man/ui/game_over_bg.png" id="11_dcdlh"]
 [ext_resource type="PackedScene" uid="uid://xvb7ik5v73qf" path="res://scenes/ui/pause/pause_menu.tscn" id="11_t1lxw"]
+[ext_resource type="AudioStream" uid="uid://ma0juedbq5h0" path="res://assets/audio/music/insane_pool/jazz.mp3" id="15_nc1l6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2rdb2"]
 font = ExtResource("8_28sne")
@@ -295,6 +300,10 @@ outline_size = 8
 
 [node name="CrazyPool" type="Node2D"]
 script = ExtResource("1_54vtn")
+tube_in_sfx = ExtResource("3_q4me6")
+tube_out_sfx = ExtResource("2_2okpk")
+stage_clear_sfx = ExtResource("4_37r1v")
+points_sfx = ExtResource("5_ed4gj")
 
 [node name="Floor" type="Sprite2D" parent="."]
 scale = Vector2(117.813, 72.75)
@@ -587,6 +596,14 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "STAGE CLEARED!"
 label_settings = SubResource("LabelSettings_bhsov")
+
+[node name="Balls2" type="Node2D" parent="."]
+process_mode = 3
+
+[node name="PoolVibes" type="AudioStreamPlayer2D" parent="Balls2"]
+stream = ExtResource("15_nc1l6")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]
 [connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

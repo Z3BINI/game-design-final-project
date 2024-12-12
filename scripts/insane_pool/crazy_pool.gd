@@ -32,6 +32,11 @@ extends Node2D
 
 signal stage_cleared
 
+@export var tube_in_sfx : AudioStream
+@export var tube_out_sfx : AudioStream
+@export var stage_clear_sfx : AudioStream
+@export var points_sfx : AudioStream
+
 var switch_scene : PackedScene = preload("res://scenes/insane_pool/switches/switch.tscn")
 var ball_scene : PackedScene = preload("res://scenes/insane_pool/balls/color_ball.tscn")
 var hole_scene : PackedScene = preload("res://scenes/insane_pool/holes/hole.tscn")
@@ -94,9 +99,11 @@ func spawn_ball(color: GameObject.Colors):
 	
 	if (coin_toss):
 		animation_player.play("spawn_right")
+		SfxHandler.play_sfx(tube_in_sfx, self, 0)
 		await animation_player.animation_finished
 	else:
 		animation_player.play("spawn_left")
+		SfxHandler.play_sfx(tube_in_sfx, self, 0)
 		await animation_player.animation_finished
 		
 	color_ball.position = $BallSpawner.global_position
@@ -108,6 +115,7 @@ func spawn_ball(color: GameObject.Colors):
 	else:
 		color_ball.shoot_in(Vector2.LEFT)
 		animation_player.play("spawn_left_leave")
+	SfxHandler.play_sfx(tube_out_sfx, self, 0)
 	
 func spawn_switch(color: GameObject.Colors):
 	var switch = switch_scene.instantiate()
@@ -150,6 +158,7 @@ func _on_stage_cleared() -> void:
 	await clear_stage()
 	
 	animation_player.play("stage_cleared")
+	SfxHandler.play_sfx(stage_clear_sfx, self, 0)
 	await animation_player.animation_finished
 	
 	await get_tree().create_timer(2).timeout
@@ -188,6 +197,8 @@ func add_points(amount : int, point_pos : Vector2, color):
 	tween.tween_property(point_adder, "position", $Marker2D.position, 1)
 	
 	await tween.finished
+	
+	SfxHandler.play_sfx(points_sfx, self, 0)
 	
 	point_adder.visible = false
 	

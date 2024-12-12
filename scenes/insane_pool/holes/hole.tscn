@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://do62jdhomt2h5"]
+[gd_scene load_steps=22 format=3 uid="uid://do62jdhomt2h5"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/holes/hole.gd" id="1_aaa27"]
 [ext_resource type="Texture2D" uid="uid://ctvvk22bkyrar" path="res://assets/insane_pool/world/holes/hole_orange.png" id="2_30qwm"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dtaont0mi8ato" path="res://assets/insane_pool/world/holes/hole_green.png" id="4_ca5ku"]
 [ext_resource type="Texture2D" uid="uid://bhp7n5vm3g7cj" path="res://assets/insane_pool/world/holes/hole_red.png" id="6_8w4as"]
 [ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_7su4r"]
+[ext_resource type="AudioStream" uid="uid://bkljpst8ulw31" path="res://assets/audio/sfx/insane_pool/hole/door_open.mp3" id="7_hxvfp"]
+[ext_resource type="AudioStream" uid="uid://j0rgla3vv3ci" path="res://assets/audio/sfx/insane_pool/hole/door_close.mp3" id="8_wvwer"]
+[ext_resource type="AudioStream" uid="uid://bvcgh7x48fmqn" path="res://assets/audio/sfx/insane_pool/hole/vacuum.mp3" id="10_6t80r"]
 
 [sub_resource type="Resource" id="Resource_jcuyn"]
 resource_local_to_scene = true
@@ -135,6 +138,8 @@ _data = {
 [node name="Hole" type="Node2D" groups=["hole"]]
 script = ExtResource("1_aaa27")
 game_object_data = SubResource("Resource_jcuyn")
+open_sfx = ExtResource("8_wvwer")
+close_sfx = ExtResource("7_hxvfp")
 
 [node name="SuckageDetector" type="Area2D" parent="."]
 position = Vector2(0, 131)
@@ -189,6 +194,10 @@ label_settings = SubResource("LabelSettings_42dk2")
 libraries = {
 "": SubResource("AnimationLibrary_h6nsv")
 }
+
+[node name="Vacuum" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_6t80r")
+volume_db = -20.0
 
 [connection signal="body_entered" from="SuckageDetector" to="." method="_on_suckage_detector_body_entered"]
 [connection signal="body_exited" from="SuckageDetector" to="." method="_on_suckage_detector_body_exited"]

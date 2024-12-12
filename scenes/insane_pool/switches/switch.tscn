@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bceb1qab0auhu"]
+[gd_scene load_steps=16 format=3 uid="uid://bceb1qab0auhu"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/switches/switch.gd" id="1_ex5h3"]
 [ext_resource type="Texture2D" uid="uid://4hcln1exwipu" path="res://assets/insane_pool/world/switches/switch_orange.png" id="1_u0xka"]
 [ext_resource type="Resource" uid="uid://d0lkba8meqonw" path="res://scripts/insane_pool/game_obj_res.tres" id="2_hxy7p"]
+[ext_resource type="AudioStream" uid="uid://dcm7c3x1mm8f7" path="res://assets/audio/sfx/insane_pool/switch/on.mp3" id="3_2o4gb"]
 [ext_resource type="Texture2D" uid="uid://3jvbcho88x0v" path="res://assets/insane_pool/world/switches/switch_shadow.png" id="3_8470q"]
 [ext_resource type="Script" path="res://scripts/insane_pool/switches/switch_button.gd" id="3_inx0q"]
+[ext_resource type="AudioStream" uid="uid://kpxtvh0h6yx3" path="res://assets/audio/sfx/insane_pool/switch/off.mp3" id="4_v64sy"]
 [ext_resource type="Texture2D" uid="uid://c5mt66qo3lwt8" path="res://assets/insane_pool/world/switches/pin.png" id="5_tg7qw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h6h06"]
@@ -102,6 +104,8 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_ex5h3")
 game_object_data = ExtResource("2_hxy7p")
+switch_on_sfx = ExtResource("3_2o4gb")
+switch_off_sfx = ExtResource("4_v64sy")
 metadata/_edit_vertical_guides_ = [-338.0]
 
 [node name="Line2D" type="Line2D" parent="."]

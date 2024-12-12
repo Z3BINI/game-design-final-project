@@ -2,6 +2,9 @@ extends StaticBody2D
 
 @export var game_object_data : GameObject
 
+@export var switch_on_sfx : AudioStream
+@export var switch_off_sfx : AudioStream
+
 @onready var line_2d: Line2D = $Line2D
 @onready var switch_button: RigidBody2D = $SwitchButton
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -46,6 +49,7 @@ func toggle_switch(_points : int = 0, _ball_pos : Vector2 = Vector2.ZERO, _color
 		
 	switch = !switch
 	animation_player.play("on") if switch else animation_player.play("off")
+	SfxHandler.play_sfx(switch_on_sfx, self, 15) if switch else SfxHandler.play_sfx(switch_off_sfx, self, 15)
 	
 	for my_color_hole in my_color_holes:
 		my_color_hole.toggle_on_off()

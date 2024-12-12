@@ -1,14 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://p7eye6cipa2q"]
+[gd_scene load_steps=27 format=3 uid="uid://p7eye6cipa2q"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/ball/color_ball.gd" id="1_oyryg"]
 [ext_resource type="Script" path="res://scripts/insane_pool/game_object.gd" id="2_iq8wy"]
+[ext_resource type="AudioStream" uid="uid://ba01270er4ooy" path="res://assets/audio/sfx/insane_pool/player/shoot.mp3" id="2_tj8i7"]
 [ext_resource type="Texture2D" uid="uid://bwc41slnwg6nj" path="res://assets/insane_pool/pool_balls/ball_blue.png" id="3_611mj"]
+[ext_resource type="AudioStream" uid="uid://c5jkcltpfml08" path="res://assets/audio/sfx/insane_pool/balls/col_1.mp3" id="3_urk0n"]
 [ext_resource type="Script" path="res://scripts/insane_pool/ball/trajectory_line.gd" id="3_x1guv"]
+[ext_resource type="AudioStream" uid="uid://wk8gr601rdis" path="res://assets/audio/sfx/insane_pool/balls/col_2.mp3" id="4_sp4hw"]
 [ext_resource type="Texture2D" uid="uid://d2rnngy28rr6r" path="res://assets/insane_pool/pool_balls/ball_green.png" id="4_xoyux"]
+[ext_resource type="AudioStream" uid="uid://bt1bse6dkwqpd" path="res://assets/audio/sfx/insane_pool/balls/col_3.mp3" id="5_7y2rk"]
 [ext_resource type="Texture2D" uid="uid://cbrfprfqu68iw" path="res://assets/insane_pool/pool_balls/ball_orange.png" id="5_coj1a"]
+[ext_resource type="AudioStream" uid="uid://c182o3iy7fdwl" path="res://assets/audio/sfx/insane_pool/balls/col_4.mp3" id="6_3cyu6"]
 [ext_resource type="Texture2D" uid="uid://dyaj77jbq2s5g" path="res://assets/insane_pool/pool_balls/ball_red.png" id="6_6l6km"]
 [ext_resource type="Texture2D" uid="uid://bujefxc3elqna" path="res://assets/insane_pool/pool_balls/ball_shadow.png" id="7_5f8ol"]
 [ext_resource type="FontFile" uid="uid://bikk745dwj17v" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_10j6l"]
+[ext_resource type="AudioStream" uid="uid://cpsc2cjckt1rw" path="res://assets/audio/sfx/insane_pool/balls/col_5.mp3" id="7_klrio"]
 [ext_resource type="Texture2D" uid="uid://c4xmju428gpwv" path="res://assets/insane_pool/pool_balls/ball_traj.png" id="8_3fdm7"]
 
 [sub_resource type="Resource" id="Resource_mikl4"]
@@ -139,6 +145,12 @@ _data = {
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_oyryg")
+shoot_sfx = ExtResource("2_tj8i7")
+bounce_sfx_1 = ExtResource("3_urk0n")
+bounce_sfx_2 = ExtResource("4_sp4hw")
+bounce_sfx_3 = ExtResource("5_7y2rk")
+bounce_sfx_4 = ExtResource("6_3cyu6")
+bounce_sfx_5 = ExtResource("7_klrio")
 game_object_data = SubResource("Resource_mikl4")
 SUCK_SPEED = 1500.0
 

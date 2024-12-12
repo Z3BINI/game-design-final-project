@@ -5,6 +5,9 @@ signal ate_ball(points, point_pos, color)
 
 @export var game_object_data : GameObject
 
+@export var open_sfx : AudioStream
+@export var close_sfx : AudioStream
+
 @onready var suckage_detector: Area2D = $SuckageDetector
 @onready var hole_detector: Area2D = $HoleDetector
 @onready var suck_effect_r: GPUParticles2D = $SuckEffectR
@@ -20,6 +23,8 @@ func _ready() -> void:
 
 func toggle_on_off()->void:
 	sprite_2d.frame = 1 if (sprite_2d.frame == 0) else 0
+	SfxHandler.play_sfx(open_sfx,self,0) if (sprite_2d.frame == 0) else SfxHandler.play_sfx(close_sfx,self,0)
+	$Vacuum.playing = !$Vacuum.playing
 	suckage_detector.set_deferred("monitoring", !suck_effect_r.emitting)
 	hole_detector.set_deferred("monitoring", !suck_effect_r.emitting)
 	suck_effect_r.emitting = !suck_effect_r.emitting

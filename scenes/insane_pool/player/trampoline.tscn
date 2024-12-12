@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://w3w416clxd86"]
+[gd_scene load_steps=9 format=3 uid="uid://w3w416clxd86"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/player/trampoline.gd" id="1_f72xn"]
+[ext_resource type="AudioStream" uid="uid://bfxd8xsmj0r1u" path="res://assets/audio/sfx/insane_pool/player/ball_in.mp3" id="2_de0lk"]
 [ext_resource type="Texture2D" uid="uid://c2dgg4st3o33h" path="res://assets/insane_pool/player/canon.png" id="2_fn8ac"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_htmgv"]
@@ -77,6 +78,7 @@ height = 44.0
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_f72xn")
+ball_in_sfx = ExtResource("2_de0lk")
 
 [node name="Canon" type="Sprite2D" parent="."]
 position = Vector2(35, 0)

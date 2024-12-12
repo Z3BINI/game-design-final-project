@@ -1,6 +1,14 @@
 extends CharacterBody2D
 class_name ColorBall
 
+@export var shoot_sfx : AudioStream
+@export var bounce_sfx_1 : AudioStream
+@export var bounce_sfx_2 : AudioStream
+@export var bounce_sfx_3 : AudioStream
+@export var bounce_sfx_4 : AudioStream
+@export var bounce_sfx_5 : AudioStream
+var bounce_sfx_arr : Array[AudioStream]
+
 @export var game_object_data : GameObject
 
 @export var GRAVITY : float = 500
@@ -27,6 +35,8 @@ var canon : Canon
 
 
 func _ready() -> void:
+	bounce_sfx_arr = [bounce_sfx_1, bounce_sfx_2, bounce_sfx_3, bounce_sfx_4,bounce_sfx_5]
+	
 	$ShootTimer.max_value = SHOOT_CD
 	$ShootTimer.value = SHOOT_CD
 	
@@ -54,6 +64,7 @@ func _physics_process(delta: float) -> void:
 		
 		var collision = move_and_collide(velocity * delta)
 		if not collision: return
+		else: SfxHandler.play_sfx(bounce_sfx_arr.pick_random(), self, 0)
 		
 		velocity = velocity.bounce(collision.get_normal()) * DAMPEN_AMOUNT
 
@@ -62,6 +73,7 @@ func suck_me(direction : Vector2, delta : float):
 
 func shoot_in(from : Vector2):
 	velocity += -from * randf_range(300, 600)
+	SfxHandler.play_sfx(shoot_sfx, self, 0)
 
 func catch():
 	sprite_2d.visible = false
@@ -95,6 +107,7 @@ func shoot():
 	
 	velocity = canon.global_transform.x * SHOOT_FORCE
 	canon.animation_player.play("shoot")
+	SfxHandler.play_sfx(shoot_sfx, self, 0)
 	
 	animation_player.play("reduced_points")
 	

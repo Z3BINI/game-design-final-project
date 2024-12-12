@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu3d8pbv58cai"]
+[gd_scene load_steps=7 format=3 uid="uid://cu3d8pbv58cai"]
 
 [ext_resource type="Script" path="res://scripts/insane_pool/player/player.gd" id="1_oaapo"]
 [ext_resource type="Texture2D" uid="uid://b31pkb2337xfm" path="res://assets/insane_pool/player/canon_body.png" id="3_3r3s8"]
 [ext_resource type="PackedScene" uid="uid://w3w416clxd86" path="res://scenes/insane_pool/player/trampoline.tscn" id="3_snw7g"]
+[ext_resource type="AudioStream" uid="uid://dhlf3ubca3jgr" path="res://assets/audio/sfx/insane_pool/player/rotating.mp3" id="4_w26ey"]
+[ext_resource type="AudioStream" uid="uid://blmrg3nuutrfd" path="res://assets/audio/sfx/insane_pool/player/moving.mp3" id="5_qlq7n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a5bm7"]
 radius = 16.0
@@ -24,3 +26,9 @@ texture = ExtResource("3_3r3s8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_a5bm7")
+
+[node name="Rotation" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_w26ey")
+
+[node name="Movement" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qlq7n")
