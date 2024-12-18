@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cm8mr04hcmu6d"]
+[gd_scene load_steps=35 format=3 uid="uid://cm8mr04hcmu6d"]
 
 [ext_resource type="PackedScene" uid="uid://drkiadhghqljs" path="res://scenes/main_world/world_architecture/floor_tile.tscn" id="1_0usjo"]
 [ext_resource type="Script" path="res://scripts/main_world/arcade_room.gd" id="1_d6cfw"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://ckcj4qvkwyjoi" path="res://scenes/main_world/world_architecture/moveable_furniture/sign.tscn" id="22_3j0ob"]
 [ext_resource type="PackedScene" uid="uid://dgt46wcvtq00m" path="res://scenes/main_world/world_architecture/static_furniture/vending_machine.tscn" id="22_m1hsi"]
 [ext_resource type="PackedScene" uid="uid://de732jrjao50w" path="res://scenes/main_world/objects/cabinets/playable/insane_pool.tscn" id="32_22ohr"]
+[ext_resource type="PackedScene" uid="uid://cf8drkvfioca8" path="res://assets/models/arcade_room/lava_lamp.tscn" id="34_5ed4m"]
 
 [node name="ArcadeRoom" type="Node3D"]
 script = ExtResource("1_d6cfw")
@@ -1316,3 +1317,9 @@ this_game = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ca12t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72194, 0, -0.78297)
+
+[node name="LavaLamp" parent="." instance=ExtResource("34_5ed4m")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.02946, 0, -42.554)
+
+[node name="LavaLamp2" parent="." instance=ExtResource("34_5ed4m")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.09024, 0, -42.554)

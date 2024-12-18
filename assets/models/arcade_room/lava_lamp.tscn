@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cf8drkvfioca8"]
+
+[ext_resource type="PackedScene" uid="uid://bdx56ari85qs" path="res://assets/models/arcade_room/GLB format/lava_lamp_last_game_ready_asset.glb" id="1_qdlhf"]
+[ext_resource type="Script" path="res://scripts/main_world/world_objects/rgb_light.gd" id="2_ompk5"]
+[ext_resource type="Shader" path="res://assets/models/arcade_room/lava_lamp.gdshader" id="3_o8sp7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4m805"]
+top_radius = 0.1
+bottom_radius = 0.2
+height = 0.9
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7g1q"]
+render_priority = 0
+shader = ExtResource("3_o8sp7")
+shader_parameter/blob_speed = 0.25
+shader_parameter/blob_size = 0.5
+shader_parameter/blob_color = Vector4(0.8, 0.4, 0.2, 1)
+shader_parameter/background_color = Vector4(0, 1, 0.89, 0.9)
+shader_parameter/uv_scale = Vector2(1, 2)
+
+[node name="LavaLamp" type="StaticBody3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_qdlhf")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 9.9415, 0, 0)
+
+[node name="RgbLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0.933357, -0.00246788)
+light_color = Color(0.563728, 0.579178, 0.636739, 1)
+light_energy = 15.0
+shadow_enabled = true
+omni_range = 4.065
+omni_attenuation = 0.0
+script = ExtResource("2_ompk5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00167364, 1.00252, 0.000637472)
+mesh = SubResource("CylinderMesh_4m805")
+surface_material_override/0 = SubResource("ShaderMaterial_g7g1q")
